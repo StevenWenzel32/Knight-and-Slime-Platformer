@@ -1,3 +1,11 @@
+# Ignore everything
+*
+
+# Don't ignore the Assets folder
+!Assets/
+# Don't ignore the contents of the Assets folder
+!Assets/**
+
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
