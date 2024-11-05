@@ -923,7 +923,7 @@ GameObject:
   - component: {fileID: 4229523238877411562}
   - component: {fileID: 7493994766024807326}
   - component: {fileID: 4708200932996995173}
-  - component: {fileID: 5061673691043905885}
+  - component: {fileID: 539910229495729902}
   m_Layer: 5
   m_Name: Selection Arrow
   m_TagString: Untagged
@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: -0.5, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &5061673691043905885
+--- !u!114 &539910229495729902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1012,12 +1012,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6959694171290973611}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14b191330a7315148ae06ab27ad67a42, type: 3}
+  m_Script: {fileID: 11500000, guid: 49e25b1613be7a24c9b4c4f90ed04024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   options:
   - {fileID: 2868847716948013706}
   - {fileID: 6163084648229673776}
   - {fileID: 6822122983032272316}
-  changePosSound: {fileID: 8300000, guid: 07cec2cdee6e53344b64b697df09ea32, type: 3}
+  changePosSound: {fileID: 8300000, guid: fc86975c54dc7b34b9c5e64bca859a1c, type: 3}
   selectSound: {fileID: 8300000, guid: b090802b124ace84cba1f4be056e9cfd, type: 3}

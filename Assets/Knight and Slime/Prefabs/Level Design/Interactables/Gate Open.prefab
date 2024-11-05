@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4000186516280790}
   - component: {fileID: 212931201863385090}
   - component: {fileID: 8946220003022535193}
+  - component: {fileID: 1090760141065348878}
   - component: {fileID: 1941623272768609108}
-  - component: {fileID: 1036878924792544012}
   m_Layer: 0
   m_Name: Gate Open
   m_TagString: Untagged
@@ -132,6 +132,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0625, y: 1.1666666}
   m_EdgeRadius: 0
+--- !u!114 &1090760141065348878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172597361615030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8ebf48d51352e459c7a2e4e168f1e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: 0
 --- !u!95 &1941623272768609108
 Animator:
   serializedVersion: 5
@@ -153,16 +166,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1036878924792544012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172597361615030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15831430cdc677242ac1020c35dd3bbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  action: 0

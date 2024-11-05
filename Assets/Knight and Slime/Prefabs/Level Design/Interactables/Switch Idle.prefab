@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7293777982494280337}
   - component: {fileID: 591193261226914536}
   - component: {fileID: 7349547810017243613}
-  - component: {fileID: 8438865510927454116}
+  - component: {fileID: 7579699490657178739}
   m_Layer: 7
   m_Name: Switch Idle
   m_TagString: Untagged
@@ -123,7 +123,7 @@ BoxCollider2D:
   m_Offset: {x: -0.0013141632, y: 0.17804176}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.6041667, y: 0.7708333}
     newSize: {x: 0.6041667, y: 0.7708333}
     adaptiveTilingThreshold: 0.5
@@ -189,7 +189,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.20700622}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.6041667, y: 0.7708333}
     newSize: {x: 0.6041667, y: 0.7708333}
     adaptiveTilingThreshold: 0.5
@@ -199,7 +199,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6041667, y: 0.35682058}
   m_EdgeRadius: 0
---- !u!114 &8438865510927454116
+--- !u!114 &7579699490657178739
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1307837508803308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5f2c7ea21268a842960211e90b9b379, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f015bff73df7d7448fb41ce8b8d6db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controlled: {fileID: 0}

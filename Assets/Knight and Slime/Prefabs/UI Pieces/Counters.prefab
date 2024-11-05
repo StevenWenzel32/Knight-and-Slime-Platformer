@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 7795142542796620069}
   - component: {fileID: 5650772753623120742}
   - component: {fileID: 6719734739912428800}
-  - component: {fileID: 4554115384157194523}
+  - component: {fileID: 3881396061651552458}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4554115384157194523
+--- !u!114 &3881396061651552458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,10 +257,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1691301276660886377}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f520d9ebf7684cb4ab6add3d84c20db1, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c40274f66b4db24d925ac223f02f322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gemsToCollect: 0
+  gemsToCollect: 4
   gemsCollected: 0
 --- !u!1 &1821578053442255241
 GameObject:
@@ -407,14 +407,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1821578053442255241}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f05c45b2c20e1f4b8fda855949d4da4, type: 3}
+  m_Script: {fileID: 11500000, guid: 82cdef28d23d01048ae05974e26e9a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gemValue: 500
   timer: {fileID: 5764161368435900319}
-  timeModifier: 10
-  threeStarTime: 60
-  twoStarTime: 90
+  timeModifier: 0
+  threeStarTime: 0
+  twoStarTime: 0
   score: 0
   playerTime: 0
   stars: 0
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3913583854477793331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acb8c80d576b4834486aada483724435, type: 3}
+  m_Script: {fileID: 11500000, guid: d8997c7e66e273e4cb646b7ea95c80c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 4913751884973661525}
   - component: {fileID: 7798447789903517462}
   - component: {fileID: 2442998954766081927}
-  - component: {fileID: 3770821222391684567}
+  - component: {fileID: 4422461634107064292}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -892,7 +892,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &3770821222391684567
+--- !u!114 &4422461634107064292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -901,7 +901,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7612457920591957207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe80c1902f8524c48898e9111fabd8da, type: 3}
+  m_Script: {fileID: 11500000, guid: 71a2a215748f75848a8ba54664b6df2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   levelNumber: 0
