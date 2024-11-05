@@ -651,13 +651,13 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 857920217}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+        m_MethodName: SetFullscreen
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -751,7 +751,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 217934403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fd4a0a5a3496c1458cdc2f1d31d1770, type: 3}
+  m_Script: {fileID: 11500000, guid: d5911e16391abaf479196bfca86c56d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dropdown: {fileID: 217934406}
@@ -816,7 +816,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 857920217}
-        m_TargetAssemblyTypeName: SettingsMenuManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: SetQuality
         m_Mode: 0
         m_Arguments:
@@ -919,9 +919,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 227898348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c5ddeb3caa8e7418aca16cf7385e81, type: 3}
+  m_Script: {fileID: 11500000, guid: 35e45574a7a21c449a8518a73a1f17b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenu: 1
   gameScene: 0
   gameOverScreen: {fileID: 0}
   gameOverSound: {fileID: 0}
@@ -930,7 +931,6 @@ MonoBehaviour:
   pauseScreen: {fileID: 0}
   settingsScreen: {fileID: 0}
   counters: {fileID: 0}
-  playerBase: {fileID: 0}
 --- !u!1 &228530394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 362446511}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fd4a0a5a3496c1458cdc2f1d31d1770, type: 3}
+  m_Script: {fileID: 11500000, guid: d5911e16391abaf479196bfca86c56d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dropdown: {fileID: 362446514}
@@ -2443,7 +2443,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 857920215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7decac2b551156042a86bde90c8fac9f, type: 3}
+  m_Script: {fileID: 11500000, guid: b6a926ca9177ef143a9ca402be8d7d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 362446514}
@@ -4569,7 +4569,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1743386450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1e89a5bab12574298540916f8f8c2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ab133ed3a4b038479f97d227e77d3d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: cf2df3b904a6a3e42b9514c76ae23467, type: 2}
