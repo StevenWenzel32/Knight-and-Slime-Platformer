@@ -1,5 +1,3 @@
-using TMPro.Examples;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Door : MonoBehaviour
