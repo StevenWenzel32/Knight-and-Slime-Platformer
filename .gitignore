@@ -10,6 +10,12 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+# Ignore the TextMesh Pro folder
+[Tt]extMesh Pro/
+
+# Ignore the UPAEditor folder
+[Uu]paToolkit/
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -59,6 +65,8 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
+[Tt]extMesh Pro*.meta
+[Uu]paToolkit*.meta
 
 # Unity3D generated file on crash reports
 sysinfo.txt
