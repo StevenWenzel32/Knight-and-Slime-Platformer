@@ -7,6 +7,8 @@ public class MenuManager : MonoBehaviour
 {
     // only have one instance ever, can get else where but can only set here -- singleton
     public static MenuManager instance {get; private set;}
+    [Header ("Manager Type")]
+    public bool mainMenu = false;
 
     [Header ("Scene Management")]
     // the number of the game menu scene
@@ -31,8 +33,6 @@ public class MenuManager : MonoBehaviour
     [Header ("Other")]
     // ref counters
     public GameObject counters;
-    // ref playerBase
-    public PlayerBase playerBase;
 
     private void Awake(){
         // singleton stuff
@@ -42,10 +42,13 @@ public class MenuManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        gameOverScreen?.SetActive(false);
-        pauseScreen?.SetActive(false);
-        levelCompleteScreen?.SetActive(false);
-        settingsScreen?.SetActive(false);
+        // check if it's the main Menu
+        if (!mainMenu){
+            gameOverScreen?.SetActive(false);
+            pauseScreen?.SetActive(false);
+            levelCompleteScreen?.SetActive(false);
+            settingsScreen?.SetActive(false);
+        }
     }
 
     private void Update(){
