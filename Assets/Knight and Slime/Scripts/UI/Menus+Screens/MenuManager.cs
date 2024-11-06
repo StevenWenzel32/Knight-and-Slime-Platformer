@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -70,13 +68,6 @@ public class MenuManager : MonoBehaviour
     {
         // loads the given scene
         SceneManager.LoadScene(gameScene);
-    }
-
-    // sends the player to the designated scene
-    public void LoadLevel(int levelNumber)
-    {
-        // loads the given scene
-        SceneManager.LoadScene(levelNumber + 2);
     }
 
     // quit the game - to be used in the quit button

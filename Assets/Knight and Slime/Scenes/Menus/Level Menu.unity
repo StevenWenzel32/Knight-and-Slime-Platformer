@@ -10147,11 +10147,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1335374818}
+      objectReference: {fileID: 876367393}
+    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelSelectManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1719761416833135378, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
       propertyPath: m_Name
       value: Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659958602906278639, guid: cea78536b7d337c46bc98089d700260b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7102128410027445145, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}

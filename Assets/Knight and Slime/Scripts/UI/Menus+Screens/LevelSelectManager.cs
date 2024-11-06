@@ -1,6 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Animations;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectManager : MonoBehaviour
 {
@@ -27,6 +26,13 @@ public class LevelSelectManager : MonoBehaviour
         }
     }
 
+    // sends the player to the designated scene
+    public void LoadLevel(int levelNumber)
+    {
+        // loads the given scene
+        SceneManager.LoadScene(levelNumber + 2);
+    }
+
     // the level buttons will call this function when clicked -- will never be fed level 1
     public void SelectLevel(int levelNumber){
         // find the level UI object
@@ -39,7 +45,7 @@ public class LevelSelectManager : MonoBehaviour
         // check if the current level is unlocked
         if (!levelLock.gameObject.activeSelf){
             // load the level 
-            MenuManager.instance.LoadLevel(levelNumber);
+            LoadLevel(levelNumber);
         }
     }
 
