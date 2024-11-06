@@ -7,9 +7,11 @@ public class LevelSelectManager : MonoBehaviour
     // only have one instance ever, can get else where but can only set here -- singleton
     public static LevelSelectManager instance {get; private set;}
 
-    // private vars
+    // the current level being looked at 
     private Transform level;
+    // the lock of the current level
     private Transform levelLock;
+    // the # of the next level after the current level
     private int nextLevelNumber;
 
     private void Awake(){
@@ -23,16 +25,9 @@ public class LevelSelectManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // the level buttons will call this function -- will never be fed level 1
+    // the level buttons will call this function when clicked -- will never be fed level 1
     public void SelectLevel(int levelNumber){
         // find the level UI object
         level = transform?.Find("Level " + levelNumber);
