@@ -57,14 +57,16 @@ public class LevelSelectManager : MonoBehaviour
         RemoveLock(nextLevelNumber);
     }
 
-    // removes the lock of the next level -- not needed yet
+    // removes the lock of the next level
     public void RemoveLock(int nextLevelNumber){
+        // find the nextLevel and it's lock
         Transform nextLevelLock = transform?.Find("Level " + nextLevelNumber)?.Find("Level Lock");
+        // check if the lock is active
         if (nextLevelLock.gameObject.activeSelf){
             // turn the lock off on the level select menu
             nextLevelLock.gameObject?.SetActive(false);
-            // turn off the lock on the LevelInfo mess with later
-        //   LevelManager.instance.levelInfo.locked
+            // turn off the lock in the LevelInfo
+           SaveManager.instance.levels[nextLevelNumber - 1].locked = false;
         }
     }
 
