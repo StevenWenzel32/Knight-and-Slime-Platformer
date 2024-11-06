@@ -2,7 +2,7 @@ using UnityEngine;
 
 // level info class -- offers more flexability for seralizing than structs
 // need to set the data in other scripts when the level ends -- inside levelManager
-public class LevelInfo : MonoBehaviour{
+public class LevelInfo{
     public int gems = 0;
     public int stars = 0;
     public int score = 0;

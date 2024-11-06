@@ -12,6 +12,7 @@ public class LevelSelectManager : MonoBehaviour
     private Transform levelLock;
     // the # of the next level after the current level
     private int nextLevelNumber;
+    // perhaps find a way to set the text of the level objects automatically 
 
     private void Awake(){
         if (instance == null)
