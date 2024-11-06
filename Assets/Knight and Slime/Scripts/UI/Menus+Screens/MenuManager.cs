@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour
     public static MenuManager instance {get; private set;}
     [Header ("Manager Type")]
     public bool mainMenu = false;
+    public bool level = false;
 
     [Header ("Scene Management")]
     // the number of the game menu scene
@@ -33,6 +34,7 @@ public class MenuManager : MonoBehaviour
     [Header ("Other")]
     // ref counters
     public GameObject counters;
+    public GameObject guideScreen;
 
     private void Awake(){
         // singleton stuff
@@ -42,12 +44,14 @@ public class MenuManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // check if it's the main Menu
-        if (!mainMenu){
+        // make sure any other screens are turned off based on the menu type
+        if (level){
             gameOverScreen?.SetActive(false);
             pauseScreen?.SetActive(false);
             levelCompleteScreen?.SetActive(false);
             settingsScreen?.SetActive(false);
+        } else if (mainMenu){
+            guideScreen?.SetActive(false);
         }
     }
 
@@ -160,4 +164,13 @@ public class MenuManager : MonoBehaviour
         }
     }
     #endregion
+
+    // go to the settings
+    public void GuideScreen(bool show){
+        if (guideScreen != null)
+        {
+            // turn on the guide screen
+            guideScreen.SetActive(show);
+        }
+    }
 }

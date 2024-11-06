@@ -7253,6 +7253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: 0
+  level: 1
   gameScene: 0
   gameOverScreen: {fileID: 1639789902}
   gameOverSound: {fileID: 8300000, guid: aabf1228ef446954493fc3099080a359, type: 3}
@@ -7261,6 +7262,7 @@ MonoBehaviour:
   pauseScreen: {fileID: 777635715}
   settingsScreen: {fileID: 123515218}
   counters: {fileID: 1359176177}
+  guideScreen: {fileID: 0}
 --- !u!1 &895885150
 GameObject:
   m_ObjectHideFlags: 0

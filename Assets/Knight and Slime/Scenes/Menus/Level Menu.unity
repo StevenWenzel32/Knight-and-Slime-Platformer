@@ -8332,7 +8332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e45574a7a21c449a8518a73a1f17b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: 1
+  mainMenu: 0
+  level: 0
   gameScene: 0
   gameOverScreen: {fileID: 0}
   gameOverSound: {fileID: 0}
@@ -8341,6 +8342,7 @@ MonoBehaviour:
   pauseScreen: {fileID: 0}
   settingsScreen: {fileID: 0}
   counters: {fileID: 0}
+  guideScreen: {fileID: 0}
 --- !u!1 &1340118562
 GameObject:
   m_ObjectHideFlags: 0
