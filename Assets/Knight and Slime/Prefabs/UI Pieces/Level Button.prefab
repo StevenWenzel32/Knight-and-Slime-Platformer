@@ -123,7 +123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: LoadLevel
+        m_MethodName: SelectLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -143,6 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8669799002320035987}
   - component: {fileID: 8573105902916791755}
+  - component: {fileID: 3814206902902175436}
   m_Layer: 5
   m_Name: Level Button
   m_TagString: Untagged
@@ -184,6 +185,19 @@ SortingGroup:
   m_SortingLayer: 8
   m_SortingOrder: 1
   m_SortAtRoot: 0
+--- !u!114 &3814206902902175436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719761416833135378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f238094810777e478695ce550172214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 804428676504103034}
 --- !u!1 &1858496049887278035
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +233,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 152, y: 152}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &246842265210945518
 CanvasRenderer:
@@ -249,7 +263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba266fc6ee459d544a15e96e535def2a, type: 2}
   m_sharedMaterial: {fileID: -5621369039264976200, guid: ba266fc6ee459d544a15e96e535def2a,
@@ -336,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8793940642505210246
 RectTransform:
   m_ObjectHideFlags: 0
