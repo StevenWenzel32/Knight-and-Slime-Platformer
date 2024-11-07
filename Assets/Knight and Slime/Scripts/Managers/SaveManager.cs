@@ -34,13 +34,12 @@ public class SaveManager : MonoBehaviour
     public void SaveAllLevelData(){
         // loop through all the levels and save their data
         for (int i = 0; i < levels.Length; i++){
-            // if level data is empty stop loop
-            // stars check is useless right now since stars is not enabled -- switching to time temporarely 
-            if (levels[i].time !> 0.0f){
+            // check if a level is locked if it is it still has default data
+            if (levels[i].locked){
                 break;
             }
-            // if the score is greater than the current saved score save the new best 
-            else if (levels[i].score > PlayerPrefs.GetInt($"Level_{i + 1}_Score")){
+            // if the score or gem count is greater than the current saved score save the new best 
+            else if ((levels[i].score > PlayerPrefs.GetInt($"Level_{i + 1}_Score")) || (levels[i].gems > PlayerPrefs.GetInt($"Level_{i + 1}_Gems"))){
                 // save the level data 
                 SaveLevelData(levels[i], (i + 1));
             }
@@ -68,9 +67,8 @@ public class SaveManager : MonoBehaviour
     {
         // loop through all the levels[] and load their data
         for (int i = 0; i < levels.Length; i++){
-            // check if a level has default data, if it does stop the loading
-            // stars check is useless right now since stars is not enabled -- switching to time temporarely 
-            if (levels[i].time !> 0.0f){
+            // check if a level is locked if it is it still has default data
+            if (levels[i].locked){
                 break;
             }
             levels[i].gems = PlayerPrefs.GetInt($"Level_{i + 1}_Gems", 0);

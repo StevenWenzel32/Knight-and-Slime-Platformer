@@ -47,10 +47,11 @@ public class LevelManager : MonoBehaviour
         DisplayStats();
         // put up the level complete screen
         MenuManager.instance.LevelComplete();
-        
-        // saving related stuff
+
         // send the level data from the counters to the levelInfo 
         updateLevelInfo();
+        // update the stars on the level Select Menu -- also calls the removeLock for the next level
+        LevelSelectManager.instance.UpdateStars(levelInfo.stars);
         // save the levelInfo to the array in the saveManager
         SaveManager.instance.levels[levelNumber - 1] = levelInfo;
         // have the saveManager save the level data to playerPrefs
@@ -75,6 +76,7 @@ public class LevelManager : MonoBehaviour
         levelInfo.time = ScoreCounter.instance.playerTime;    
         levelInfo.score = ScoreCounter.instance.score;
         levelInfo.stars = ScoreCounter.instance.stars;
+        // if remove lock works correctly this is not needed
         levelInfo.locked = false;
     }
 }
