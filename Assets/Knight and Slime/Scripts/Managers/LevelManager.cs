@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System;
 
 // each level is to have a levelManager object on it 
 public class LevelManager : MonoBehaviour
@@ -59,7 +60,10 @@ public class LevelManager : MonoBehaviour
     public void DisplayStats(){
         levelNum.text = "Level " + levelNumber;
         gemsCollected.text = GemCounter.instance.gemsCollected + "/" + GemCounter.instance.gemsToCollect;
-        time.text = "" + ScoreCounter.instance.playerTime;
+        // convert the float time into a timespan
+        TimeSpan timeSpan = TimeSpan.FromSeconds(ScoreCounter.instance.playerTime);
+        // set the text object to the timespan and format it
+        time.text = timeSpan.ToString(format:@"mm\:ss\:ff");
         score.text = "Score: " + ScoreCounter.instance.score;
         // might add this later -- not needed for now -- better if it was visual -- ****
         // starsEarned.text = "Stars: " + ScoreCounter.instance.stars;

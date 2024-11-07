@@ -35,7 +35,8 @@ public class SaveManager : MonoBehaviour
         // loop through all the levels and save their data
         for (int i = 0; i < levels.Length; i++){
             // if level data is empty stop loop
-            if (levels[i].stars == 0){
+            // stars check is useless right now since stars is not enabled -- switching to time temporarely 
+            if (levels[i].time !> 0.0f){
                 break;
             }
             // if the score is greater than the current saved score save the new best 
@@ -68,7 +69,8 @@ public class SaveManager : MonoBehaviour
         // loop through all the levels[] and load their data
         for (int i = 0; i < levels.Length; i++){
             // check if a level has default data, if it does stop the loading
-            if (levels[i].stars == 0){
+            // stars check is useless right now since stars is not enabled -- switching to time temporarely 
+            if (levels[i].time !> 0.0f){
                 break;
             }
             levels[i].gems = PlayerPrefs.GetInt($"Level_{i + 1}_Gems", 0);

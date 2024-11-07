@@ -36,7 +36,6 @@ public class ScoreCounter : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
-        playerTime = timer.timeToDisplay;
     }
 
     private void DisplayScore(){
@@ -52,6 +51,8 @@ public class ScoreCounter : MonoBehaviour
 
     // to be called by level manager when level is completed
     public void EndOfLevelCalc(){
+        // grab the time
+        playerTime = timer.timeToDisplay;
         StarRating();
         FinalScore();
     }
