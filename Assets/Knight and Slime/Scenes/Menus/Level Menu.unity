@@ -7969,10 +7969,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5453291}
     m_Modifications:
+    - target: {fileID: 539910229495729902, guid: ad40fea8f76d0cd46959ab29b2435c6b,
+        type: 3}
+      propertyPath: options.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 539910229495729902, guid: ad40fea8f76d0cd46959ab29b2435c6b,
+        type: 3}
+      propertyPath: options.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 539910229495729902, guid: ad40fea8f76d0cd46959ab29b2435c6b,
+        type: 3}
+      propertyPath: options.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3047578478142110978, guid: ad40fea8f76d0cd46959ab29b2435c6b,
         type: 3}
       propertyPath: m_Name
       value: Level Complete Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047578478142110978, guid: ad40fea8f76d0cd46959ab29b2435c6b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7671270539699582133, guid: ad40fea8f76d0cd46959ab29b2435c6b,
         type: 3}
@@ -8075,9 +8095,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2159714630156208587, guid: ad40fea8f76d0cd46959ab29b2435c6b, type: 3}
+    - {fileID: 6959694171290973611, guid: ad40fea8f76d0cd46959ab29b2435c6b, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3047578478142110978, guid: ad40fea8f76d0cd46959ab29b2435c6b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 330924142}
   m_SourcePrefab: {fileID: 100100000, guid: ad40fea8f76d0cd46959ab29b2435c6b, type: 3}
 --- !u!224 &330924140 stripped
 RectTransform:
@@ -8085,6 +8111,25 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 330924139}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &330924141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3047578478142110978, guid: ad40fea8f76d0cd46959ab29b2435c6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 330924139}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &330924142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330924141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a19efe01aed3fce49be961e00363b721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpPanel: {fileID: 330924141}
 --- !u!1 &420075312
 GameObject:
   m_ObjectHideFlags: 0
