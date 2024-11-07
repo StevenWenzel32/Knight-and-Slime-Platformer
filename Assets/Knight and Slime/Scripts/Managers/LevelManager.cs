@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour
         LevelSelectManager.instance.UpdateStars(levelInfo.stars);
         // save the levelInfo to the array in the saveManager
         SaveManager.instance.levels[levelNumber - 1] = levelInfo;
-        // have the saveManager save the level data to playerPrefs
+        // have the saveManager save the level data to playerPrefs -- also ends up saving the lock change made in remove lock
         SaveManager.instance.SaveLevelData(levelInfo, levelNumber);
     }
 
