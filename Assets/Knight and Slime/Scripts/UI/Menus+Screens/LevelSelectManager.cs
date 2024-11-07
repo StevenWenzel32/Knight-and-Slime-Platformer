@@ -5,6 +5,7 @@ public class LevelSelectManager : MonoBehaviour
 {
     // only have one instance ever, can get else where but can only set here -- singleton
     public static LevelSelectManager instance {get; private set;}
+    public Transform levelsUICanvas;
 
     // the current level being looked at 
     private Transform level;
@@ -37,14 +38,14 @@ public class LevelSelectManager : MonoBehaviour
     // the level buttons will call this function when clicked
     public void SelectLevel(int levelNumber){
         // find the level UI object
-        level = transform?.Find("Level " + levelNumber);
+        level = levelsUICanvas?.Find("Level " + levelNumber);
         // find it's lock
         levelLock = level?.Find("Level Lock");
 
         // check if the current level is unlocked
         if (!levelLock.gameObject.activeSelf){
-            // set the next level number
-            nextLevelNumber = levelNumber++;
+            // set the next level number - not needed for now
+            nextLevelNumber = levelNumber + 1;
             // load the level 
             LoadLevel(levelNumber);
         }

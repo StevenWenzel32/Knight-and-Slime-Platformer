@@ -6,9 +6,12 @@ public class GrabNumFromName : MonoBehaviour
     public TMP_Text text;
     void Awake()
     {
-        // grab the object # from the object name
-        int num = ParseName(gameObject.name);
-        text.text = "" + num;
+        // display the object num in text
+        text.text = "" + GetObjectNum();
+    }
+
+    public int GetObjectNum(){
+        return ParseName(gameObject.name);
     }
 
     public int ParseName(string objectName){
