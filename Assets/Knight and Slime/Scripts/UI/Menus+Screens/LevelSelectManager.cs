@@ -68,7 +68,7 @@ public class LevelSelectManager : MonoBehaviour
     // removes the lock of the next level -- will never be fed level 1
     public void RemoveLock(int nextLevelNumber){
         // find the nextLevel and it's lock
-        Transform nextLevelLock = transform?.Find("Level " + nextLevelNumber)?.Find("Level Lock");
+        Transform nextLevelLock = levelsUICanvas?.Find("Level " + nextLevelNumber)?.Find("Level Lock");
         // check if the lock is active
         if (nextLevelLock.gameObject.activeSelf){
             // turn the lock off on the level select menu
