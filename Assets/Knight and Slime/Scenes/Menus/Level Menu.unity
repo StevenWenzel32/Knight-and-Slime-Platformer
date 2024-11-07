@@ -7987,7 +7987,7 @@ PrefabInstance:
     - target: {fileID: 3047578478142110978, guid: ad40fea8f76d0cd46959ab29b2435c6b,
         type: 3}
       propertyPath: m_Name
-      value: Level Complete Screen
+      value: Level Info Popup
       objectReference: {fileID: 0}
     - target: {fileID: 3047578478142110978, guid: ad40fea8f76d0cd46959ab29b2435c6b,
         type: 3}
