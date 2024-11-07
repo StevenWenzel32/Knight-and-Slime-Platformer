@@ -61,15 +61,15 @@ public class ScoreCounter : MonoBehaviour
         if (playerTime <= threeStarTime){
             // give three stars
             stars = 3;
-            LevelSelectManager.instance.UpdateStars(stars);
+//            LevelSelectManager.instance.UpdateStars(stars);
         } else if (playerTime <= twoStarTime){
             // give two stars
             stars = 2;
-            LevelSelectManager.instance.UpdateStars(stars);
+//            LevelSelectManager.instance.UpdateStars(stars);
         } else {
             // give one star
             stars = 1;
-            LevelSelectManager.instance.UpdateStars(stars);
+//            LevelSelectManager.instance.UpdateStars(stars);
         }
     }
 

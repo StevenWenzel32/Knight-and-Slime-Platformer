@@ -18,6 +18,11 @@ public class SaveManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             // initalize the levels to a size
             levels = new LevelInfo[levelCount];
+            // since the levelInfo is a class not a struct need to initalize the array before use
+            for (int i = 0; i < levelCount; i++)
+            {
+                levels[i] = new LevelInfo();
+            }
             // load in the saved PlayerData
             LoadAllLevelData();
         } else {
