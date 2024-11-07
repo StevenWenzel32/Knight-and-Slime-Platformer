@@ -1105,7 +1105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 350463390}
   m_Layer: 0
-  m_Name: Core
+  m_Name: Temp Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1126,7 +1126,6 @@ Transform:
   m_Children:
   - {fileID: 85571466}
   - {fileID: 2111151097}
-  - {fileID: 1743386451}
   - {fileID: 227898349}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4556,11 +4555,11 @@ Transform:
   m_GameObject: {fileID: 1743386450}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 532.8736, y: 289.59387, z: 10.724883}
+  m_LocalPosition: {x: 541.2563, y: 288.28534, z: 0.7248831}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 350463390}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1743386452
 MonoBehaviour:
@@ -5299,5 +5298,6 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1743386451}
   - {fileID: 350463390}
   - {fileID: 1209031046}
