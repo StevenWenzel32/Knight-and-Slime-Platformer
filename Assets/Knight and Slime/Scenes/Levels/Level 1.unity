@@ -320,6 +320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMoveDiagonally: 0
   canMoveVertically: 0
+  wasd: 1
+  arrowKeys: 0
   hasAnimations: 1
   speed: 5
   groundLayer:
@@ -3272,7 +3274,7 @@ Transform:
   m_GameObject: {fileID: 475587353}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.7195847, y: 0.42, z: 0.045948368}
+  m_LocalPosition: {x: 3.7195847, y: 0.43, z: 0.045948368}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4101,10 +4103,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d49c396300adaf468f6e3c2f02d8a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  player: {fileID: 30256188}
-  aheadDistance: 10
   cameraSpeed: 2
+  zoomSpeed: 5
+  minZoom: 11.4
+  maxZoom: 25
+  zoomBuffer: 0
+  distFromEdge: 8
+  closeTogether: 100
+  knight: {fileID: 30256188}
+  slime: {fileID: 832258018}
+  startLevelBottom: 0
 --- !u!1 &536467254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4241,7 +4249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000186516280790, guid: 2e158dd1922dd2f429687179bedb7503, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.387077
+      value: 36.361
       objectReference: {fileID: 0}
     - target: {fileID: 4000186516280790, guid: 2e158dd1922dd2f429687179bedb7503, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7193,6 +7201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMoveDiagonally: 0
   canMoveVertically: 0
+  wasd: 0
+  arrowKeys: 1
   hasAnimations: 0
   speed: 5
   groundLayer:
