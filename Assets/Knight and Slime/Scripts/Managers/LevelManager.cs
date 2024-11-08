@@ -57,13 +57,13 @@ public class LevelManager : MonoBehaviour
         SaveManager.instance.SaveLevelData(levelInfo, levelNumber);
 
         // unlocking the next level
-        // check if the lock is active, and only change save data if it is
-        if (SaveManager.instance.levels[levelNumber + 1].locked){
+        // check if the lock is active and if levelNumber is the last level, and only change save data if it is
+        if (levelNumber != SaveManager.instance.levels.Length && SaveManager.instance.levels[levelNumber + 1].locked){
             Debug.Log("Changing lock data for level: " + (levelNumber + 1));
             // turn off the lock for the next level in the LevelInfo
-            SaveManager.instance.levels[levelNumber + 1].locked = false;
+            SaveManager.instance.levels[levelNumber].locked = false;
             // save just the lock change for the next level to playerPrefs
-            SaveManager.instance.SaveLevelLock(false, levelNumber);
+            SaveManager.instance.SaveLevelLock(false, levelNumber + 1);
         }
     }
 

@@ -15,7 +15,7 @@ public class LevelSelectManager : MonoBehaviour
     private int nextLevelNumber;
 
     private void OnEnable(){
-        SetUpLevels();
+        
     }
 
     private void Awake(){
@@ -29,6 +29,7 @@ public class LevelSelectManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        SetUpLevels();
     }
 
     // sends the player to the designated scene
@@ -68,7 +69,7 @@ public class LevelSelectManager : MonoBehaviour
 
     // loop through the levels[] and reflect the lock data on the level buttons -- will show stars in future update ***
     public void SetUpLevels(){
-        Debug.LogError("set up levels is called");
+        Debug.Log("set up levels is called");
         // loop through levels
         for (int i = 0; i < SaveManager.instance.levels.Length; i++)
         {
