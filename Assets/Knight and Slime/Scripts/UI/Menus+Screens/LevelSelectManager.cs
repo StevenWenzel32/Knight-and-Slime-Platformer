@@ -77,9 +77,4 @@ public class LevelSelectManager : MonoBehaviour
            SaveManager.instance.levels[nextLevelNumber - 1].locked = false;
         }
     }
-
-    // display level info when hovered over
-    public void DisplayLevelInfo(){
-
-    }
 }
