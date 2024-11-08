@@ -2,19 +2,32 @@ using UnityEngine;
 
 public abstract class PlayerControllerBase : MonoBehaviour
 {
-     // Public variables -- the options in unity
-     // The speed at which the player moves
-    public float speed = 5f; 
+    // Public variables -- the options in unity
+    // The speed at which the player moves
+    [Header ("Move Type")]
     // Controls whether the player can move diagonally
     public bool canMoveDiagonally = false; 
     public bool canMoveVertically = false;
+
+    [Header ("Collider Changes")]
+    public bool hasAnimations = false;
+
+    [Header ("Move Stats")]
+    public float speed = 5f; 
+    
+    [Header ("Jumping")]
     // might have something to do with the camera????
     public LayerMask groundLayer;
 
+    [Header ("Collider Changes")]
     // public vars for changing colldier for different animations
     // idle and running size
     public Vector2 normalColliderSize;
     public Vector2 normalColliderOffset;
+
+    [Header ("Death")]
+    // the line the player must cross to die when falling 
+    public int deathLine = -10;
 
     // Private variables -- mostly refs
     // Reference to the Rigidbody2D component attached to the player
@@ -37,8 +50,10 @@ public abstract class PlayerControllerBase : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         // Prevent the player from rotating
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        //initialize the animation compoent
-        anim = GetComponent<Animator>();
+        if (hasAnimations){
+            //initialize the animation compoent
+            anim = GetComponent<Animator>();
+        }
     }
 
     // Update is called once per frame
@@ -117,8 +132,11 @@ public abstract class PlayerControllerBase : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        //run running animation
-        anim.SetBool("Run", horizontalInput != 0);
+        // check if the char has animations
+        if (hasAnimations){
+            //run running animation
+            anim.SetBool("Run", horizontalInput != 0);
+        }
     }
 
     // actions performed on collisions
@@ -135,7 +153,7 @@ public abstract class PlayerControllerBase : MonoBehaviour
     // check if the player falls off the map
     protected void CheckIfOffMap()
     {
-        if (transform.position.y < -10)
+        if (transform.position.y < deathLine)
         {
             // kill player using method from PlayerBase
             GetComponent<PlayerBase>().KillPlayer(); 
@@ -164,26 +182,6 @@ public abstract class PlayerControllerBase : MonoBehaviour
     protected void ResetCollider(){
         boxCollider.size = normalColliderSize;
         boxCollider.offset = normalColliderOffset;
-    }
-
-
-    // disable movement - used for player death in playerBase
-    public virtual void DisableMovement()
-    {
-        // Stop the player's movement
-        rb.velocity = Vector2.zero;
-
-        // Optionally, disable the Rigidbody to stop all physics interactions
-        rb.isKinematic = true;
-
-        // Disable input-based movement
-        movement = Vector2.zero;
-
-        // Disable the BoxCollider to prevent interaction (can be optional)
-        boxCollider.enabled = false;
-        
-        // Trigger an animation or other effects in derived classes
-        TriggerDisableAnimation();
     }
 
     // abstract methods
