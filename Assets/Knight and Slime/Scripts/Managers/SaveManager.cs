@@ -22,6 +22,10 @@ public class SaveManager : MonoBehaviour
             for (int i = 0; i < levelCount; i++)
             {
                 levels[i] = new LevelInfo();
+                // if the first level make sure it's unlocked
+                if (i == 0){
+                    levels[i].locked = false;
+                }
             }
             // load in the saved PlayerData
             LoadAllLevelData();
@@ -50,12 +54,26 @@ public class SaveManager : MonoBehaviour
     // call this when a level is completed
     public void SaveLevelData(LevelInfo levelData, int levelNumber)
     {
+        // check if the player did better 
+        if ((levelData.score > PlayerPrefs.GetInt($"Level_{levelNumber}_Score")) || (levelData.gems > PlayerPrefs.GetInt($"Level_{levelNumber}_Gems"))){
+            // Use keys with the level number as part of the key name
+            PlayerPrefs.SetInt($"Level_{levelNumber}_Stars", levelData.stars);
+            PlayerPrefs.SetInt($"Level_{levelNumber}_Score", levelData.score);
+            PlayerPrefs.SetInt($"Level_{levelNumber}_Gems", levelData.gems);
+            PlayerPrefs.SetFloat($"Level_{levelNumber}_Time", levelData.time);
+            PlayerPrefs.SetInt($"Level_{levelNumber}_Locked", levelData.locked ? 1 : 0);
+        }
+
+        // save them right away
+        PlayerPrefs.Save();
+    }
+
+    // pass in a LevelInfo and save it's data into the playerPrefs
+    // call this when a level is completed
+    public void SaveLevelLock(bool locked, int levelNumber)
+    {
         // Use keys with the level number as part of the key name
-        PlayerPrefs.SetInt($"Level_{levelNumber}_Stars", levelData.stars);
-        PlayerPrefs.SetInt($"Level_{levelNumber}_Score", levelData.score);
-        PlayerPrefs.SetInt($"Level_{levelNumber}_Gems", levelData.gems);
-        PlayerPrefs.SetFloat($"Level_{levelNumber}_Time", levelData.time);
-        PlayerPrefs.SetInt($"Level_{levelNumber}_Locked", levelData.locked ? 1 : 0);
+        PlayerPrefs.SetInt($"Level_{levelNumber}_Locked", locked ? 1 : 0);
 
         // save them right away
         PlayerPrefs.Save();

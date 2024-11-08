@@ -48,14 +48,23 @@ public class LevelManager : MonoBehaviour
         // put up the level complete screen
         MenuManager.instance.LevelComplete();
 
+        // saving this level data
         // send the level data from the counters to the levelInfo 
         updateLevelInfo();
-        // update the stars on the level Select Menu -- also calls the removeLock for the next level
-        LevelSelectManager.instance.UpdateStars(levelInfo.stars);
         // save the levelInfo to the array in the saveManager
         SaveManager.instance.levels[levelNumber - 1] = levelInfo;
-        // have the saveManager save the level data to playerPrefs -- also ends up saving the lock change made in remove lock
+        // have the saveManager save the new current level data to playerPrefs
         SaveManager.instance.SaveLevelData(levelInfo, levelNumber);
+
+        // unlocking the next level
+        // check if the lock is active, and only change save data if it is
+        if (SaveManager.instance.levels[levelNumber + 1].locked){
+            Debug.Log("Changing lock data for level: " + (levelNumber + 1));
+            // turn off the lock for the next level in the LevelInfo
+            SaveManager.instance.levels[levelNumber + 1].locked = false;
+            // save just the lock change for the next level to playerPrefs
+            SaveManager.instance.SaveLevelLock(false, levelNumber);
+        }
     }
 
     public void DisplayStats(){

@@ -13,13 +13,16 @@ public class LevelSelectManager : MonoBehaviour
     private Transform levelLock;
     // the # of the next level after the current level
     private int nextLevelNumber;
-    // perhaps find a way to set the text of the level objects automatically 
+
+    private void OnEnable(){
+        SetUpLevels();
+    }
 
     private void Awake(){
         if (instance == null)
         {
             instance = this;
-            // Persist SoundManager across scenes -- good for performance
+            // Persist levelManager across scenes -- good for performance
             DontDestroyOnLoad(gameObject);  
         }
         else
@@ -54,7 +57,6 @@ public class LevelSelectManager : MonoBehaviour
     // finish later -- not needed for class 
     // is not called if level is failed
     public void UpdateStars(int stars){
-        // if a star is earned calls removeLock for the next level
         if (stars == 3){
             // show 3 stars on map
         } else if (stars == 2){
@@ -62,19 +64,47 @@ public class LevelSelectManager : MonoBehaviour
         } else{
             // show 1 star on map
         }
-        RemoveLock(nextLevelNumber);
     }
 
-    // removes the lock of the next level -- will never be fed level 1
-    public void RemoveLock(int nextLevelNumber){
-        // find the nextLevel and it's lock
-        Transform nextLevelLock = levelsUICanvas?.Find("Level " + nextLevelNumber)?.Find("Level Lock");
-        // check if the lock is active
-        if (nextLevelLock.gameObject.activeSelf){
-            // turn the lock off on the level select menu
-            nextLevelLock.gameObject?.SetActive(false);
-            // turn off the lock in the LevelInfo
-           SaveManager.instance.levels[nextLevelNumber - 1].locked = false;
+    // loop through the levels[] and reflect the lock data on the level buttons -- will show stars in future update ***
+    public void SetUpLevels(){
+        Debug.LogError("set up levels is called");
+        // loop through levels
+        for (int i = 0; i < SaveManager.instance.levels.Length; i++)
+        {
+            // get the level buttons parent 
+            Transform levelButton = levelsUICanvas?.Find("Level " + (i + 1));
+            // if the parent exists set the on click function
+            if (levelButton != null){
+                // get the button child and it's button component
+                UnityEngine.UI.Button button = levelButton?.Find("Button")?.GetComponent<UnityEngine.UI.Button>();
+                // if the button component exists
+                if (button != null){
+                    int levelIndex = i + 1;
+                    // remove any listeners to be safe
+                    button.onClick.RemoveAllListeners();
+                    // add the correct listener with the correct function
+                    button.onClick.AddListener(() => SelectLevel(levelIndex));
+                    Debug.Log("Level Button Corrected: " + (i + 1));
+                }
+            }
+            Debug.LogError("LevelInfo for level: " + (i + 1) + ", Lock Status = " + SaveManager.instance.levels[i].locked);
+            // check if the level has any stars
+            if (SaveManager.instance.levels[i].stars != 0){
+                // call the updateStars
+                UpdateStars(SaveManager.instance.levels[i].stars);
+                Debug.Log("Stars updated on level: " + (i + 1));
+            }
+            // check if the level is unlocked
+            else if (!SaveManager.instance.levels[i].locked){
+                // find the levelButton and make sure the lock is off
+                levelsUICanvas?.Find("Level " + (i + 1))?.Find("Level Lock").gameObject.SetActive(false);
+                Debug.Log("Unlocked level: " + (i + 1));
+            }
+            // if the level has no stars and is locked end the loop -- none of the rest have data
+            else {
+                break;
+            }
         }
     }
 }
