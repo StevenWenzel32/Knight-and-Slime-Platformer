@@ -327,7 +327,7 @@ MonoBehaviour:
     m_Bits: 64
   normalColliderSize: {x: 0, y: 0}
   normalColliderOffset: {x: 0, y: 0}
-  deathLine: -12
+  deathLine: -12.5
   jumpForce: 7
   jumpColliderOffset: {x: 0, y: 0}
   jumpColliderSize: {x: 0, y: 0}
@@ -7200,7 +7200,7 @@ MonoBehaviour:
     m_Bits: 0
   normalColliderSize: {x: 0, y: 0}
   normalColliderOffset: {x: 0, y: 0}
-  deathLine: -10
+  deathLine: -12
 --- !u!114 &832258026
 MonoBehaviour:
   m_ObjectHideFlags: 0

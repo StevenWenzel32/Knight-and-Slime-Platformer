@@ -27,7 +27,7 @@ public abstract class PlayerControllerBase : MonoBehaviour
 
     [Header ("Death")]
     // the line the player must cross to die when falling 
-    public int deathLine = -10;
+    public float deathLine = -10;
 
     // Private variables -- mostly refs
     // Reference to the Rigidbody2D component attached to the player
