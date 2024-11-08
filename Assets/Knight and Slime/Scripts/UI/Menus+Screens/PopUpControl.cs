@@ -148,5 +148,13 @@ public class PopUpControl : MonoBehaviour
             // might add this later -- not needed for now -- better if it was visual -- ****
             // stars.text = "Stars: " + SaveManager.instance.levels[data.levelNum - 1].stars;
         }
+        // if not beaten set them all to 0s -- maybe change it to a cute icon later
+        else {
+            gems.text = "0/4";
+            time.text = "00:00:00";
+            score.text = "Score: 0";
+            // later for when stars are enabled -- future update ***
+            // stars.text = "Stars: 0"
+        }
     }
 }

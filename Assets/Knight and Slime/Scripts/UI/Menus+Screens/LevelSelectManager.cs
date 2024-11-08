@@ -90,17 +90,18 @@ public class LevelSelectManager : MonoBehaviour
                 }
             }
             Debug.LogError("LevelInfo for level: " + (i + 1) + ", Lock Status = " + SaveManager.instance.levels[i].locked);
-            // check if the level has any stars
-            if (SaveManager.instance.levels[i].stars != 0){
-                // call the updateStars
-                UpdateStars(SaveManager.instance.levels[i].stars);
-                Debug.Log("Stars updated on level: " + (i + 1));
-            }
+            
             // check if the level is unlocked
-            else if (!SaveManager.instance.levels[i].locked){
+            if (!SaveManager.instance.levels[i].locked){
                 // find the levelButton and make sure the lock is off
                 levelsUICanvas?.Find("Level " + (i + 1))?.Find("Level Lock").gameObject.SetActive(false);
                 Debug.Log("Unlocked level: " + (i + 1));
+            }
+            // check if the level has any stars
+            else if (SaveManager.instance.levels[i].stars != 0){
+                // call the updateStars
+                UpdateStars(SaveManager.instance.levels[i].stars);
+                Debug.Log("Stars updated on level: " + (i + 1));
             }
             // if the level has no stars and is locked end the loop -- none of the rest have data
             else {

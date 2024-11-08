@@ -86,7 +86,7 @@ public class SaveManager : MonoBehaviour
         // loop through all the levels[] and load their data
         for (int i = 0; i < levels.Length; i++){
             // check if a level is locked if it is it still has default data
-            if (levels[i].locked){
+            if (PlayerPrefs.GetInt($"Level_{i + 1}_Locked", 1) == 1){
                 break;
             }
             levels[i].gems = PlayerPrefs.GetInt($"Level_{i + 1}_Gems", 0);
