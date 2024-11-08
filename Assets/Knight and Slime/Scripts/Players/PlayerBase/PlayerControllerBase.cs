@@ -7,7 +7,12 @@ public abstract class PlayerControllerBase : MonoBehaviour
     [Header ("Move Type")]
     // Controls whether the player can move diagonally
     public bool canMoveDiagonally = false; 
+    // can they move up?
     public bool canMoveVertically = false;
+    // does wasd control them?
+    public bool wasd;
+    // do arrow keys control them?
+    public bool arrowKeys;
 
     [Header ("Collider Changes")]
     public bool hasAnimations = false;
@@ -59,9 +64,12 @@ public abstract class PlayerControllerBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         // Get player input from keyboard or controller
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        // vars to hold the movement input
+        float horizontalInput = 0;
+        float verticalInput = 0;
+
+        // get the input from the right source
+        InputType(ref horizontalInput, ref verticalInput);
 
         // Check if diagonal movement is allowed
         if (canMoveDiagonally)
@@ -136,6 +144,26 @@ public abstract class PlayerControllerBase : MonoBehaviour
         if (hasAnimations){
             //run running animation
             anim.SetBool("Run", horizontalInput != 0);
+        }
+    }
+
+    // check the bools set in the unity editor and get input from the correct source
+    protected void InputType(ref float horizontalInput, ref float verticalInput){
+        // Get player input from keyboard or controller
+        // assign the inputs based on the movement input bools
+        if (wasd){
+            horizontalInput = Input.GetAxisRaw("HorizontalWASD");
+            // the axis does not exist yet
+            // float verticalInput = Input.GetAxisRaw("VerticalWASD"); 
+        } else if (arrowKeys){
+            horizontalInput = Input.GetAxisRaw("HorizontalArrowKeys");
+            // the axis does not exist yet
+            // float verticalInput = Input.GetAxisRaw("VerticalArrowKeys");
+        } else if (wasd && arrowKeys){
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+        } else {
+            Debug.LogError("No input assigned to the character");
         }
     }
 
