@@ -1,131 +1,115 @@
+using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
+// make sure that there is a camera before running the code
+[RequireComponent(typeof(Camera))]
 public class Controller : MonoBehaviour
 {
-    // movement and zoom speed settings
-    private Vector3 velocity = Vector3.zero;
-
-    [Header ("Base Camera")]
+    [Header ("Camera Settings")]
     // how fast the camera follows the players
-    public float cameraSpeed;
-
-    [Header ("Zooming Camera")]
-    // how fast the camera adjusts its size
-    public float zoomSpeed;
-    // the min camera size
+    public float smoothTime = 0.5f;
+    // buffer around the players
+    public UnityEngine.Vector3 offest;
+    // default/ 0 velocity
+    private UnityEngine.Vector3 velocity = UnityEngine.Vector3.zero;
     public float minZoom;
-    // the max camera size
     public float maxZoom;
-    // give extra space around the players
-    public float zoomBuffer;
-    // distance from the edge of the camera before zooming out starts
-    public float distFromEdge;
-    // distance between players where it does not zoom in
-    public float closeTogether;
+    // to limit the zoom size
+    public float zoomLimiter;
+    // magic number that keeps the level at the bottom of the screen
+    public float characterHeight;
+    // bounds for the max position placement for the camera
+    public UnityEngine.Vector2 maxPositionBounds;
 
-    // for player
-    [Header ("Knight")]
-    public Transform knight;
+    [Header ("Players")]
+    // holds the player objects
+    public List<Transform> targets;
 
-    [Header ("Slime")]
-    public Transform slime;
-
-    [Header ("Level Info")]
-
-    // private vars
+    // the bounds/box to hold the targets
+    private Bounds bounds;
     private Camera cam;
-    private Vector3 startPosition;
 
-    private void Start()
-    {
-        // Get the camera component
+    void Start(){
         cam = GetComponent<Camera>();
-        // get the current camera position to keep y and z constant
-        startPosition = transform.position;
     }
 
     // late update is called after update allowing the camera to be set after the players have been updated
     // better for accuracy
     void LateUpdate()
     {
-        // follow players
-        // calculate the midpoint between players
-        Vector3 midpoint = (knight.position + slime.position) / 2f;
-
-        // have the camera follow the midpoint -- only follows on the x right now -- no y no z changes
-        Vector3 cameraPos = new Vector3(midpoint.x, transform.position.y, transform.position.z);
-        transform.position = Vector3.SmoothDamp(transform.position, cameraPos, ref velocity, cameraSpeed);
-
-        // find the bottom of the level
-        float levelBottom = CalculateLevelBottom();
-
-        // get the distance between the players
-        float distance = Vector2.Distance(knight.position, slime.position);
-
-        // check if either player is near the edge of the camera
-        if (PlayerNearEdge()){
-            // have the camera change size -- the zooming 
-            float newSize = Mathf.Clamp(distance + zoomBuffer, minZoom, maxZoom);
-            // transition the camera size
-            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newSize, Time.deltaTime * zoomSpeed);
-            // change the cameras y to keep the level at the bottom of the camera
-            AnchorBottom(levelBottom);
-        } 
-        // if the players are not close enough together yet zoom in
-        else if (cam.orthographicSize > minZoom){
-            // have the camera change size -- the zooming 
-            float newSize = Mathf.Clamp(distance + zoomBuffer, minZoom, maxZoom);
-            // only change the camera size if the new size is smaller than the current one
-            if (cam.orthographicSize > newSize){
-                // transition the camera size
-                cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newSize, Time.deltaTime * zoomSpeed);
-                // change the cameras y to keep the level at the bottom of the camera
-                AnchorBottom(levelBottom);
-            }
+        // make sure the camera has something to follow
+        if (targets.Count == 0){
+            Debug.LogError("There's to targets for the camera to follow");
+            return;
         }
+        // move the camera based on the targets positions
+        UnityEngine.Vector3 newPosition = MoveCamera();
+        // zoom the camera based on the bounds width
+        ZoomCamera(newPosition);
+    }
+    
+    // create a bounds (which is basically a box) that cotains all the targets
+    private void MakeBounds(){
+        if (targets.Count == 1){
+            bounds = new Bounds(targets[0].position, velocity);
+            return;
+        }
+
+        // make a bounds object that holds all the targets -- basically a box
+        bounds = new Bounds(targets[0].position, velocity);
+
+        // add in the rest of the targets to the bounds box
+        for (int i = 0; i < targets.Count; i++){
+            bounds.Encapsulate(targets[i].position);
+        }
+    }
+
+    // move the camera to the center point of the bounds box that holds all the players
+    // returns the newPositon 
+    private UnityEngine.Vector3 MoveCamera(){
+        MakeBounds();
+        // follow players
+        // calculate the midpoint between all targets/players
+        UnityEngine.Vector3 centerPoint = bounds.center;
+        // add the offest buffer to the bounds
+        UnityEngine.Vector3 newPosition = centerPoint + offest;
+        //make sure the z axis is fixed since we are in 2d
+        newPosition.z = transform.position.z;
         
+
+        // clamp the camera position based on the bounds
+    //    float cameraHalfHeight = cam.orthographicSize;
+    //    newPosition.y = Mathf.Clamp(newPosition.y, cameraHalfHeight, maxPositionBounds.y - cameraHalfHeight);
+
+        // set the position of the camera
+       transform.position = UnityEngine.Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+
+        return newPosition;
+    }
+
+    // zoom in on the targets based on the greatest distance between them -- which is the width of bounds 
+    private void ZoomCamera(UnityEngine.Vector3 newPosition){
+        // the width of the bounds box
+        float width = bounds.size.x;
+        // go between the max and min set of the zoom size
+        // not super sure what zoomLimiter does???
+        float newZoom = Mathf.Lerp(minZoom, maxZoom, width / zoomLimiter);
+        // change the orthographicSize of the camera -- the zooming
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
+        // find the bottom of the level by checking what the lowest y point within the bounds is
+        // add the character height as an offset
+        float levelBottom = bounds.min.y + characterHeight;
+        // up data the camera position based on the levelBottom
+        newPosition.y = levelBottom + cam.orthographicSize;
+        // update the camera position
+        transform.position = UnityEngine.Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
     }
 
     // when the player collides with the door object it will move them to the next room
     public void MoveToNewRoom(Transform newRoom){
-        transform.position = new Vector3(newRoom.position.x, newRoom.position.y, transform.position.z);
+        transform.position = new UnityEngine.Vector3(newRoom.position.x, newRoom.position.y, transform.position.z);
     }
 
-    // check if the players are near the edge of the camera -- only works for x axis right now
-    private bool PlayerNearEdge(){
-        // find the edges of the camera
-        float cameraHalfWidth = cam.orthographicSize * cam.aspect;
-        // not used yet
-        // float cameraHalfHeight = cam.orthographicSize;
-
-        // get the distance from the edge of the camera and the players
-        float knightEdgeX = Mathf.Abs(knight.position.x - transform.position.x);
-        float slimeEdgeX = Mathf.Abs(slime.position.x - transform.position.x);
-
-        // the threshold to cross to start zooming 
-        float widthThreshold = cameraHalfWidth - distFromEdge;
-        // currently not used -- would be used for height zooming needs
-        // float heightThreshold = cameraHalfWidth - distFromEdge;
-
-        // check if either player is near the edge
-        return knightEdgeX >= widthThreshold || slimeEdgeX >= widthThreshold;
-    }
-
-    // change the cameras y position after zooming to make sure the level is always at the bottom of the camera
-    private void AnchorBottom(float levelBottom){
-        // get the offset from the zoom -- o.5??
-        float newY = levelBottom + (cam.orthographicSize - minZoom) * 0.5f;
-        // change the camera position
-        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
-
-        // have the camera move to the anchored position smoothly -- probbaly not wanted
-        // Vector3 anchoredPos = new Vector3(transform.position.x, newY, transform.position.z);
-        // Vector3.SmoothDamp(transform.position, anchoredPos, ref velocity, cameraSpeed);
-    }
-
-    // find the bottom of the level 
-    private float CalculateLevelBottom(){
-        // find the bottom of the level
-        return transform.position.y - cam.orthographicSize;
-    }
+    
 }

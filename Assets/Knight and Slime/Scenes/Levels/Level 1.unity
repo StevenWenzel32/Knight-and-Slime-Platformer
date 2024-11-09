@@ -4103,16 +4103,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d49c396300adaf468f6e3c2f02d8a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 2
-  zoomSpeed: 5
+  smoothTime: 0.5
+  offest: {x: 2, y: 0, z: 0}
   minZoom: 11.4
   maxZoom: 25
-  zoomBuffer: 0
-  distFromEdge: 8
-  closeTogether: 100
-  knight: {fileID: 30256188}
-  slime: {fileID: 832258018}
-  startLevelBottom: 0
+  zoomLimiter: 25
+  characterHeight: 10
+  targets:
+  - {fileID: 30256188}
+  - {fileID: 832258018}
 --- !u!1 &536467254
 GameObject:
   m_ObjectHideFlags: 0
