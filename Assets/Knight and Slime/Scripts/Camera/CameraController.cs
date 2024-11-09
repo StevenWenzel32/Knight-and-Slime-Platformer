@@ -1,36 +1,46 @@
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 
 // make sure that there is a camera before running the code
 [RequireComponent(typeof(Camera))]
 public class Controller : MonoBehaviour
 {
-    [Header ("Camera Settings")]
-    // how fast the camera follows the players
-    public float smoothTime = 0.5f;
-    // buffer around the players
-    public UnityEngine.Vector3 offest;
-    // default/ 0 velocity
-    private UnityEngine.Vector3 velocity = UnityEngine.Vector3.zero;
-    public float minZoom;
-    public float maxZoom;
-    // to limit the zoom size
-    public float zoomLimiter;
-    // magic number that keeps the level at the bottom of the screen
-    public float characterHeight;
-    // bounds for the max position placement for the camera
-    public UnityEngine.Vector2 maxPositionBounds;
+    [Header ("Camera Moving")]
+    // how fast the camera gets to the new position
+    public float dampTime = 0.2f;
+    // buffer around the players and the edge of the screen
+    public float screenBuffer = 2f;
+
+    [Header ("Camera Zooming")]
+    // min zoom size
+    public float minZoom = 11.3f;
+    // max zoom size
+    public float maxZoom = 25f;
+    // how fast the zoom changes -- used in the damping 
+    public float zoomDampTime = 0.4f;
 
     [Header ("Players")]
     // holds the player objects
     public List<Transform> targets;
+    // extra adjustment added to the y position of the camera when based on players
+    private float characterHeight = 2.5f;
+    // extra adjustment added to the y position of the camera when based on ground
+    private float groundHeight = 11.1f;
+
+    // extra adjustment added to the x position of the camera when based on players -- value has not been found yet
+    public float characterWidth = 2.5f;
+    // extra adjustment added to the x position of the camera when based on ground
+    public float wallWidth = 100f;
 
     // the bounds/box to hold the targets
     private Bounds bounds;
     private Camera cam;
+    // default/ 0 velocity for moving the zoom
+    private Vector3 velocity = Vector3.zero;
+    // smooth damp velocity
+    private float zoomVelocity = 0f;
 
-    void Start(){
+    void Awake(){
         cam = GetComponent<Camera>();
     }
 
@@ -44,20 +54,20 @@ public class Controller : MonoBehaviour
             return;
         }
         // move the camera based on the targets positions
-        UnityEngine.Vector3 newPosition = MoveCamera();
+        MoveCamera();
         // zoom the camera based on the bounds width
-        ZoomCamera(newPosition);
+        ZoomCamera();
     }
     
     // create a bounds (which is basically a box) that cotains all the targets
     private void MakeBounds(){
         if (targets.Count == 1){
-            bounds = new Bounds(targets[0].position, velocity);
+            bounds = new Bounds(targets[0].position, Vector3.zero);
             return;
         }
 
         // make a bounds object that holds all the targets -- basically a box
-        bounds = new Bounds(targets[0].position, velocity);
+        bounds = new Bounds(targets[0].position, Vector3.zero);
 
         // add in the rest of the targets to the bounds box
         for (int i = 0; i < targets.Count; i++){
@@ -67,49 +77,66 @@ public class Controller : MonoBehaviour
 
     // move the camera to the center point of the bounds box that holds all the players
     // returns the newPositon 
-    private UnityEngine.Vector3 MoveCamera(){
+    private void MoveCamera(){
         MakeBounds();
         // follow players
         // calculate the midpoint between all targets/players
-        UnityEngine.Vector3 centerPoint = bounds.center;
-        // add the offest buffer to the bounds
-        UnityEngine.Vector3 newPosition = centerPoint + offest;
+        Vector3 centerPoint = bounds.center;
+        Vector3 newPosition = centerPoint;
         //make sure the z axis is fixed since we are in 2d
         newPosition.z = transform.position.z;
-        
-
-        // clamp the camera position based on the bounds
-    //    float cameraHalfHeight = cam.orthographicSize;
-    //    newPosition.y = Mathf.Clamp(newPosition.y, cameraHalfHeight, maxPositionBounds.y - cameraHalfHeight);
-
+        // get the bottom of the level
+        float levelBottom = CalcBottomScene();
+        // adjust the y 
+        newPosition.y = Mathf.Max(newPosition.y, levelBottom);
         // set the position of the camera
-       transform.position = UnityEngine.Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
-
-        return newPosition;
+        transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, dampTime);
     }
 
     // zoom in on the targets based on the greatest distance between them -- which is the width of bounds 
-    private void ZoomCamera(UnityEngine.Vector3 newPosition){
-        // the width of the bounds box
-        float width = bounds.size.x;
-        // go between the max and min set of the zoom size
-        // not super sure what zoomLimiter does???
-        float newZoom = Mathf.Lerp(minZoom, maxZoom, width / zoomLimiter);
+    private void ZoomCamera(){
+        // the width of the bounds box -- max distance between all targets + buffer
+        float width = bounds.size.x + screenBuffer;
+        // keep the zoom in the set bounds
+        float targetZoom = Mathf.Clamp(width, minZoom, maxZoom);
         // change the orthographicSize of the camera -- the zooming
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
-        // find the bottom of the level by checking what the lowest y point within the bounds is
-        // add the character height as an offset
-        float levelBottom = bounds.min.y + characterHeight;
-        // up data the camera position based on the levelBottom
-        newPosition.y = levelBottom + cam.orthographicSize;
-        // update the camera position
-        transform.position = UnityEngine.Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+        cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, targetZoom, ref zoomVelocity, zoomDampTime);
+    }
+
+    // find the bottom most part of the level and the bottom position for the camera based on it
+    private float CalcBottomScene(){
+        // add the camera size and the groundHeight
+        float cameraBottom = cam.orthographicSize - groundHeight;
+        return cameraBottom;
+    }
+
+    // find the left most part of the level and the left position for the camera based on it
+    private float CalcLeftEdgeScene(){
+        // add the camera size and the wallHeight
+        float cameraBottom = (cam.orthographicSize * cam.aspect) + wallWidth;
+        return cameraBottom;
+    }
+
+    // find the bottom most character and the bottom position for the camera based on it
+    private float CalcBottomCharacter(){
+        // find the lowest target y
+        float boundsBottom = bounds.min.y;
+        // add the camera size and the characterHeight
+        float cameraBottom = boundsBottom + cam.orthographicSize - characterHeight;
+        return cameraBottom;
+    }
+
+    // find the left most character and the left position for the camera based on it -- not calabrated
+    private float CalcLeftEdgeCharacter(){
+        // find the lowest target x
+        float boundsLeftEdge = bounds.min.x;
+        // add the camera size and the characterWidth
+        float cameraBottom = -boundsLeftEdge - (cam.orthographicSize * - cam.aspect) - characterWidth;
+        return cameraBottom;
     }
 
     // when the player collides with the door object it will move them to the next room
     public void MoveToNewRoom(Transform newRoom){
-        transform.position = new UnityEngine.Vector3(newRoom.position.x, newRoom.position.y, transform.position.z);
+        transform.position = new Vector3(newRoom.position.x, newRoom.position.y, transform.position.z);
     }
-
-    
 }
