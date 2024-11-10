@@ -29,6 +29,8 @@ public class MovingPlatform : MonoBehaviour
         if (move){
             // smoothly move to the target
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        } else {
+            transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
         }
     }
 
@@ -37,11 +39,12 @@ public class MovingPlatform : MonoBehaviour
         move = !move;
         moveSpeed = speed;
         if (direction == "left"){
-                moveLeft(distance);
+            moveLeft(distance);
         }
     }
 
     private void moveLeft(float distance){
+        Debug.Log("moving platform to the left");
         targetPosition = startPosition + Vector3.left * distance;
     }
 }
