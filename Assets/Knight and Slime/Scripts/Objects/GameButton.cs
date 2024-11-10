@@ -73,4 +73,9 @@ public class GameButton : MonoBehaviour
             bridge?.TogglePlatform("left", distance, moveSpeed);
         }
     }
+
+    private void ObjectType()
+    {
+        
+    }
 }
