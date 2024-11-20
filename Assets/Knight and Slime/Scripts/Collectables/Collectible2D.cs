@@ -21,8 +21,8 @@ public class Collectible2D : MonoBehaviour
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other) {
-         // Check if the other object has a Player tag
-        if (other.CompareTag("Player")) {
+         // Check if the other object is in player layer
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
             // disable collectable
             gameObject.SetActive(false);
             // play sound

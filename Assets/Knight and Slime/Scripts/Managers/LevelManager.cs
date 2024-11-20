@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using System;
+using System.Collections;
 
 // each level is to have a levelManager object on it 
 public class LevelManager : MonoBehaviour
@@ -45,6 +46,22 @@ public class LevelManager : MonoBehaviour
         ScoreCounter.instance.EndOfLevelCalc();
         // display the players performance 
         DisplayStats();
+        // Play video before showing the Level Complete screen
+        StartCoroutine(PlayVideoThenCompleteLevel());
+    }
+
+    private IEnumerator PlayVideoThenCompleteLevel()
+    {
+        // Enable and play the video
+        VideoManager.instance.PlayVideo(); // Assuming you have a VideoManager script
+        
+        // Wait until the video finishes
+        while (VideoManager.instance.IsPlaying())
+        {
+            // Wait for the next frame
+            yield return null; 
+        }
+
         // put up the level complete screen
         MenuManager.instance.LevelComplete();
 

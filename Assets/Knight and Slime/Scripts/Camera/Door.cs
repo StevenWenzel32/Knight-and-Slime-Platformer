@@ -18,7 +18,7 @@ public class Door : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
-        if (collision.CompareTag("Player")){
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player")){
             if (collision.transform.position.x < transform.position.x){
                 cam.MoveToNewRoom(nextRoom);
             } else {

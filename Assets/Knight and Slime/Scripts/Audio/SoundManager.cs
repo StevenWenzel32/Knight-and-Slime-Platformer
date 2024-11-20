@@ -16,7 +16,7 @@ public class SoundManager : MonoBehaviour
         {
             instance = this;
             // Persist SoundManager across scenes -- good for performance
-            DontDestroyOnLoad(gameObject);  
+            //DontDestroyOnLoad(gameObject);  
         }
         else
         {

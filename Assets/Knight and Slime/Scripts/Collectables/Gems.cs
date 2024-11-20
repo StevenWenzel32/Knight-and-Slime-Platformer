@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gems : Collectible2D
@@ -15,7 +16,8 @@ public class Gems : Collectible2D
 
     // when collected
     protected override void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Player")) {
+        // check for hit with anything in player layer
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
             // disable collectable
             gameObject.SetActive(false);
             // play sound

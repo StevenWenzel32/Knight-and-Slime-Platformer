@@ -17,7 +17,7 @@ public class Switch : MonoBehaviour
     private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
         // Check for collisions with player 
-        if (collision.gameObject.CompareTag("Player") && !isFlipped)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && !isFlipped)
         {
             FlipSwitch();
         }
