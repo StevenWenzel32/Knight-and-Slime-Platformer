@@ -168,12 +168,12 @@ public abstract class PlayerControllerBase : MonoBehaviour
     }
 
     // actions performed on collisions
-    protected void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         // Check for collisions with death objects: invisible colliders for map detection, acid, spikes, mobs, 
         if (collision.gameObject.CompareTag("DeathObject"))
         {
-           // kill player using method from PlayerBase
+            // kill player using method from PlayerBase
             GetComponent<PlayerBase>().KillPlayer(); 
         }
     }

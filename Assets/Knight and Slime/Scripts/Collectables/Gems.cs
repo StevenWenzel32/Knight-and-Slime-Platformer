@@ -17,7 +17,7 @@ public class Gems : Collectible2D
     // when collected
     protected override void OnTriggerEnter2D(Collider2D other) {
         // check for hit with anything in player layer
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Knight") || other.gameObject.layer == LayerMask.NameToLayer("Slime")) {
             // disable collectable
             gameObject.SetActive(false);
             // play sound

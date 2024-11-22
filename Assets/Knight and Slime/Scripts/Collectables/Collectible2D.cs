@@ -22,7 +22,7 @@ public class Collectible2D : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other) {
          // Check if the other object is in player layer
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Slime") || other.gameObject.layer == LayerMask.NameToLayer("Slime")) {
             // disable collectable
             gameObject.SetActive(false);
             // play sound

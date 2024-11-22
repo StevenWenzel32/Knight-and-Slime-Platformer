@@ -38,7 +38,7 @@ public class GameButton : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check for collisions with player 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") || collision.gameObject.layer == LayerMask.NameToLayer("Slime"))
         {
             ToggleButton();   
             Debug.Log("Button has been pushed by player!");
@@ -49,7 +49,7 @@ public class GameButton : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         // Check for collisions with player 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") || collision.gameObject.layer == LayerMask.NameToLayer("Slime"))
         {
             ToggleButton();
             Debug.Log("Player has left button");
