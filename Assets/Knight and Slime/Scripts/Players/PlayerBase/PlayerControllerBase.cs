@@ -62,7 +62,7 @@ public abstract class PlayerControllerBase : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         // vars to hold the movement input
         float horizontalInput = 0;
@@ -158,7 +158,7 @@ public abstract class PlayerControllerBase : MonoBehaviour
         } else if (arrowKeys){
             horizontalInput = Input.GetAxisRaw("HorizontalArrowKeys");
             // the axis does not exist yet
-            // float verticalInput = Input.GetAxisRaw("VerticalArrowKeys");
+            // verticalInput = Input.GetAxisRaw("VerticalArrowKeys");
         } else if (wasd && arrowKeys){
             horizontalInput = Input.GetAxisRaw("Horizontal");
             verticalInput = Input.GetAxisRaw("Vertical");
@@ -211,8 +211,4 @@ public abstract class PlayerControllerBase : MonoBehaviour
         boxCollider.size = normalColliderSize;
         boxCollider.offset = normalColliderOffset;
     }
-
-    // abstract methods
-    // to play the death animation 
-    protected abstract void TriggerDisableAnimation();
 }

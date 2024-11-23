@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class GameButton : MonoBehaviour
 {
-    [Header ("Platform/Object to Move")]
+    [Header ("Object to Control")]
     // set to the object to be controlled -- can be a door, bridge, elavator, fan, etc.
     public GameObject controlled;
+
+    [Header ("If Moving Platform")]
     // how far to move
     public float distance;
     public float moveSpeed = 1f;
@@ -24,6 +26,7 @@ public class GameButton : MonoBehaviour
     public bool rotateLeft;
     public bool rotateRight;
 
+    // private vars
     private Animator anim;
     private bool isPushed = false;
 
@@ -58,24 +61,31 @@ public class GameButton : MonoBehaviour
 
     private void ToggleButton(){
         isPushed = !isPushed;
+        // no animations right now 
         if (anim != null){
             anim.SetBool("Push", isPushed);
         }
         ControlObject();
     }
 
+    // control the object based on its type -- if extra checks are needed before calling the toggle<Object>() put into another function later
     private void ControlObject(){
-        // can later add another function to find what type of object it is  
+        // these object creations also check the type of the object 
+        // to check if the object is something else just add another assignment for that object
         MovingPlatform bridge = controlled?.GetComponent<MovingPlatform>();
-        // will later add in other functions to Move() and Rotate() with all the options
-        if (left){
-            Debug.Log("toggling platform, left");
-            bridge?.TogglePlatform("left", distance, moveSpeed);
-        }
-    }
+        Doors door = controlled?.GetComponent<Doors>();
 
-    private void ObjectType()
-    {
-        
+        // if the object is a moving platform
+        if (bridge != null){
+            // will later add in other functions to Move() and Rotate() with all the options
+            if (left){
+                Debug.Log("toggling platform, left");
+                bridge.TogglePlatform("left", distance, moveSpeed);
+            }
+        } 
+        // if the object is a door
+        else if (door != null){
+            door.ToggleDoor();
+        }
     }
 }

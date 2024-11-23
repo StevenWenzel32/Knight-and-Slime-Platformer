@@ -45,10 +45,4 @@ public class KnightController : PlayerControllerBase
         boxCollider.size = jumpColliderSize;
         boxCollider.offset = jumpColliderOffset;
     }
-
-    protected override void TriggerDisableAnimation()
-    {
-
-    }
-
 }
