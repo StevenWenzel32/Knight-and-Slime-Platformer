@@ -89,7 +89,7 @@ public abstract class PlayerControllerBase : MonoBehaviour
         CheckIfOffMap();
     }
 
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         // Preserve vertical velocity during the jump
         rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);

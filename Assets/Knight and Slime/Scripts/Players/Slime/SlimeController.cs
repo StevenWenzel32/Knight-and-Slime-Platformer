@@ -14,6 +14,11 @@ public class SlimeController : PlayerControllerBase
     private bool isTouchingWall = false;
     // number of seperate walls the slime is touching 
     private int wallContactCount = 0;
+    // if the is on the slimes left side
+    private bool isTouchingWallLeft = false;
+    // if the wall is on the slimes right side
+    private bool isTouchingWallRight = false;
+    // the slimes sprite rendere
 
     protected override void Start()
     {
@@ -39,13 +44,31 @@ public class SlimeController : PlayerControllerBase
             GetComponent<Slime>().SetClimbWalls(true);
             Debug.Log("Slime climbWall state: " + GetComponent<Slime>().GetClimbWalls());
         }
-        // if the object is a wall
+        // if the object is a wall on the right
         if (collision.gameObject.layer == LayerMask.NameToLayer("Walls") || collision.gameObject.CompareTag("Wall")){
-            Debug.Log("Slime is touching wall");
             // up the wall contact count
             wallContactCount++;
             // slime is touching wall 
             isTouchingWall = true;
+
+            // wall on the right
+            if (collision.contacts[0].normal.x < 0){
+                Debug.Log("Slime is touching wall on the right");
+                // its on the right side
+                isTouchingWallRight = true;
+                isTouchingWallLeft = false;
+                // rotate the slime to the left
+//                RotateCharacter(90, collision);
+            }
+            // wall on the left
+            else if (collision.contacts[0].normal.x > 0){
+                Debug.Log("Slime is touching wall on the left");
+                // its on the left side
+                isTouchingWallRight = false;
+                isTouchingWallLeft = true;
+                // rotate the slime to the right
+ //               RotateCharacter(-90, collision);
+            }
         }
     }
 
@@ -61,13 +84,18 @@ public class SlimeController : PlayerControllerBase
             if (wallContactCount == 0){
                 // slime is no longer touching wall 
                 isTouchingWall = false;
+                // its on the left side
+                isTouchingWallRight = false;
+                isTouchingWallLeft = false;
+                // reset the slimes rotation to normal
+//                RotateCharacter(0, collision);
             }
         }
     }
 
-    protected override void Update(){
+    protected override void FixedUpdate(){
         // run the basic update
-        base.Update();
+        base.FixedUpdate();
         // slime specifc update
         if (GetComponent<Slime>().GetClimbWalls() && isTouchingWall){
             Debug.Log("Slime can start climbing wall");
@@ -75,8 +103,10 @@ public class SlimeController : PlayerControllerBase
             float verticalInput = Input.GetAxis("VerticalArrowKeys");
             // if moving 
             if (Mathf.Abs(verticalInput) > 0.1f){
+                // check the movement of the character and flip it
+//                FlipCharacter();
                 // move the slime vertically on the wall
-                rb.velocity = new UnityEngine.Vector2(rb.velocity.x, verticalInput *wallClimbSpeed);
+                rb.velocity = new UnityEngine.Vector2(rb.velocity.x, verticalInput * wallClimbSpeed);
             }else{
                 // stick to the wall when not moving
                 rb.velocity = new UnityEngine.Vector2(rb.velocity.x, 0f);
@@ -131,4 +161,32 @@ public class SlimeController : PlayerControllerBase
         }
     }
 
+    // rotate the character the given angle, and the wall collision
+    private void RotateCharacter(float angle, Collision2D collision){
+        // Rotate the slime
+        transform.rotation = UnityEngine.Quaternion.Euler(0, 0, angle);
+        Debug.Log($"Slime rotated to {angle} degrees");
+
+        // Get the wall normal to adjust the position correctly
+        UnityEngine.Vector2 wallNormal = collision.contacts[0].normal;
+
+        // Calculate the adjustment vector based on collider size
+        UnityEngine.Vector2 adjustment = wallNormal * (slimeCollider.size.x / 2f);
+
+        // Apply the adjustment to the Rigidbody2D position
+        rb.position = rb.position - adjustment;
+    }
+
+    // Flip the character based on horizontal movement
+    private void FlipCharacter(){
+        float VerticalInput = Input.GetAxis("VerticalArrowKeys");
+        // moving up
+        if (VerticalInput > 0){
+            transform.localScale = UnityEngine.Vector3.one;
+        } 
+         // Moving down
+        else if (VerticalInput < 0){
+            transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
+        }
+    }
 }
