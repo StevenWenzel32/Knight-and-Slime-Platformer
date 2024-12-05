@@ -1,3 +1,5 @@
+Link to executable location: https://drive.google.com/file/d/1m21GFqZlXAZ-XsMteQyVSr7cBRSMYPUP/view?usp=sharing
+
 Overview
 This repo contains everything inside the Assets folder of my game Knight and Slime that I'm making inside of Unity. 
 As of 11/18/24 this repo will also contain the project proposal and other files related to my 385 assignments.
