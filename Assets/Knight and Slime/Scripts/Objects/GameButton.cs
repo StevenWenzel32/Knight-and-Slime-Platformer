@@ -73,15 +73,29 @@ public class GameButton : MonoBehaviour
     private void ControlObject(){
         // these object creations also check the type of the object 
         // to check if the object is something else just add another assignment for that object
+        // create make a seperate assignObject() to do the checks and assigns and then passes the object var to other funcs ************
         MovingPlatform bridge = controlled?.GetComponent<MovingPlatform>();
         Doors door = controlled?.GetComponent<Doors>();
 
         // if the object is a moving platform
         if (bridge != null){
-            // will later add in other functions to Move() and Rotate() with all the options
+            // will later add in other functions to Move() and Rotate() with all the options *******
+            // add in enums for the directions *********
+            // check if moving left or right
             if (left){
                 Debug.Log("toggling platform, left");
                 bridge.TogglePlatform("left", distance, moveSpeed);
+            } else if (right){
+                Debug.Log("toggling platform, right");
+                bridge.TogglePlatform("right", distance, moveSpeed);
+            }
+            // check if moving up or down
+            if (up){
+                Debug.Log("toggling platform, up");
+                bridge.TogglePlatform("right", distance, moveSpeed);
+            } else if (down){
+                Debug.Log("toggling platform, down");
+                bridge.TogglePlatform("down", distance, moveSpeed);
             }
         } 
         // if the object is a door

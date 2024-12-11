@@ -6,6 +6,8 @@ public class SlimeController : PlayerControllerBase
     // Public variables -- the options in unity
     public float wallClimbSpeed = 3f;
     // private vars
+    // save the origional size of the slime collider
+    private UnityEngine.Vector2 startSize;
     // save the current size of the slime colldier
     private UnityEngine.Vector2 currentSize;
     // the slimes collider
@@ -32,18 +34,23 @@ public class SlimeController : PlayerControllerBase
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check for collisions with death objects: invisible colliders for map detection, acid, spikes, mobs, 
-        if (collision.gameObject.CompareTag("DeathObject"))
-        {
-            // kill player using method from PlayerBase
-            GetComponent<PlayerBase>().KillPlayer(); 
-        } 
+        // call the base collsion
+        base.OnCollisionEnter2D(collision);
+
+        // check for liquid collisions
         // if the object is honey
         if (collision.gameObject.CompareTag("Honey")){
             // turn on the slime ability to climbWalls
             GetComponent<Slime>().SetClimbWalls(true);
             Debug.Log("Slime climbWall state: " + GetComponent<Slime>().GetClimbWalls());
         }
+        // if the object is super jump 
+        if (collision.gameObject.CompareTag("Super Jump")){
+            // turn on the slime ability to climbWalls
+            GetComponent<Slime>().SetSuperJump(true);
+            Debug.Log("Slime superJump state: " + GetComponent<Slime>().GetSuperJump());
+        }
+
         // if the object is a wall on the right
         if (collision.gameObject.layer == LayerMask.NameToLayer("Walls") || collision.gameObject.CompareTag("Wall")){
             // up the wall contact count
@@ -51,24 +58,25 @@ public class SlimeController : PlayerControllerBase
             // slime is touching wall 
             isTouchingWall = true;
 
-            // wall on the right
-            if (collision.contacts[0].normal.x < 0){
-                Debug.Log("Slime is touching wall on the right");
-                // its on the right side
-                isTouchingWallRight = true;
-                isTouchingWallLeft = false;
-                // rotate the slime to the left
-//                RotateCharacter(90, collision);
-            }
-            // wall on the left
-            else if (collision.contacts[0].normal.x > 0){
-                Debug.Log("Slime is touching wall on the left");
-                // its on the left side
-                isTouchingWallRight = false;
-                isTouchingWallLeft = true;
-                // rotate the slime to the right
- //               RotateCharacter(-90, collision);
-            }
+// unused for now -- can improve sprit flipping and rotation by having seperate sprites maybe?? **********
+//             // wall on the right
+//             if (collision.contacts[0].normal.x < 0){
+//                 Debug.Log("Slime is touching wall on the right");
+//                 // its on the right side
+//                 isTouchingWallRight = true;
+//                 isTouchingWallLeft = false;
+//                 // rotate the slime to the left
+// //                RotateCharacter(90, collision);
+//             }
+//             // wall on the left
+//             else if (collision.contacts[0].normal.x > 0){
+//                 Debug.Log("Slime is touching wall on the left");
+//                 // its on the left side
+//                 isTouchingWallRight = false;
+//                 isTouchingWallLeft = true;
+//                 // rotate the slime to the right
+//  //               RotateCharacter(-90, collision);
+//             }
         }
     }
 
@@ -123,17 +131,17 @@ public class SlimeController : PlayerControllerBase
     // adds in the slime specifc collisions
     protected void OnTriggerEnter2D(Collider2D collider)
     {   
-        // check for collision with tunnel entrance
-        if (collider.gameObject.CompareTag("Tunnel Entrance"))
+        // check for collision with tunnel x and tunnel y
+        if (collider.gameObject.CompareTag("Tunnel Y"))
         {
-            Debug.Log("Slime has hit a tunnel entrance");
+            Debug.Log("Slime has hit a tunnel Y");
             // convert the collision into a boxCollider to get its size 
             BoxCollider2D boxCollider = collider as BoxCollider2D;
             // check if the colldier is a boxCollider
             if (boxCollider != null){
                 Debug.Log("Changing slime colldier size");
                 Debug.Log("Current slime colldier height: " + currentSize.y);
-                // get the height of the tunnel entrance
+                // get the height of the tunnel
                 float tunnelHeight = boxCollider.size.y;
                 // create a new vector for the slimes new collider size
                 UnityEngine.Vector2 newCollider;
@@ -147,17 +155,51 @@ public class SlimeController : PlayerControllerBase
                 Debug.Log("Slime colliders size has changed");
                 Debug.Log("New slime colldier height: " + slimeCollider.size.y);
             }
+        } else if (collider.gameObject.CompareTag("Tunnel X")){
+            Debug.Log("Slime has hit a tunnel X");
+            // convert the collision into a boxCollider to get its size 
+            BoxCollider2D boxCollider = collider as BoxCollider2D;
+            // check if the colldier is a boxCollider
+            if (boxCollider != null){
+                Debug.Log("Changing slime colldier size");
+                Debug.Log("Current slime colldier width: " + currentSize.x);
+                // get the width of the tunnel
+                float tunnelWidth = boxCollider.size.x;
+                // create a new vector for the slimes new collider size
+                UnityEngine.Vector2 newCollider;
+                // set the width to the tunnel width
+                newCollider.x = tunnelWidth - 0.1f;
+                // set the height to the slimes current hight
+                newCollider.y = currentSize.y;
+                Debug.Log("Tunnel Width: " + tunnelWidth);
+                // change the collider box of the slime so it can squish through the tunnel
+                slimeCollider.size = newCollider;
+                Debug.Log("Slime colliders size has changed");
+                Debug.Log("New slime colldier width: " + slimeCollider.size.x);
+            }
         }
-    }
+    }   
 
     // slime specifc exit actions when leaving colliders
     private void OnTriggerExit2D(Collider2D collider){
         // check for collision with tunnel entrance
-        if (collider.gameObject.CompareTag("Tunnel Entrance"))
+        if (collider.gameObject.CompareTag("Tunnel X"))
         {
-            Debug.Log("Slime has left a tunnel entrance");
-            // change the collider box of the slime so it can squish through the tunnel
-            slimeCollider.size = currentSize;
+            Debug.Log("Slime has left a tunnel X");
+            // create a new vector for the slimes new collider size and set to slimes current collider -- keeps the height the same
+            UnityEngine.Vector2 newCollider = slimeCollider.size;
+            // set the width to the slimes old width
+            newCollider.x = currentSize.x;
+            // undo the slimes width change
+            slimeCollider.size = newCollider;
+        } else if (collider.gameObject.CompareTag("Tunnel Y")){
+            Debug.Log("Slime has left a tunnel Y");
+            // create a new vector for the slimes new collider size and set to slimes current collider -- keeps the width the same
+            UnityEngine.Vector2 newCollider = slimeCollider.size;
+            // set the height to the slimes old height
+            newCollider.y = currentSize.y;
+            // undo the slimes height change
+            slimeCollider.size = newCollider;
         }
     }
 

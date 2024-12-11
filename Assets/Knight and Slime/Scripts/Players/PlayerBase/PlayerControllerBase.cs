@@ -21,6 +21,14 @@ public abstract class PlayerControllerBase : MonoBehaviour
     public float speed = 5f; 
     
     [Header ("Jumping")]
+    // can they jump 
+    public bool jump;
+    // how fast they jump
+    public float jumpForce = 7f;
+    // jummping offset
+    public Vector2 jumpColliderOffset;
+    // jummping size
+    public Vector2 jumpColliderSize;
     // might have something to do with the camera????
     public LayerMask groundLayer;
 
@@ -140,11 +148,31 @@ public abstract class PlayerControllerBase : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
+        // let the player jump
+        if (jump && isGrounded() && (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))){
+            Jump();
+        }
+
         // check if the char has animations
         if (hasAnimations){
             //run running animation
             anim.SetBool("Run", horizontalInput != 0);
+            // run jumping animation
+            anim.SetBool("Grounded", isGrounded());
         }
+    }
+
+    // unique to the knight
+    private void Jump(){
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        anim.SetTrigger("Jump");
+  //      AdjustColliderForJump();
+    }
+
+    // set colldier to jump size -- not used right now 
+    private void AdjustColliderForJump(){
+        boxCollider.size = jumpColliderSize;
+        boxCollider.offset = jumpColliderOffset;
     }
 
     // check the bools set in the unity editor and get input from the correct source

@@ -7,6 +7,8 @@ public class Slime : PlayerBase
     // abilities granted by liquids; false by default; only one can be active unless alLiquid has been absorbed
     // derived from honey
     public bool climbWalls = false;
+    // derived from super jump -- Need a new liquid name ********
+    public bool superJump = false;
 
     // put Slime unique code here like abilities, death actions, and any unqiue debuggin messages
     protected override void OnPlayerDeath()
@@ -21,5 +23,13 @@ public class Slime : PlayerBase
 
     public bool GetClimbWalls(){
         return climbWalls;
+    }
+
+    public void SetSuperJump(bool state){
+        superJump = state;
+    }
+
+    public bool GetSuperJump(){
+        return superJump;
     }
 }

@@ -42,8 +42,8 @@ public class SaveManager : MonoBehaviour
             if (levels[i].locked){
                 break;
             }
-            // if the score or gem count is greater than the current saved score save the new best 
-            else if ((levels[i].score > PlayerPrefs.GetInt($"Level_{i + 1}_Score")) || (levels[i].gems > PlayerPrefs.GetInt($"Level_{i + 1}_Gems"))){
+            // if the score or gem count is greater than the current saved score save the new best -- addin protority once its established ***************
+            else if ((levels[i].score > PlayerPrefs.GetInt($"Level_{i + 1}_Score")) || (levels[i].gems > PlayerPrefs.GetInt($"Level_{i + 1}_Gems")) || (levels[i].time > PlayerPrefs.GetFloat($"Level_{i + 1}_Time"))){
                 // save the level data 
                 SaveLevelData(levels[i], (i + 1));
             }
@@ -54,8 +54,8 @@ public class SaveManager : MonoBehaviour
     // call this when a level is completed
     public void SaveLevelData(LevelInfo levelData, int levelNumber)
     {
-        // check if the player did better 
-        if ((levelData.score > PlayerPrefs.GetInt($"Level_{levelNumber}_Score")) || (levelData.gems > PlayerPrefs.GetInt($"Level_{levelNumber}_Gems"))){
+        // check if the player did better: check the score, time, and gem count - still need to give priority *********
+        if ((levelData.score > PlayerPrefs.GetInt($"Level_{levelNumber}_Score")) || (levelData.gems > PlayerPrefs.GetInt($"Level_{levelNumber}_Gems")) || (levelData.time > PlayerPrefs.GetFloat($"Level_{levelNumber}_Time"))){
             // Use keys with the level number as part of the key name
             PlayerPrefs.SetInt($"Level_{levelNumber}_Stars", levelData.stars);
             PlayerPrefs.SetInt($"Level_{levelNumber}_Score", levelData.score);

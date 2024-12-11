@@ -324,15 +324,16 @@ MonoBehaviour:
   arrowKeys: 0
   hasAnimations: 1
   speed: 5
+  jump: 1
+  jumpForce: 9
+  jumpColliderOffset: {x: 0, y: 0}
+  jumpColliderSize: {x: 0, y: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   normalColliderSize: {x: 0, y: 0}
   normalColliderOffset: {x: 0, y: 0}
   deathLine: -12.5
-  jumpForce: 9
-  jumpColliderOffset: {x: 0, y: 0}
-  jumpColliderSize: {x: 0, y: 0}
 --- !u!114 &30256194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,7 +866,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0030498, y: 0.00255}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 4, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!210 &313242478
@@ -8053,7 +8054,7 @@ GameObject:
   - component: {fileID: 696648353}
   m_Layer: 7
   m_Name: Tunnel Drop
-  m_TagString: Tunnel Entrance
+  m_TagString: Tunnel X
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8066,13 +8067,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696648351}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.7, y: -14.005, z: 0}
-  m_LocalScale: {x: 0.25, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 535290470}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &696648353
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8116,7 +8117,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 13, y: 1}
+  m_Size: {x: 1, y: 3.25}
   m_EdgeRadius: 0
 --- !u!1 &758869628
 GameObject:
@@ -9210,6 +9211,10 @@ MonoBehaviour:
   arrowKeys: 1
   hasAnimations: 0
   speed: 5
+  jump: 0
+  jumpForce: 7
+  jumpColliderOffset: {x: 0, y: 0}
+  jumpColliderSize: {x: 0, y: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -9232,6 +9237,7 @@ MonoBehaviour:
   alive: 1
   liquidAbsorbed: 0
   climbWalls: 0
+  superJump: 0
 --- !u!1 &845645732
 GameObject:
   m_ObjectHideFlags: 0
@@ -11003,7 +11009,7 @@ GameObject:
   - component: {fileID: 1169690203}
   m_Layer: 4
   m_Name: Super Jump
-  m_TagString: Honey
+  m_TagString: Super Jump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11017,7 +11023,7 @@ Transform:
   m_GameObject: {fileID: 1169690198}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.2, y: -16.127775, z: 0}
+  m_LocalPosition: {x: -4.2, y: -16.13, z: 0}
   m_LocalScale: {x: 4, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11641,7 +11647,7 @@ GameObject:
   - component: {fileID: 1226847730}
   - component: {fileID: 1226847729}
   - component: {fileID: 1226847731}
-  m_Layer: 11
+  m_Layer: 6
   m_Name: Bridge
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -12819,7 +12825,7 @@ GameObject:
   - component: {fileID: 1542848950}
   m_Layer: 7
   m_Name: Tunnel Length (1)
-  m_TagString: Tunnel Entrance
+  m_TagString: Tunnel Y
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12833,7 +12839,7 @@ Transform:
   m_GameObject: {fileID: 1542848948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6750002, y: -15.13, z: 0}
+  m_LocalPosition: {x: 3.8000002, y: -15.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12882,7 +12888,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12.25, y: 1}
+  m_Size: {x: 12, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1570874721
 GameObject:
@@ -14263,8 +14269,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.007}
-  m_SizeDelta: {x: 4.0061, y: 0.9949}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 4, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!210 &1700345873
 SortingGroup:
@@ -14759,7 +14765,7 @@ GameObject:
   - component: {fileID: 1794730975}
   m_Layer: 7
   m_Name: Tunnel Length
-  m_TagString: Tunnel Entrance
+  m_TagString: Tunnel Y
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14773,7 +14779,7 @@ Transform:
   m_GameObject: {fileID: 1794730973}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.575, y: -15.13, z: 0}
+  m_LocalPosition: {x: -10.7, y: -15.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14822,7 +14828,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.25, y: 1}
+  m_Size: {x: 9, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1798021348
 GameObject:
