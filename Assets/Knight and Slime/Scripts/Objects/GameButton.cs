@@ -9,7 +9,8 @@ public class GameButton : MonoBehaviour
     [Header ("If Moving Platform")]
     // how far to move
     public float distance;
-    public float moveSpeed = 1f;
+    // default to 2 might have to be increased later for a comfortable speed
+    public float moveSpeed = 2f;
     // how much to rotate
     public float rotation;
     public float rotationSpeed;
