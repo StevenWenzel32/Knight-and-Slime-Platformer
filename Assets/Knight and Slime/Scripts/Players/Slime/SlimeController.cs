@@ -23,7 +23,7 @@ public class SlimeController : PlayerControllerBase
     // the slimes sprite rendere
 
     // consts
-    const float SUPER_JUMP_FORCE = 20; 
+    const float SUPER_JUMP_FORCE = 21; 
 
     protected override void Start()
     {

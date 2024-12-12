@@ -78,17 +78,23 @@ public class Controller : MonoBehaviour
     // move the camera to the center point of the bounds box that holds all the players
     // returns the newPositon 
     private void MoveCamera(){
+        // the container for tracking the targets
         MakeBounds();
         // follow players
         // calculate the midpoint between all targets/players
         Vector3 centerPoint = bounds.center;
         Vector3 newPosition = centerPoint;
-        //make sure the z axis is fixed since we are in 2d
+        // make sure the z axis is fixed since we are in 2d
         newPosition.z = transform.position.z;
-        // get the bottom of the level
+        // get the bottom of the level = min y position
         float levelBottom = CalcBottomScene();
-        // adjust the y 
-        newPosition.y = Mathf.Max(newPosition.y, levelBottom);
+        // get the left edge of the level = min x position -- might try to add in later *****
+        float levelLeftEdge = CalcLeftEdgeScene();
+        // adjust the y position to respect the bottom of the level
+        newPosition.y = Mathf.Max(centerPoint.y, levelBottom);
+        // adjust the x position to respect the left edge of the level
+        newPosition.x = Mathf.Max(centerPoint.x, levelLeftEdge);
+        
         // set the position of the camera
         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, dampTime);
     }

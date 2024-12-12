@@ -24,7 +24,7 @@ public abstract class PlayerControllerBase : MonoBehaviour
     public float speed = 5f; 
     
     // what triggers their jump
-    [Header ("Jump Type")]
+    [Header ("Jump Input Type")]
     public bool spaceBar;
     public bool upArrow;
     public bool w;
@@ -38,8 +38,12 @@ public abstract class PlayerControllerBase : MonoBehaviour
     public UnityEngine.Vector2 jumpColliderOffset;
     // jummping size
     public UnityEngine.Vector2 jumpColliderSize;
-    // what layer gives them the grounded state and lets them jump again
-    public LayerMask groundLayer;
+
+    [Header ("Jumping Grounding Layer")]
+    // normal grounding 
+    public bool normal;
+    // normal + liquid grounding
+    public bool normalAndLiquid;
 
     [Header ("Collider Changes")]
     // public vars for changing colldier for different animations
@@ -62,6 +66,9 @@ public abstract class PlayerControllerBase : MonoBehaviour
     protected Animator anim;
     // for changing the collider size
     protected BoxCollider2D boxCollider;
+    // the layer masks for grounding their general themes
+    protected LayerMask ground;
+    protected LayerMask groundAndLiquids;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -76,6 +83,8 @@ public abstract class PlayerControllerBase : MonoBehaviour
             //initialize the animation compoent
             anim = GetComponent<Animator>();
         }
+        // setup the layers for jumping
+        GroundingLayerSetup();
     }
 
     // Update is called once per frame
@@ -110,6 +119,21 @@ public abstract class PlayerControllerBase : MonoBehaviour
     {
         // Preserve vertical velocity during the jump
         rb.velocity = new UnityEngine.Vector2(movement.x * speed, rb.velocity.y);
+    }
+
+    // sets up both types of grounding 
+    private void GroundingLayerSetup(){
+        // the layers to put in the grounding layer types
+        int groundLayer = LayerMask.NameToLayer("Ground");
+        int objectLayer = LayerMask.NameToLayer("Objects");
+        int movingPlatformLayer = LayerMask.NameToLayer("Moving Platforms");
+
+        int waterLayer = LayerMask.NameToLayer("Water");
+
+        // build the ground layer mask
+        ground = 1 << groundLayer | 1 << objectLayer | 1 << movingPlatformLayer;
+        // build the ground and liquids layer mask
+        groundAndLiquids = 1 << groundLayer | 1 << objectLayer | 1 << movingPlatformLayer | 1 << waterLayer;
     }
 
     // diagonal movement
@@ -249,10 +273,20 @@ public abstract class PlayerControllerBase : MonoBehaviour
         }
     }
 
-    // check if player is grounded -- uses the list of grounding layers *****
+    // check if player is grounded, uses the grounding layer selected, the default is no layer
     protected virtual bool isGrounded(){
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, UnityEngine.Vector2.down, 0.1f, groundLayer);
-        return raycastHit.collider != null;
+        // setup the raycast hit var
+        RaycastHit2D raycastHit;
+        // check the grounding layer used
+        if (normal){
+            raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, UnityEngine.Vector2.down, 0.1f, ground);
+            return raycastHit.collider != null;
+        } else if (normalAndLiquid){
+            raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, UnityEngine.Vector2.down, 0.1f, groundAndLiquids);
+            return raycastHit.collider != null;
+        }
+
+        return false;
     }
 
     // rotate the player

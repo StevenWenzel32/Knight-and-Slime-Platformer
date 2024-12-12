@@ -331,9 +331,8 @@ MonoBehaviour:
   jumpForce: 9
   jumpColliderOffset: {x: 0, y: 0}
   jumpColliderSize: {x: 0, y: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  normal: 1
+  normalAndLiquid: 0
   normalColliderSize: {x: 0, y: 0}
   normalColliderOffset: {x: 0, y: 0}
   deathLine: -12.5
@@ -5687,7 +5686,7 @@ MonoBehaviour:
   - {fileID: 30256188}
   - {fileID: 832258018}
   characterWidth: 2.5
-  wallWidth: 11.1
+  wallWidth: 0
 --- !u!1 &535290469
 GameObject:
   m_ObjectHideFlags: 0
@@ -9221,9 +9220,8 @@ MonoBehaviour:
   jumpForce: 7
   jumpColliderOffset: {x: 0, y: 0}
   jumpColliderSize: {x: 0, y: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  normal: 0
+  normalAndLiquid: 1
   normalColliderSize: {x: 0, y: 0}
   normalColliderOffset: {x: 0, y: 0}
   deathLine: -12
@@ -11653,7 +11651,7 @@ GameObject:
   - component: {fileID: 1226847730}
   - component: {fileID: 1226847729}
   - component: {fileID: 1226847731}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Bridge
   m_TagString: Ground
   m_Icon: {fileID: 0}
