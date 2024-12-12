@@ -25,10 +25,10 @@ public class Controller : MonoBehaviour
     // extra adjustment added to the y position of the camera when based on players
     private float characterHeight = 2.5f;
     // extra adjustment added to the y position of the camera when based on ground
-    private float groundHeight = 11.1f;
+    public float groundHeight = 11.1f;
 
     // extra adjustment added to the x position of the camera when based on players -- value has not been found yet
-    public float characterWidth = 2.5f;
+    private float characterWidth = 2.5f;
     // extra adjustment added to the x position of the camera when based on ground
     public float wallWidth = 100f;
 
@@ -94,7 +94,7 @@ public class Controller : MonoBehaviour
         newPosition.y = Mathf.Max(centerPoint.y, levelBottom);
         // adjust the x position to respect the left edge of the level
         newPosition.x = Mathf.Max(centerPoint.x, levelLeftEdge);
-        
+
         // set the position of the camera
         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, dampTime);
     }

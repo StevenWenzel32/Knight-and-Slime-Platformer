@@ -323,6 +323,10 @@ MonoBehaviour:
   wasd: 1
   arrowKeys: 0
   hasAnimations: 1
+  jumpAnim: 1
+  runAnim: 1
+  fallAnim: 0
+  grounded: 1
   speed: 5
   spaceBar: 1
   upArrow: 0
@@ -5685,8 +5689,8 @@ MonoBehaviour:
   targets:
   - {fileID: 30256188}
   - {fileID: 832258018}
-  characterWidth: 2.5
-  wallWidth: 0
+  groundHeight: 14
+  wallWidth: -20
 --- !u!1 &535290469
 GameObject:
   m_ObjectHideFlags: 0
@@ -9211,7 +9215,11 @@ MonoBehaviour:
   canMoveVertically: 0
   wasd: 0
   arrowKeys: 1
-  hasAnimations: 0
+  hasAnimations: 1
+  jumpAnim: 1
+  runAnim: 0
+  fallAnim: 0
+  grounded: 1
   speed: 5
   spaceBar: 0
   upArrow: 1

@@ -19,6 +19,10 @@ public abstract class PlayerControllerBase : MonoBehaviour
 
     [Header ("Animation Stuff")]
     public bool hasAnimations = false;
+    public bool jumpAnim = false;
+    public bool runAnim = false;
+    public bool fallAnim = false;
+    public bool grounded = false;
 
     [Header ("Move Stats")]
     public float speed = 5f; 
@@ -119,6 +123,18 @@ public abstract class PlayerControllerBase : MonoBehaviour
     {
         // Preserve vertical velocity during the jump
         rb.velocity = new UnityEngine.Vector2(movement.x * speed, rb.velocity.y);
+
+        // check the types of anims
+        if (jumpAnim && fallAnim){
+            // check the chracters velocity 
+            if (rb.velocity.y > 0){
+                anim?.SetBool("Jump", true);
+                anim?.SetBool("Falling", false);
+            } else if (rb.velocity.y < 0){
+                anim?.SetBool("Jump", false);
+                anim?.SetBool("Falling", true);
+            }
+        }
     }
 
     // sets up both types of grounding 
@@ -184,12 +200,14 @@ public abstract class PlayerControllerBase : MonoBehaviour
         // handle jumping
         TriggerJump();
 
-        // check if the char has animations
-        if (hasAnimations){
+        // check if they have the anims -- should probably move into its own anims func later ******
+        if (runAnim){
             //run running animation
-            anim.SetBool("Run", horizontalInput != 0);
-            // run jumping animation
-            anim.SetBool("Grounded", isGrounded());
+            anim?.SetBool("Run", horizontalInput != 0);
+        }
+        if (grounded){
+            // for switching to idle anim
+            anim?.SetBool("Grounded", isGrounded());
         }
     }
 
@@ -222,8 +240,9 @@ public abstract class PlayerControllerBase : MonoBehaviour
 
     private void Jump(){
         rb.velocity = new UnityEngine.Vector2(rb.velocity.x, jumpForce);
-        anim?.SetTrigger("Jump");
-  //      AdjustColliderForJump();
+        if (jumpAnim && !fallAnim){
+            anim?.SetTrigger("Jump");
+        }
     }
 
     // set colldier to jump size -- not used right now 
@@ -284,6 +303,11 @@ public abstract class PlayerControllerBase : MonoBehaviour
         } else if (normalAndLiquid){
             raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, UnityEngine.Vector2.down, 0.1f, groundAndLiquids);
             return raycastHit.collider != null;
+        }
+
+        // check if they have the falling animation
+        if (fallAnim){
+            anim?.SetBool("Falling", false);
         }
 
         return false;

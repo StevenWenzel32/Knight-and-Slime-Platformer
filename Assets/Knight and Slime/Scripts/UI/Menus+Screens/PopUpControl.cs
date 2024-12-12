@@ -138,7 +138,7 @@ public class PopUpControl : MonoBehaviour
         title.text = "Level " + data.levelNum;
         // check if the level has been beaten 
         if (SaveManager.instance.levels[data.levelNum - 1].stars != 0){
-             // just having the # of gems always be 4 for now
+            // just having the # of gems always be 4 for now
             gems.text = SaveManager.instance.levels[data.levelNum - 1].gems + "/4";
             // convert the float time into a timespan
             TimeSpan timeSpan = TimeSpan.FromSeconds(SaveManager.instance.levels[data.levelNum - 1].time);
