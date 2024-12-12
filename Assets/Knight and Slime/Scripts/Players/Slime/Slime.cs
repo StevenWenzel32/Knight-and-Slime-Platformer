@@ -17,6 +17,15 @@ public class Slime : PlayerBase
         base.OnPlayerDeath();
     }
 
+// getters and setters and toggles
+    public void SetLiquidAbsorbed(bool state){
+        liquidAbsorbed = state;
+    }
+
+    public bool GetLiquidAbsorbed(){
+        return liquidAbsorbed;
+    }
+
     public void SetClimbWalls(bool state){
         climbWalls = state;
     }

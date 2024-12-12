@@ -1,3 +1,6 @@
+using System.Numerics;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class PlayerControllerBase : MonoBehaviour
@@ -14,29 +17,35 @@ public abstract class PlayerControllerBase : MonoBehaviour
     // do arrow keys control them?
     public bool arrowKeys;
 
-    [Header ("Collider Changes")]
+    [Header ("Animation Stuff")]
     public bool hasAnimations = false;
 
     [Header ("Move Stats")]
     public float speed = 5f; 
     
+    // what triggers their jump
+    [Header ("Jump Type")]
+    public bool spaceBar;
+    public bool upArrow;
+    public bool w;
+
     [Header ("Jumping")]
     // can they jump 
     public bool jump;
     // how fast they jump
     public float jumpForce = 7f;
     // jummping offset
-    public Vector2 jumpColliderOffset;
+    public UnityEngine.Vector2 jumpColliderOffset;
     // jummping size
-    public Vector2 jumpColliderSize;
-    // might have something to do with the camera????
+    public UnityEngine.Vector2 jumpColliderSize;
+    // what layer gives them the grounded state and lets them jump again
     public LayerMask groundLayer;
 
     [Header ("Collider Changes")]
     // public vars for changing colldier for different animations
     // idle and running size
-    public Vector2 normalColliderSize;
-    public Vector2 normalColliderOffset;
+    public UnityEngine.Vector2 normalColliderSize;
+    public UnityEngine.Vector2 normalColliderOffset;
 
     [Header ("Death")]
     // the line the player must cross to die when falling 
@@ -46,7 +55,7 @@ public abstract class PlayerControllerBase : MonoBehaviour
     // Reference to the Rigidbody2D component attached to the player
     protected Rigidbody2D rb; 
     // Stores the direction of player movement
-    protected Vector2 movement; 
+    protected UnityEngine.Vector2 movement; 
      // Flag to track if the player is moving horizontally
     protected bool isMovingHorizontally = true;
     // animation vars
@@ -100,13 +109,13 @@ public abstract class PlayerControllerBase : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         // Preserve vertical velocity during the jump
-        rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
+        rb.velocity = new UnityEngine.Vector2(movement.x * speed, rb.velocity.y);
     }
 
     // diagonal movement
     protected virtual void HandleDiagonalMovement(float horizontalInput, float verticalInput){
         // Set movement direction based on input
-        movement = new Vector2(horizontalInput, verticalInput);
+        movement = new UnityEngine.Vector2(horizontalInput, verticalInput);
         // Optionally rotate the player based on movement direction
         RotatePlayer(horizontalInput, verticalInput);
     }
@@ -126,12 +135,12 @@ public abstract class PlayerControllerBase : MonoBehaviour
         // Set movement direction and optionally rotate the player
         if (isMovingHorizontally)
         {
-            movement = new Vector2(horizontalInput, 0);
+            movement = new UnityEngine.Vector2(horizontalInput, 0);
             RotatePlayer(horizontalInput, 0);
         }
         else
         {
-            movement = new Vector2(0, verticalInput);
+            movement = new UnityEngine.Vector2(0, verticalInput);
             RotatePlayer(0, verticalInput);
         }
     }
@@ -139,19 +148,17 @@ public abstract class PlayerControllerBase : MonoBehaviour
     //handle horizontal movement
     protected virtual void HandleHorizontalMovement(float horizontalInput){
         // Set movement direction
-        movement = new Vector2(horizontalInput, 0);
+        movement = new UnityEngine.Vector2(horizontalInput, 0);
 
         // flip player on x depending on direction movement
         if (horizontalInput > 0.01f){
-            transform.localScale = Vector3.one;
+            transform.localScale = UnityEngine.Vector3.one;
         } else if (horizontalInput < -0.01f){
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
         }
 
-        // let the player jump
-        if (jump && isGrounded() && (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))){
-            Jump();
-        }
+        // handle jumping
+        TriggerJump();
 
         // check if the char has animations
         if (hasAnimations){
@@ -162,10 +169,36 @@ public abstract class PlayerControllerBase : MonoBehaviour
         }
     }
 
-    // unique to the knight
+    // check for correct player input for when to jump
+    private void TriggerJump(){
+        // check if they can jump and if they are grounded
+        if(jump && isGrounded()){
+            // check what their jump input is 
+            if (spaceBar){
+                // check for the input 
+                if (Input.GetKey(KeyCode.Space)){
+                    Jump();
+                    return;
+                }
+            }
+            if (w){
+                if (Input.GetKey(KeyCode.W)){
+                    Jump();
+                    return;
+                }
+            }
+            if (upArrow){
+                if (Input.GetKey(KeyCode.UpArrow)){
+                    Jump();
+                    return;
+                }
+            }
+        }
+    }
+
     private void Jump(){
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        anim.SetTrigger("Jump");
+        rb.velocity = new UnityEngine.Vector2(rb.velocity.x, jumpForce);
+        anim?.SetTrigger("Jump");
   //      AdjustColliderForJump();
     }
 
@@ -216,9 +249,9 @@ public abstract class PlayerControllerBase : MonoBehaviour
         }
     }
 
-    // check if player is grounded
+    // check if player is grounded -- uses the list of grounding layers *****
     protected virtual bool isGrounded(){
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, UnityEngine.Vector2.down, 0.1f, groundLayer);
         return raycastHit.collider != null;
     }
 
@@ -231,7 +264,7 @@ public abstract class PlayerControllerBase : MonoBehaviour
         // Calculate the rotation angle based on input direction
         float angle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
         // Apply the rotation to the player
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = UnityEngine.Quaternion.Euler(0, 0, angle);
     }
 
     // reset the collider to it's normal state

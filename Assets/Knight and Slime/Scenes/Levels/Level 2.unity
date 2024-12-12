@@ -324,6 +324,9 @@ MonoBehaviour:
   arrowKeys: 0
   hasAnimations: 1
   speed: 5
+  spaceBar: 1
+  upArrow: 0
+  w: 1
   jump: 1
   jumpForce: 9
   jumpColliderOffset: {x: 0, y: 0}
@@ -9211,13 +9214,16 @@ MonoBehaviour:
   arrowKeys: 1
   hasAnimations: 0
   speed: 5
+  spaceBar: 0
+  upArrow: 1
+  w: 0
   jump: 0
   jumpForce: 7
   jumpColliderOffset: {x: 0, y: 0}
   jumpColliderSize: {x: 0, y: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   normalColliderSize: {x: 0, y: 0}
   normalColliderOffset: {x: 0, y: 0}
   deathLine: -12

@@ -22,6 +22,9 @@ public class SlimeController : PlayerControllerBase
     private bool isTouchingWallRight = false;
     // the slimes sprite rendere
 
+    // consts
+    const float SUPER_JUMP_FORCE = 20; 
+
     protected override void Start()
     {
         base.Start();
@@ -37,21 +40,27 @@ public class SlimeController : PlayerControllerBase
         // call the base collsion
         base.OnCollisionEnter2D(collision);
 
-        // check for liquid collisions
+        // check for liquid collisions -- put into a seperate func later on ******
         // if the object is honey
-        if (collision.gameObject.CompareTag("Honey")){
+        if (collision.gameObject.CompareTag("Honey") && !GetComponent<Slime>().GetLiquidAbsorbed()){
+            // mark the slime has having absorbed a liquid
+            GetComponent<Slime>().SetLiquidAbsorbed(true);
             // turn on the slime ability to climbWalls
             GetComponent<Slime>().SetClimbWalls(true);
             Debug.Log("Slime climbWall state: " + GetComponent<Slime>().GetClimbWalls());
         }
         // if the object is super jump 
-        if (collision.gameObject.CompareTag("Super Jump")){
+        if (collision.gameObject.CompareTag("Super Jump") && !GetComponent<Slime>().GetLiquidAbsorbed()){
+            // mark the slime has having absorbed a liquid
+            GetComponent<Slime>().SetLiquidAbsorbed(true);
             // turn on the slime ability to climbWalls
             GetComponent<Slime>().SetSuperJump(true);
+            // turn on the super jump
+            SuperJump();
             Debug.Log("Slime superJump state: " + GetComponent<Slime>().GetSuperJump());
         }
 
-        // if the object is a wall on the right
+        // if the object is a wall
         if (collision.gameObject.layer == LayerMask.NameToLayer("Walls") || collision.gameObject.CompareTag("Wall")){
             // up the wall contact count
             wallContactCount++;
@@ -230,5 +239,13 @@ public class SlimeController : PlayerControllerBase
         else if (VerticalInput < 0){
             transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
         }
+    }
+
+    // activates the super jump ability
+    private void SuperJump(){
+        // turn the jump option on 
+        this.jump = true;
+        // set the jump force to SUPER
+        this.jumpForce = SUPER_JUMP_FORCE;
     }
 }
