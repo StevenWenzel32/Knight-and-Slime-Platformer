@@ -30,6 +30,8 @@ public class GameButton : MonoBehaviour
     // private vars
     private Animator anim;
     private bool isPushed = false;
+    // how many things are on the button
+    private int contacts = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -41,10 +43,13 @@ public class GameButton : MonoBehaviour
     // check if the trigger collider was hit 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check for collisions with player 
+        // Check for collisions with player and toggle if the button is not already pushed 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") || collision.gameObject.layer == LayerMask.NameToLayer("Slime"))
         {
-            ToggleButton();   
+            if (contacts == 0){
+                ToggleButton();   
+            }
+            contacts++;
             Debug.Log("Button has been pushed by player!");
         }
     }
@@ -55,17 +60,19 @@ public class GameButton : MonoBehaviour
         // Check for collisions with player 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") || collision.gameObject.layer == LayerMask.NameToLayer("Slime"))
         {
-            ToggleButton();
-            Debug.Log("Player has left button");
+            contacts--;
+            // check if all players have left the button
+            if (contacts == 0){
+                ToggleButton();
+                Debug.Log("Player has left button");
+            }
         }
     }
 
     private void ToggleButton(){
         isPushed = !isPushed;
         // no animations right now 
-        if (anim != null){
-            anim.SetBool("Push", isPushed);
-        }
+        anim?.SetBool("Push", isPushed);
         ControlObject();
     }
 
