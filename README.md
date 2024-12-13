@@ -1,5 +1,7 @@
 Link to executable v0.0.1: https://drive.google.com/file/d/1m21GFqZlXAZ-XsMteQyVSr7cBRSMYPUP/view?usp=sharing
 
+My current goal while I have free time is to make a level every week. I will also try to update this build link every week with the new levels (probably on fridays), for my loyal game testers. If you encounter any bugs feel free to let me know at my dev email: onceaknight611@gmail.com or at my discord: onceaknight
+
 Link to demo video of v0.0.1: https://drive.google.com/file/d/1bpuz1WCvNb4yPK0JK__P0Rkk7dMU9KpM/view?usp=drive_link
 
 I made this game by myself so there are no team contributions to record.
