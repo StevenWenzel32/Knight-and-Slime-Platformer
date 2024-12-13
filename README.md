@@ -1,8 +1,9 @@
 Link to executable v0.0.1: https://drive.google.com/file/d/1m21GFqZlXAZ-XsMteQyVSr7cBRSMYPUP/view?usp=sharing
 
-My current goal while I have free time is to make a level every week. I will also try to update this build link every week with the new levels (probably on fridays), for my loyal game testers. If you encounter any bugs feel free to let me know at my dev email: onceaknight611@gmail.com or at my discord: onceaknight
+My current goal while I have free time is to make a level every week. I will also try to update this build link every week with the new levels (probably on Fridays, for my loyal game testers). If you encounter any bugs (or want to share any ideas for expansion or level designs) feel free to let me know at my dev email: onceaknight611@gmail.com or at my discord: onceaknight
 
 Link to demo video of v0.0.1: https://drive.google.com/file/d/1bpuz1WCvNb4yPK0JK__P0Rkk7dMU9KpM/view?usp=drive_link
+I plan to pretty much never update this video until the game is published (had to make it for my class)
 
 I made this game by myself so there are no team contributions to record.
 
@@ -20,11 +21,25 @@ Since my free Git LFS storage is almost up in the future if more remote Git LFS 
 
 Project Team Expansion Notes
 
-I intend to see this game through to publication eventually and as such some preparations need to be made to recruit people with the talents needed for my team.
+I intend to see this game through to publication eventually and to meet that goal I will need to recruit people with the talents required for my team.
 
-As such these are the roles needed in the future when this is no longer just a school project:
+These are the roles needed in the future when this is no longer just a school project:
+
+Game dev/Programmers:
+- must be familiar with Git or GitHub or is very willing to learn how to use it and the etiquette. GitHub is the only way we could work together so this is a must!
+- familiar with Unity or any game engine
+- familiar with any version of C or any object-oriented language
+- Contact me and I'll put in the effort to have the whole unity project stored on this GitHub not just the assets folder then just feel free to request to branch and push
 
 Graphic Artist/Designer: 
+- ideally likes working with pixel art
+- can make sprite sheets (If needed I can teach this, its really not that hard)
+- ideally already has graphic design software that they are familiar with or are willing to learn on their own
+- bonus! likes cute slimes and medieval-themed art
 
-Audio Mixer:
-
+Audio Engineer/Mixer:
+- can mix multiple layers of music
+- familiar with things like fading, etc.
+- ideally has some software they are familiar with or are willing to learn on their own
+- bonus! Can make their own music and know some of the game industry tricks for looping and the like
+- *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for unity to fix this.
