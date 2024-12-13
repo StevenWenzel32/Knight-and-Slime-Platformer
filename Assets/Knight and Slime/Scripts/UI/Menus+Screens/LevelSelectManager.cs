@@ -89,7 +89,7 @@ public class LevelSelectManager : MonoBehaviour
                     Debug.Log("Level Button Corrected: " + (i + 1));
                 }
             }
-            Debug.LogError("LevelInfo for level: " + (i + 1) + ", Lock Status = " + SaveManager.instance.levels[i].locked);
+            Debug.Log("LevelInfo for level: " + (i + 1) + ", Lock Status = " + SaveManager.instance.levels[i].locked);
             
             // check if the level is unlocked
             if (!SaveManager.instance.levels[i].locked){

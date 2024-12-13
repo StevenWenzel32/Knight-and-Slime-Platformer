@@ -123,8 +123,10 @@ public class MenuManager : MonoBehaviour
     // load the nextlevel
     public void NextLevel(){
         // get the current scene and return it's index
-       int currentLevel = SceneManager.GetActiveScene().buildIndex;
-       SceneManager.LoadScene(currentLevel + 1);
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentLevel + 1);
+        // restore the game time
+        Time.timeScale = 1;
     }
 
     // go to the settings
