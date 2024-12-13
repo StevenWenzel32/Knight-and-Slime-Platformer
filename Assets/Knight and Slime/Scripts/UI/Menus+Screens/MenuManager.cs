@@ -120,6 +120,13 @@ public class MenuManager : MonoBehaviour
        SceneManager.LoadScene(3);
     }
 
+    // load the nextlevel
+    public void NextLevel(){
+        // get the current scene and return it's index
+       int currentLevel = SceneManager.GetActiveScene().buildIndex;
+       SceneManager.LoadScene(currentLevel + 1);
+    }
+
     // go to the settings
     public void SettingsMenu(){
         SceneManager.LoadScene(1);
