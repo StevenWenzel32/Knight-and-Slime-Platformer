@@ -1,4 +1,4 @@
-Link to executable v0.0.1: https://drive.google.com/file/d/1m21GFqZlXAZ-XsMteQyVSr7cBRSMYPUP/view?usp=sharing
+Link to executable v0.0.1 (built for windows*): https://drive.google.com/file/d/1m21GFqZlXAZ-XsMteQyVSr7cBRSMYPUP/view?usp=sharing
 
 My current goal while I have free time is to make a level every week. I will also try to update this build link every week with the new levels (probably on Fridays, for my loyal game testers). If you encounter any bugs (or want to share any ideas for expansion or level designs) feel free to let me know at my dev email: onceaknight611@gmail.com or at my discord: onceaknight
 
@@ -43,3 +43,5 @@ Audio Engineer/Mixer:
 - ideally has some software they are familiar with or are willing to learn on their own
 - bonus! Can make their own music and know some of the game industry tricks for looping and the like
 - *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for unity to fix this.
+
+* no guarantee of it working on mac or Linux
