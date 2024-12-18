@@ -1,8 +1,11 @@
-Link to executable v0.0.1 (built for windows*): https://drive.google.com/file/d/1m21GFqZlXAZ-XsMteQyVSr7cBRSMYPUP/view?usp=sharing
+Link to executable v0.0.2 (built for windows*): https://drive.google.com/file/d/1kt_-1e7EmZS8PEh67V1uEj6u0u-yhuur/view?usp=sharing
+
+To run the game download the folder, unzip it, and run the Knight and Slime executable.
 
 My current goal while I have free time is to make a level every week. I will also try to update this build link every week with the new levels (probably on Fridays, for my loyal game testers). If you encounter any bugs (or want to share any ideas for expansion or level designs) feel free to let me know at my dev email: onceaknight611@gmail.com or at my discord: onceaknight
 
 Link to demo video of v0.0.1: https://drive.google.com/file/d/1bpuz1WCvNb4yPK0JK__P0Rkk7dMU9KpM/view?usp=drive_link
+
 I plan to pretty much never update this video until the game is published (had to make it for my class)
 
 I made this game by myself so there are no team contributions to record.
@@ -45,3 +48,7 @@ Audio Engineer/Mixer:
 - *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for unity to fix this.
 
 * no guarantee of it working on mac or Linux
+
+Version Changes
+v0.0.2: Added level 2. Improved UI. Changed saving priority. Camera improved. Added .exe icon, name, and company name. And other stuff I don't remember anymore.
+v0.0.1: The final project build for my 385 game dev class. main menu, level select, saving, 1 level, basic settings.
