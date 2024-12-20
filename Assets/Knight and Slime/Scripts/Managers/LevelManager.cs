@@ -66,12 +66,15 @@ public class LevelManager : MonoBehaviour
         MenuManager.instance.LevelComplete();
 
         // saving this level data
-        // send the level data from the counters to the levelInfo 
-        updateLevelInfo();
-        // save the levelInfo to the array in the saveManager
-        SaveManager.instance.levels[levelNumber - 1] = levelInfo;
-        // have the saveManager save the new current level data to playerPrefs
-        SaveManager.instance.SaveLevelData(levelInfo, levelNumber);
+        // check if the score is better
+        if (checkIfBetterScore()){
+            // send the level data from the counters to the levelInfo which is currently empty
+            updateLevelInfo();
+            // save the levelInfo to the array in the saveManager
+            SaveManager.instance.levels[levelNumber - 1] = levelInfo;
+            // have the saveManager save the new current level data to playerPrefs
+            SaveManager.instance.SaveLevelData(levelInfo, levelNumber);
+        }
 
         // unlocking the next level
         // check if the lock is active and if levelNumber is the last level, and only change save data if it is
@@ -104,5 +107,23 @@ public class LevelManager : MonoBehaviour
         levelInfo.stars = ScoreCounter.instance.stars;
         // if remove lock works correctly this is not needed
         levelInfo.locked = false;
+    }
+
+    private bool checkIfBetterScore(){
+        bool better = false;
+        int gemsOld = SaveManager.instance.levels[levelNumber - 1].gems;
+        int gemsNew = GemCounter.instance.gemsCollected;
+        // if more gems collected
+        if (gemsNew > gemsOld){
+            better = true;
+            Debug.Log("In better score check");
+            Debug.Log("gems collected = " + gemsNew + ", gems previous collected = " + gemsOld);
+        } 
+        // if same gems but better time
+        else if ((gemsNew == gemsOld) && (ScoreCounter.instance.playerTime < levelInfo.time)){
+            better = true;
+        }
+
+        return better;
     }
 }

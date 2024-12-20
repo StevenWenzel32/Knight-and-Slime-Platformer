@@ -7,7 +7,7 @@ public class SaveManager : MonoBehaviour
     public static SaveManager instance {get; private set;}
     // for initalizing size
     private int levelCount = 10;
-    // what we want to save
+    // where the saved data gets loaded and where new data goes
     public LevelInfo[] levels;
 
     public void Awake(){
@@ -42,8 +42,8 @@ public class SaveManager : MonoBehaviour
             if (levels[i].locked){
                 break;
             }
-            // if the score or gem count is greater than the current saved score save the new best -- addin protority once its established ***************
-            else if ((levels[i].gems > PlayerPrefs.GetInt($"Level_{i + 1}_Gems")) || (levels[i].time > PlayerPrefs.GetFloat($"Level_{i + 1}_Time"))){
+            // if the time or gem count is better than the current saved score save the new best
+            else if ((levels[i].gems > PlayerPrefs.GetInt($"Level_{i + 1}_Gems")) || (levels[i].time < PlayerPrefs.GetFloat($"Level_{i + 1}_Time"))){
                 // save the level data 
                 SaveLevelData(levels[i], (i + 1));
             }
@@ -60,7 +60,7 @@ public class SaveManager : MonoBehaviour
             SaveData(levelData, levelNumber);
         } 
         // check if the player had the same amount of gems but a better time
-        else if ((levelData.gems == PlayerPrefs.GetInt($"Level_{levelNumber}_Gems")) && (levelData.time > PlayerPrefs.GetFloat($"Level_{levelNumber}_Time"))){
+        else if ((levelData.gems == PlayerPrefs.GetInt($"Level_{levelNumber}_Gems")) && (levelData.time < PlayerPrefs.GetFloat($"Level_{levelNumber}_Time"))){
             SaveData(levelData, levelNumber);
         }
 
