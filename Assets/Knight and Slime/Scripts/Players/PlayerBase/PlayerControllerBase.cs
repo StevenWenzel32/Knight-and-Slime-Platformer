@@ -38,6 +38,8 @@ public abstract class PlayerControllerBase : MonoBehaviour
     public bool jump;
     // how fast they jump
     public float jumpForce = 7f;
+    // the ditance the box cast is offset below the player
+    public float boxCastDist = 0.1f;
     // jummping offset
     public UnityEngine.Vector2 jumpColliderOffset;
     // jummping size
@@ -218,19 +220,19 @@ public abstract class PlayerControllerBase : MonoBehaviour
             // check what their jump input is 
             if (spaceBar){
                 // check for the input 
-                if (Input.GetKey(KeyCode.Space)){
+                if (Input.GetKeyDown(KeyCode.Space)){
                     Jump();
                     return;
                 }
             }
             if (w){
-                if (Input.GetKey(KeyCode.W)){
+                if (Input.GetKeyDown(KeyCode.W)){
                     Jump();
                     return;
                 }
             }
             if (upArrow){
-                if (Input.GetKey(KeyCode.UpArrow)){
+                if (Input.GetKeyDown(KeyCode.UpArrow)){
                     Jump();
                     return;
                 }
@@ -298,10 +300,10 @@ public abstract class PlayerControllerBase : MonoBehaviour
         RaycastHit2D raycastHit;
         // check the grounding layer used
         if (normal){
-            raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, UnityEngine.Vector2.down, 0.1f, ground);
+            raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, UnityEngine.Vector2.down, boxCastDist, ground);
             return raycastHit.collider != null;
         } else if (normalAndLiquid){
-            raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, UnityEngine.Vector2.down, 0.1f, groundAndLiquids);
+            raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, UnityEngine.Vector2.down, boxCastDist, groundAndLiquids);
             return raycastHit.collider != null;
         }
 
