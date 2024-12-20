@@ -1,4 +1,4 @@
-Link to executable v0.0.2 (built for windows*): https://drive.google.com/file/d/1kt_-1e7EmZS8PEh67V1uEj6u0u-yhuur/view?usp=sharing
+Link to executable v0.0.3 (built for windows*): https://drive.google.com/file/d/1HrBCnDBrTfknUHIlczy9bSGTZ5yNMfzh/view?usp=sharing
 
 To run the game download the folder, unzip it, and run the Knight and Slime executable.
 
@@ -45,10 +45,11 @@ Audio Engineer/Mixer:
 - familiar with things like fading, etc.
 - ideally has some software they are familiar with or are willing to learn on their own
 - bonus! Can make their own music and know some of the game industry tricks for looping and the like
-- *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for unity to fix this.
+- *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for Unity to fix this.
 
-* no guarantee of it working on mac or Linux
+* no guarantee of it working on Mac or Linux
 
 Version Changes
+v0.0.3: Added levels 3 and 4. Created falling platform objects. Can't hold down jump anymore. Created removable objects. switches can either control 2 objects or trigger 2 events. fixed score display bugs.
 v0.0.2: Added level 2. Improved UI. Changed saving priority. Camera improved. Added .exe icon, name, and company name. And other stuff I don't remember anymore.
 v0.0.1: The final project build for my 385 game dev class. main menu, level select, saving, 1 level, basic settings.
