@@ -83,6 +83,7 @@ public class GameButton : MonoBehaviour
         // create make a seperate assignObject() to do the checks and assigns and then passes the object var to other funcs ************
         MovingPlatform bridge = controlled?.GetComponent<MovingPlatform>();
         Doors door = controlled?.GetComponent<Doors>();
+        Removable removable = controlled?.GetComponent<Removable>();
 
         // if the object is a moving platform
         if (bridge != null){
@@ -108,6 +109,10 @@ public class GameButton : MonoBehaviour
         // if the object is a door
         else if (door != null){
             door.ToggleDoor();
+        } 
+        // if the object is something to be removed
+        else if (removable != null){
+            removable.ToggleRemovable();
         }
     }
 }

@@ -4,9 +4,11 @@ using UnityEngine;
 // should really make a parent class for the switches and button classes at some point **
 public class Switch : MonoBehaviour
 {
-    [Header ("Object to Control")]
+    [Header ("Object(s) to Control")]
     // set to the object to be controlled -- can be a door, bridge, elavator, fan, etc.
     public GameObject controlled;
+    // second object to control/ event to trigger
+    public GameObject controlledTwo;
 
     [Header ("If Moving Platform")]
     // how far to move
@@ -53,16 +55,21 @@ public class Switch : MonoBehaviour
         anim.SetBool("Flip", true); 
         isFlipped = true;
         Debug.Log("Switch has been flipped by player!");
-        // perform the actual action
-        ControlObject();
+        // perform the actual action on the objects
+        ControlObject(controlled);
+        // check if a second object was given
+        if (controlledTwo != null){
+            ControlObject(controlledTwo);
+        }
     }
 
     // control the object based on its type -- if extra checks are needed before calling the toggle<Object>() put into another function later
-    private void ControlObject(){
+    private void ControlObject(GameObject controlled){
         // these object creations also check the type of the object 
         // to check if the object is something else just add another assignment for that object
         MovingPlatform bridge = controlled?.GetComponent<MovingPlatform>();
         Doors door = controlled?.GetComponent<Doors>();
+        Removable removable = controlled?.GetComponent<Removable>();
 
         // if the object is a moving platform
         if (bridge != null){
@@ -75,6 +82,10 @@ public class Switch : MonoBehaviour
         // if the object is a door
         else if (door != null){
             door.ToggleDoor();
+        }
+        // if the object is something to be removed
+        else if (removable != null){
+            removable.ToggleRemovable();
         }
     }
 }
