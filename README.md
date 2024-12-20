@@ -6,15 +6,13 @@ My current goal while I have free time is to make a level every week. I will als
 
 Link to demo video of v0.0.1: https://drive.google.com/file/d/1bpuz1WCvNb4yPK0JK__P0Rkk7dMU9KpM/view?usp=drive_link
 
-I plan to pretty much never update this video until the game is published (had to make it for my class)
-
-I made this game by myself so there are no team contributions to record.
+I plan to pretty much never update this video until the game is published (had to make it for my class).
 
 Overview
 
 This repo contains everything inside the Assets folder of my game Knight and Slime that I'm making inside of Unity. 
 As of 11/18/24 this repo will also contain the project proposal and other files related to my 385 assignments.
-The main reason for this remote repo is to turn in my assignments without uploading large files, it allows me to edit my scripts from my phone and now it lets other people access the game when I bother to update the builds.
+The main reason for this repo is that it allows me to edit my scripts from my phone and now it lets other people access the game when I bother to update the builds.
 
 Git Notes
 
@@ -26,7 +24,7 @@ Project Team Expansion Notes
 
 I intend to see this game through to publication eventually and to meet that goal I will need to recruit people with the talents required for my team.
 
-These are the roles needed in the future when this is no longer just a school project:
+These are the roles needed to help during:
 
 Game dev/Programmers:
 - must be familiar with Git or GitHub or is very willing to learn how to use it and the etiquette. GitHub is the only way we could work together so this is a must!
