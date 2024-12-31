@@ -1,4 +1,4 @@
-Link to executable v0.0.3 (built for windows*): https://drive.google.com/file/d/1HrBCnDBrTfknUHIlczy9bSGTZ5yNMfzh/view?usp=sharing
+Link to executable v0.0.3 (built for Windows, Mac, and Linux*): https://drive.google.com/file/d/1HrBCnDBrTfknUHIlczy9bSGTZ5yNMfzh/view?usp=sharing
 
 To run the game download the folder, unzip it, and run the Knight and Slime executable.
 
@@ -45,7 +45,7 @@ Audio Engineer/Mixer:
 - bonus! Can make their own music and know some of the game industry tricks for looping and the like
 - *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for Unity to fix this.
 
-* no guarantee of it working on Mac or Linux
+* Only tested on Windows. Not designed for phones or consoles.
 
 Version Changes
 v0.0.3: Added levels 3 and 4. Created falling platform objects. Can't hold down jump anymore. Created removable objects. switches can either control 2 objects or trigger 2 events. fixed score display bugs.
