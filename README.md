@@ -1,4 +1,4 @@
-Link to executable v0.0.2 (built for windows*): https://drive.google.com/file/d/1kt_-1e7EmZS8PEh67V1uEj6u0u-yhuur/view?usp=sharing
+Link to executable v0.0.3 (built for Windows, Mac, and Linux*): https://drive.google.com/file/d/1HrBCnDBrTfknUHIlczy9bSGTZ5yNMfzh/view?usp=sharing
 
 To run the game download the folder, unzip it, and run the Knight and Slime executable.
 
@@ -6,15 +6,13 @@ My current goal while I have free time is to make a level every week. I will als
 
 Link to demo video of v0.0.1: https://drive.google.com/file/d/1bpuz1WCvNb4yPK0JK__P0Rkk7dMU9KpM/view?usp=drive_link
 
-I plan to pretty much never update this video until the game is published (had to make it for my class)
-
-I made this game by myself so there are no team contributions to record.
+I plan to pretty much never update this video until the game is published (had to make it for my class).
 
 Overview
 
 This repo contains everything inside the Assets folder of my game Knight and Slime that I'm making inside of Unity. 
 As of 11/18/24 this repo will also contain the project proposal and other files related to my 385 assignments.
-The main reason for this remote repo is to turn in my assignments without uploading large files, it allows me to edit my scripts from my phone and now it lets other people access the game when I bother to update the builds.
+The main reason for this repo is that it allows me to edit my scripts from my phone and now it lets other people access the game when I bother to update the builds.
 
 Git Notes
 
@@ -26,7 +24,7 @@ Project Team Expansion Notes
 
 I intend to see this game through to publication eventually and to meet that goal I will need to recruit people with the talents required for my team.
 
-These are the roles needed in the future when this is no longer just a school project:
+These are the roles needed to help during:
 
 Game dev/Programmers:
 - must be familiar with Git or GitHub or is very willing to learn how to use it and the etiquette. GitHub is the only way we could work together so this is a must!
@@ -45,10 +43,11 @@ Audio Engineer/Mixer:
 - familiar with things like fading, etc.
 - ideally has some software they are familiar with or are willing to learn on their own
 - bonus! Can make their own music and know some of the game industry tricks for looping and the like
-- *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for unity to fix this.
+- *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for Unity to fix this.
 
-* no guarantee of it working on mac or Linux
+* Only tested on Windows. Not designed for phones or consoles.
 
 Version Changes
+v0.0.3: Added levels 3 and 4. Created falling platform objects. Can't hold down jump anymore. Created removable objects. switches can either control 2 objects or trigger 2 events. fixed score display bugs.
 v0.0.2: Added level 2. Improved UI. Changed saving priority. Camera improved. Added .exe icon, name, and company name. And other stuff I don't remember anymore.
 v0.0.1: The final project build for my 385 game dev class. main menu, level select, saving, 1 level, basic settings.
