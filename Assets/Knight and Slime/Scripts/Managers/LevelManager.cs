@@ -68,6 +68,7 @@ public class LevelManager : MonoBehaviour
         // saving this level data
         // check if the score is better
         if (checkIfBetterScore()){
+            Debug.Log("Player got a new high score!");
             // send the level data from the counters to the levelInfo which is currently empty
             updateLevelInfo();
             // save the levelInfo to the array in the saveManager
@@ -120,7 +121,7 @@ public class LevelManager : MonoBehaviour
             Debug.Log("gems collected = " + gemsNew + ", gems previous collected = " + gemsOld);
         } 
         // if same gems but better time
-        else if ((gemsNew == gemsOld) && (ScoreCounter.instance.playerTime < levelInfo.time)){
+        else if ((gemsNew == gemsOld) && (ScoreCounter.instance.playerTime < SaveManager.instance.levels[levelNumber - 1].time)){
             better = true;
         }
 

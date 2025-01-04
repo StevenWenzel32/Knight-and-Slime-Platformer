@@ -4,7 +4,11 @@ using UnityEngine;
 public class SlimeController : PlayerControllerBase
 {
     // Public variables -- the options in unity
+    [Header("Abilities Stats")]
     public float wallClimbSpeed = 3f;
+
+    [Header("Tunnels")]
+    public float colliderWidthShrinkBuffer = 0.8f;
     // private vars
     // save the origional size of the slime collider
     private UnityEngine.Vector2 startSize;
@@ -177,7 +181,7 @@ public class SlimeController : PlayerControllerBase
                 // create a new vector for the slimes new collider size
                 UnityEngine.Vector2 newCollider;
                 // set the width to the tunnel width
-                newCollider.x = tunnelWidth - 0.1f;
+                newCollider.x = tunnelWidth - colliderWidthShrinkBuffer;
                 // set the height to the slimes current hight
                 newCollider.y = currentSize.y;
                 Debug.Log("Tunnel Width: " + tunnelWidth);

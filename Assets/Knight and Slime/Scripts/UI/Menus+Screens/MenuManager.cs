@@ -33,6 +33,7 @@ public class MenuManager : MonoBehaviour
     // ref counters
     public GameObject counters;
     public GameObject guideScreen;
+    public GameObject selectionArrow;
 
     private void Awake(){
         // singleton stuff
@@ -165,12 +166,13 @@ public class MenuManager : MonoBehaviour
     }
     #endregion
 
-    // go to the settings
+    // go to the guide
     public void GuideScreen(bool show){
         if (guideScreen != null)
         {
             // turn on the guide screen
             guideScreen.SetActive(show);
+            
         }
     }
 }
