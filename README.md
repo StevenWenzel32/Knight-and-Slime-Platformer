@@ -1,4 +1,4 @@
-Link to executable v0.0.3 (built for Windows, Mac, and Linux*): https://drive.google.com/file/d/1HrBCnDBrTfknUHIlczy9bSGTZ5yNMfzh/view?usp=sharing
+Link to executable v0.0.4 (built for Windows, Mac, and Linux*): https://drive.google.com/file/d/18Xc0bhA7GVyhCriqLnclrGE56DjX8R-F/view?usp=sharing
 
 To run the game download the folder, unzip it, and run the Knight and Slime executable.
 
@@ -11,7 +11,6 @@ I plan to pretty much never update this video until the game is published (had t
 Overview
 
 This repo contains everything inside the Assets folder of my game Knight and Slime that I'm making inside of Unity. 
-As of 11/18/24 this repo will also contain the project proposal and other files related to my 385 assignments.
 The main reason for this repo is that it allows me to edit my scripts from my phone and now it lets other people access the game when I bother to update the builds.
 
 Git Notes
@@ -27,18 +26,21 @@ I intend to see this game through to publication eventually and to meet that goa
 These are the roles needed to help during:
 
 Game dev/Programmers:
+
 - must be familiar with Git or GitHub or is very willing to learn how to use it and the etiquette. GitHub is the only way we could work together so this is a must!
 - familiar with Unity or any game engine
 - familiar with any version of C or any object-oriented language
 - Contact me and I'll put in the effort to have the whole unity project stored on this GitHub not just the assets folder then just feel free to request to branch and push
 
 Graphic Artist/Designer: 
+
 - ideally likes working with pixel art
 - can make sprite sheets (If needed I can teach this, its really not that hard)
 - ideally already has graphic design software that they are familiar with or are willing to learn on their own
 - bonus! likes cute slimes and medieval-themed art
 
 Audio Engineer/Mixer:
+
 - can mix multiple layers of music
 - familiar with things like fading, etc.
 - ideally has some software they are familiar with or are willing to learn on their own
@@ -47,7 +49,9 @@ Audio Engineer/Mixer:
 
 * Only tested on Windows. Not designed for phones or consoles.
 
-Version Changes
+Version Changes:
+
+v0.0.4: Added level 5. Fixed more saving and high-score display bugs. Made falling into tunnels as the slime smoother. Fine-tuned box objects.
 v0.0.3: Added levels 3 and 4. Created falling platform objects. Can't hold down jump anymore. Created removable objects. switches can either control 2 objects or trigger 2 events. fixed score display bugs.
 v0.0.2: Added level 2. Improved UI. Changed saving priority. Camera improved. Added .exe icon, name, and company name. And other stuff I don't remember anymore.
 v0.0.1: The final project build for my 385 game dev class. main menu, level select, saving, 1 level, basic settings.
