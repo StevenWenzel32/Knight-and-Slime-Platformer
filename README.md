@@ -52,6 +52,9 @@ Audio Engineer/Mixer:
 Version Changes:
 
 v0.0.4: Added level 5. Fixed more saving and high-score display bugs. Made falling into tunnels as the slime smoother. Fine-tuned box objects.
+
 v0.0.3: Added levels 3 and 4. Created falling platform objects. Can't hold down jump anymore. Created removable objects. switches can either control 2 objects or trigger 2 events. fixed score display bugs.
+
 v0.0.2: Added level 2. Improved UI. Changed saving priority. Camera improved. Added .exe icon, name, and company name. And other stuff I don't remember anymore.
+
 v0.0.1: The final project build for my 385 game dev class. main menu, level select, saving, 1 level, basic settings.
