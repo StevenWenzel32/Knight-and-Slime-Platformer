@@ -1,6 +1,15 @@
 Link to executable v0.0.4 (built for Windows): https://drive.google.com/file/d/18Xc0bhA7GVyhCriqLnclrGE56DjX8R-F/view?usp=sharing
 
+## Windows:
 To run the game download the folder, unzip it, and run the Knight and Slime executable.
+
+## Linux or Mac Proton layers
+1. Download the folder, and unzip it
+2. In your Steam Library, click "Add a Game" and "Add a Non-Steam Game"
+3. Click "Browse" and navigate to the "Knight and Slime.exe"
+4. On the game page that is newly added to your Steam Library, click on the gear icon and go to "Properties"
+5. Under the "Compatibility" tab, check the box to Force a compatibility layer, and then select a Proton version. I am currently testing on Proton 9.0-4 without any bugs.
+6. Launch the game through Steam
 
 My current goal while I have free time is to make a level every week. I will also try to update this build link every week with the new levels (probably on Fridays, for my loyal game testers). If you encounter any bugs (or want to share any ideas for expansion or level designs) feel free to let me know at my dev email: onceaknight611@gmail.com or at my discord: onceaknight
 
