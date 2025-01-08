@@ -1,4 +1,4 @@
-Link to executable v0.0.4 (built for Windows, Mac, and Linux*): https://drive.google.com/file/d/18Xc0bhA7GVyhCriqLnclrGE56DjX8R-F/view?usp=sharing
+Link to executable v0.0.4 (built for Windows): https://drive.google.com/file/d/18Xc0bhA7GVyhCriqLnclrGE56DjX8R-F/view?usp=sharing
 
 To run the game download the folder, unzip it, and run the Knight and Slime executable.
 
