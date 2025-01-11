@@ -9038,7 +9038,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 876367391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcbfb43b9c97b93478abf8413f99e79c, type: 3}
+  m_Script: {fileID: 11500000, guid: 04019b340d380dd4083e2cb90563d52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   levelsUICanvas: {fileID: 5453291}
@@ -9143,7 +9143,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 876367393}
+      objectReference: {fileID: 0}
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -11067,7 +11067,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 876367393}
+      objectReference: {fileID: 0}
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -11211,7 +11211,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 876367393}
+      objectReference: {fileID: 0}
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -11355,7 +11355,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 876367393}
+      objectReference: {fileID: 0}
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -11537,7 +11537,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 876367393}
+      objectReference: {fileID: 0}
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
