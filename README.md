@@ -1,11 +1,11 @@
 Link to executable *v0.0.4 (built for Windows): https://drive.google.com/file/d/18Xc0bhA7GVyhCriqLnclrGE56DjX8R-F/view?usp=sharing
 * Only tested on Windows and Linux. Not designed for phones or consoles.
 
-## Windows:
+### Windows:
 1. Download the folder, and unzip it
 2. Run the Knight and Slime executable
 
-## Linux or Mac Proton layers
+### Linux or Mac Proton layers
 1. Download the folder, and unzip it
 2. In your Steam Library, click "Add a Game" and "Add a Non-Steam Game"
 3. Click "Browse" and navigate to the "Knight and Slime.exe"
