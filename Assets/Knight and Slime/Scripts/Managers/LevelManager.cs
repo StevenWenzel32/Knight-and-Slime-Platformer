@@ -2,8 +2,11 @@ using TMPro;
 using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 // each level is to have a levelManager object on it 
+// handles displaying the stats for each level
+// handles the in level pause menu, and all game end menus
 public class LevelManager : MonoBehaviour
 {
     // only have one instance ever in the scene, can get else where but can only set here -- singleton -- if you use don't destroy on load it will last across scenes
@@ -19,7 +22,25 @@ public class LevelManager : MonoBehaviour
     public TMP_Text starsEarned;
     public TMP_Text time;
     public TMP_Text score;
+    
+    // The UI canvas the counters are on 
+    public GameObject counters;
 
+    [Header ("Game Over")]
+    // show when a player dies
+    public GameObject gameOverScreen;
+    // play when game over pops up
+    public AudioClip gameOverSound;
+
+    [Header ("Level Complete")]
+    // show when level is complete
+    public GameObject levelCompleteScreen;
+    // play when level complete pops up
+    public AudioClip levelCompleteSound;
+
+    [Header ("Pause")]
+    public GameObject pauseScreen;
+    public GameObject settingsScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -30,10 +51,43 @@ public class LevelManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+        // make sure all the other screens are turned off
+        gameOverScreen?.SetActive(false);
+        pauseScreen?.SetActive(false);
+        levelCompleteScreen?.SetActive(false);
+        settingsScreen?.SetActive(false);
 
         levelNumber = LevelCounter.instance.levelNumber;
         // start timer
         EventManager.OnTimerStart();
+    }
+
+    private void Update(){
+        // toggle the pause screen
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            if (pauseScreen.activeInHierarchy){
+                PauseGame(false);
+            } else {
+                PauseGame(true);
+            }
+        }
+    }
+
+    // player died
+    public void GameOver(){
+        // turn off in game counters
+        counters.SetActive(false);
+        gameOverScreen.SetActive(true);
+        SoundManager.instance.PlaySound(gameOverSound);
+    }
+
+    // level completed screen displayed 
+    public void LevelComplete(){
+        // turn off in game counters
+        counters.SetActive(false);
+        // turn on level complete screen
+        levelCompleteScreen.SetActive(true);
+        SoundManager.instance.PlaySound(levelCompleteSound);
     }
 
     // actions to take when the level is completed
@@ -50,6 +104,52 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(PlayVideoThenCompleteLevel());
     }
 
+    // for retry level button
+    public void Restart(){
+        // get the current scene and return it's index
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // show the counters again
+        counters.SetActive(true);
+        // make sure the time is restored after restart
+        Time.timeScale = 1;
+    }
+
+    // load the nextlevel
+    public void NextLevel(){
+        // get the current scene and return it's index
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentLevel + 1);
+        // restore the game time
+        Time.timeScale = 1;
+    }
+
+    #region Pause
+    // toggle the pause menu
+    public void PauseGame(bool show){
+        if (pauseScreen != null)
+        {
+            pauseScreen.SetActive(show);
+            // turn off the counters
+            counters.SetActive(!show);
+            // Pause/unpause the game by stoping time
+            Time.timeScale = show ? 0 : 1;
+        }
+    }
+
+    // go to the settings
+    public void SettingsScreen(bool show){
+        if (settingsScreen != null)
+        {
+            // turn on the settings screen
+            settingsScreen.SetActive(show);
+            // turn off the pause screen
+            pauseScreen.SetActive(false);
+            // Pause/unpause the game by stoping time
+            Time.timeScale = show ? 0 : 1;
+        }
+    }
+    #endregion
+
     private IEnumerator PlayVideoThenCompleteLevel()
     {
         // Enable and play the video
@@ -63,7 +163,7 @@ public class LevelManager : MonoBehaviour
         }
 
         // put up the level complete screen
-        MenuManager.instance.LevelComplete();
+        LevelComplete();
 
         // saving this level data
         // check if the score is better

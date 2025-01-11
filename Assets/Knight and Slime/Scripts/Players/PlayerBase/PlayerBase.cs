@@ -10,12 +10,12 @@ public class PlayerBase : MonoBehaviour
     // track player status
     public bool alive = true;
     // get the menu manager
-    private MenuManager menuManager;
+    private LevelManager levelManager;
 
     private void Awake()
     {
         // looks for the first object in the hiearchy 
-        menuManager = FindObjectOfType<MenuManager>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     // function to kill players
@@ -40,7 +40,7 @@ public class PlayerBase : MonoBehaviour
     // if doing nothing else destory the player object
     protected virtual void OnPlayerDeath(){
         // show game over screen
-        menuManager.GameOver();
+        levelManager.GameOver();
         // Pause/unpause the game by stoping time
         Time.timeScale = 0;
     }
