@@ -1,4 +1,5 @@
-Link to executable v0.0.4 (built for Windows): https://drive.google.com/file/d/18Xc0bhA7GVyhCriqLnclrGE56DjX8R-F/view?usp=sharing
+Link to executable *v0.0.4 (built for Windows): https://drive.google.com/file/d/18Xc0bhA7GVyhCriqLnclrGE56DjX8R-F/view?usp=sharing
+* Only tested on Windows and Linux. Not designed for phones or consoles.
 
 ## Windows:
 1. Download the folder, and unzip it
@@ -19,7 +20,7 @@ Link to demo video of v0.0.1: https://drive.google.com/file/d/1bpuz1WCvNb4yPK0JK
 
 I plan to pretty much never update this video until the game is published (had to make it for my class).
 
-## Overview
+# Overview
 
 This repo contains everything inside the Assets folder of my game Knight and Slime that I'm making inside of Unity. 
 The main reason for this repo is that it allows me to edit my scripts from my phone and now it lets other people access the game when I bother to update the builds.
@@ -30,27 +31,27 @@ I'm using an extension called git for Unity to facilitate uploading my project d
 I'm also using Git LFS to store my large binary files such as images and sound in this repo. 
 Since my free Git LFS storage is almost up in the future if more remote Git LFS storage is needed for this or future projects the best free option would be to set up a "remote repo" inside of Google Drive.
 
-Project Team Expansion Notes
+## Dev Team Recruitment
 
 I intend to see this game through to publication eventually and to meet that goal I will need to recruit people with the talents required for my team.
 
 These are the spots open on my dev team:
 
-# Game dev/Programmers:
+### Game dev/Programmers:
 
 - must be familiar with Git or GitHub or is very willing to learn how to use it and the etiquette. GitHub is the only way we could work together so this is a must!
 - familiar with Unity or any game engine
 - familiar with any version of C or any object-oriented language
 - Contact me and I'll put in the effort to have the whole unity project stored on this GitHub not just the assets folder then just feel free to request to branch and push
 
-# Graphic Artist/Designer: 
+### Graphic Artist/Designer: 
 
 - ideally likes working with pixel art
 - can make sprite sheets (If needed I can teach this, its really not that hard)
 - ideally already has graphic design software that they are familiar with or are willing to learn on their own
 - bonus! likes cute slimes and medieval-themed art
 
-# Audio Engineer/Mixer:
+### Audio Engineer/Mixer:
 
 - can mix multiple layers of music
 - familiar with things like fading, etc.
@@ -58,9 +59,7 @@ These are the spots open on my dev team:
 - bonus! Can make their own music and know some of the game industry tricks for looping and the like
 - *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for Unity to fix this.
 
-* Only tested on Windows. Not designed for phones or consoles.
-
-# Version Changes:
+## Version Changes:
 
 v0.0.4: Added level 5. Fixed more saving and high-score display bugs. Made falling into tunnels as the slime smoother. Fine-tuned box objects.
 
