@@ -11,8 +11,11 @@ public class MainMenuManager : MonoBehaviour
     // the scene # that the game should start at
     public int startScene;
 
-    [Header ("Other")]
+    [Header ("Screens")]
     public GameObject guideScreen;
+    public GameObject creditsScreen;
+
+    [Header ("Other")]
     public GameObject selectionArrow;
 
     private void Awake(){
@@ -55,12 +58,21 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-    // go to the player guide screen overlay
+    // show the guide screen overlay
     public void GuideScreen(bool show){
         if (guideScreen != null)
         {
             // turn on the guide screen
             guideScreen.SetActive(show);
+        }
+    }
+
+    // show the credits guide screen overlay
+    public void CreditsScreen(bool show){
+        if (creditsScreen != null)
+        {
+            // turn on the guide screen
+            creditsScreen.SetActive(show);
         }
     }
 }
