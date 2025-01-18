@@ -16,6 +16,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject creditsScreen;
 
     [Header ("Other")]
+    public CanvasGroup mainMenu;
     public GameObject selectionArrow;
 
     private void Awake(){
@@ -65,6 +66,7 @@ public class MainMenuManager : MonoBehaviour
             // turn on the guide screen
             guideScreen.SetActive(show);
         }
+        
     }
 
     // show the credits guide screen overlay
@@ -74,5 +76,12 @@ public class MainMenuManager : MonoBehaviour
             // turn on the guide screen
             creditsScreen.SetActive(show);
         }
+    }
+
+    // toggle the interactableness of a canvas group
+    // give the canvasGroup name and if it should be interactive or not
+    public void ToggleCanvasGroup(CanvasGroup group, bool interact){
+        group.interactable = interact;
+        group.blocksRaycasts = interact;
     }
 }
