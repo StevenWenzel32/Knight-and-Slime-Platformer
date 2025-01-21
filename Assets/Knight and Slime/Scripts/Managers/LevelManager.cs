@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
     public GameObject levelCompleteScreen;
     // play when level complete pops up
     public AudioClip levelCompleteSound;
+    public CanvasGroup levelCompleteGroup;
 
     [Header ("Pause")]
     public GameObject pauseScreen;
@@ -162,6 +163,7 @@ public class LevelManager : MonoBehaviour
             yield return null; 
         }
 
+        
         // put up the level complete screen
         LevelComplete();
 
@@ -169,6 +171,8 @@ public class LevelManager : MonoBehaviour
         // check if the score is better
         if (checkIfBetterScore()){
             Debug.Log("Player got a new high score!");
+            // display a new high score message to the player
+
             // send the level data from the counters to the levelInfo which is currently empty
             updateLevelInfo();
             // save the levelInfo to the array in the saveManager
