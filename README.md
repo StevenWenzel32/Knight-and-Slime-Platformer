@@ -1,4 +1,4 @@
-Link to executable *v0.0.4 (built for Windows): https://drive.google.com/file/d/18Xc0bhA7GVyhCriqLnclrGE56DjX8R-F/view?usp=sharing
+Link to executable *v0.0.5 (built for Windows): https://drive.google.com/file/d/1YRg3mYtVh2APg8ejyS0jd_VY53TCM_j3/view?usp=sharing
 
 *Only tested on Windows and Linux. Not designed for phones or consoles.
 
@@ -61,6 +61,8 @@ These are the spots open on my dev team:
 - *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for Unity to fix this.
 
 ## Version Changes:
+
+v0.0.5: Added level 6. Guide screen graphics changed. Credits Screen added. Minor menu bugs fixed.
 
 v0.0.4: Added level 5. Fixed more saving and high-score display bugs. Made falling into tunnels as the slime smoother. Fine-tuned box objects.
 
