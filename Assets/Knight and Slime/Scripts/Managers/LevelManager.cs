@@ -63,6 +63,7 @@ public class LevelManager : MonoBehaviour
         pauseScreen?.SetActive(false);
         levelCompleteScreen?.SetActive(false);
         settingsScreen?.SetActive(false);
+        HighScoreMsg.SetActive(false);
 
         levelNumber = LevelCounter.instance.levelNumber;
         // start timer
@@ -202,6 +203,8 @@ public class LevelManager : MonoBehaviour
 
         // check if the score is better
         if (CheckIfBetterScore()){
+            // display the high score msg
+            HighScoreMsg.SetActive(true);
             // saving this level data
             SaveNewLevelData();
         }
@@ -237,6 +240,8 @@ public class LevelManager : MonoBehaviour
         bool better = false;
         int gemsOld = SaveManager.instance.levels[levelNumber - 1].gems;
         int gemsNew = GemCounter.instance.gemsCollected;
+        float newTime = ScoreCounter.instance.playerTime;
+        float oldTime = SaveManager.instance.levels[levelNumber - 1].time;
         // if more gems collected
         if (gemsNew > gemsOld){
             better = true;
@@ -244,8 +249,9 @@ public class LevelManager : MonoBehaviour
             Debug.Log("gems collected = " + gemsNew + ", gems previous collected = " + gemsOld);
         } 
         // if same gems but better time
-        else if ((gemsNew == gemsOld) && (ScoreCounter.instance.playerTime < SaveManager.instance.levels[levelNumber - 1].time)){
+        else if ((gemsNew == gemsOld) && (newTime < oldTime)){
             better = true;
+            Debug.Log("new time = " + newTime + ", old time = " + oldTime);
         }
 
         return better;

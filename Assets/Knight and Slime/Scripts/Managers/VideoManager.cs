@@ -52,6 +52,14 @@ public class VideoManager : MonoBehaviour
         videoPlayer.Play();
     }
 
+    // skip the video, for the skip button
+    public void SkipVideo(){
+        // stop the video
+        videoPlayer.Stop();
+        // call on video end
+        OnVideoEnd(videoPlayer);
+    }
+
     // coroutine to cross fade the music
     private IEnumerator CrossfadeMusic(AudioSource from, AudioSource to){
         float time = 0f;
