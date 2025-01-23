@@ -37,7 +37,7 @@ public class LevelManager : MonoBehaviour
     public GameObject levelCompleteScreen;
     // play when level complete pops up
     public AudioClip levelCompleteSound;
-    public CanvasGroup levelCompleteGroup;
+    public GameObject LevelCompleteArrow;
 
     [Header ("Pause")]
     public GameObject pauseScreen;
@@ -153,19 +153,25 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator PlayVideoThenCompleteLevel()
     {
+        // disable the selection arrow on the levelcomplete screen
+        LevelCompleteArrow.SetActive(false);
+
         // Enable and play the video
         VideoManager.instance.PlayVideo(); // Assuming you have a VideoManager script
         
         // Wait until the video finishes
-        while (VideoManager.instance.IsPlaying())
+        while (!VideoManager.instance.isVideoFinished)
         {
             // Wait for the next frame
             yield return null; 
         }
-
+        Debug.Log("video has finished");
         
         // put up the level complete screen
         LevelComplete();
+
+        // reactivate the selection arrow
+        LevelCompleteArrow.SetActive(true);
 
         // saving this level data
         // check if the score is better

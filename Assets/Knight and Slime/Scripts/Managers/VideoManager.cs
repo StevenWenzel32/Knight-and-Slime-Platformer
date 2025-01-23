@@ -10,6 +10,7 @@ public class VideoManager : MonoBehaviour
     public static VideoManager instance;
     public VideoPlayer videoPlayer;
     public Canvas videoCanvas;
+    public bool isVideoFinished = false;
 
     [Header ("Music")]
     // current bgm
@@ -45,6 +46,8 @@ public class VideoManager : MonoBehaviour
 
         // show the canvas
         videoCanvas.enabled = true;
+        // set finish flag to false
+        isVideoFinished = false;
         // start playing the video
         videoPlayer.Play();
     }
@@ -82,12 +85,10 @@ public class VideoManager : MonoBehaviour
         from.Pause();
     }
 
-    public bool IsPlaying()
-    {
-        return videoPlayer.isPlaying;
-    }
-
     private void OnVideoEnd(VideoPlayer vp){
+        // turn on finish flag
+        isVideoFinished = true;
+        
         // start cross fading the music to bgm
         //StartCoroutine(CrossfadeMusic(videoMusic, bgm));
         if (videoMusic.isPlaying)

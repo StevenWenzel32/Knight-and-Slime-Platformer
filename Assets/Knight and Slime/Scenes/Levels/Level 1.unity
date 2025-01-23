@@ -366,7 +366,7 @@ MonoBehaviour:
   gameOverSound: {fileID: 8300000, guid: 27fb05418cd752e4e80fd4a8004eb566, type: 3}
   levelCompleteScreen: {fileID: 1322512260}
   levelCompleteSound: {fileID: 8300000, guid: 1a1f66a2481cc4201b08ee51f23b9104, type: 3}
-  levelCompleteGroup: {fileID: 4801341021938044394}
+  LevelCompleteArrow: {fileID: 1830172329}
   pauseScreen: {fileID: 511861285}
   settingsScreen: {fileID: 1745006717}
 --- !u!114 &259233747
@@ -6575,6 +6575,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1829067138}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1830172329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6959694171290973611, guid: ad40fea8f76d0cd46959ab29b2435c6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4801341021938044391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1893024624
 GameObject:
   m_ObjectHideFlags: 0
@@ -7378,12 +7384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da48b99d0301aa4cb18def594c34725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!225 &4801341021938044394 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 4308606934172145641, guid: ad40fea8f76d0cd46959ab29b2435c6b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4801341021938044391}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5005072333740374132
 PrefabInstance:
   m_ObjectHideFlags: 0
