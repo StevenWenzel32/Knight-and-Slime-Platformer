@@ -641,6 +641,7 @@ MonoBehaviour:
   levelCompleteScreen: {fileID: 1322512260}
   levelCompleteSound: {fileID: 8300000, guid: 1a1f66a2481cc4201b08ee51f23b9104, type: 3}
   LevelCompleteArrow: {fileID: 4801341021938044392}
+  HighScoreMsg: {fileID: 4801341021938044393}
   pauseScreen: {fileID: 34114454}
   settingsScreen: {fileID: 255068351}
   hasCutscene: 0
@@ -6301,6 +6302,11 @@ PrefabInstance:
       propertyPath: options.Array.data[2]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1699698634622068470, guid: ad40fea8f76d0cd46959ab29b2435c6b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3047578478142110978, guid: ad40fea8f76d0cd46959ab29b2435c6b,
         type: 3}
       propertyPath: m_Name
@@ -6310,6 +6316,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499921896835599061, guid: ad40fea8f76d0cd46959ab29b2435c6b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5599870777297711235, guid: ad40fea8f76d0cd46959ab29b2435c6b,
         type: 3}
@@ -6436,6 +6447,12 @@ PrefabInstance:
 --- !u!1 &4801341021938044392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6959694171290973611, guid: ad40fea8f76d0cd46959ab29b2435c6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4801341021938044391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4801341021938044393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1699698634622068470, guid: ad40fea8f76d0cd46959ab29b2435c6b,
     type: 3}
   m_PrefabInstance: {fileID: 4801341021938044391}
   m_PrefabAsset: {fileID: 0}

@@ -367,6 +367,7 @@ MonoBehaviour:
   levelCompleteScreen: {fileID: 1322512260}
   levelCompleteSound: {fileID: 8300000, guid: 1a1f66a2481cc4201b08ee51f23b9104, type: 3}
   LevelCompleteArrow: {fileID: 1830172329}
+  HighScoreMsg: {fileID: 4801341021938044394}
   pauseScreen: {fileID: 511861285}
   settingsScreen: {fileID: 1745006717}
   hasCutscene: 1
@@ -7386,6 +7387,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da48b99d0301aa4cb18def594c34725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4801341021938044394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1699698634622068470, guid: ad40fea8f76d0cd46959ab29b2435c6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4801341021938044391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5005072333740374132
 PrefabInstance:
   m_ObjectHideFlags: 0

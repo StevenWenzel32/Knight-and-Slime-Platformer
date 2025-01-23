@@ -38,6 +38,8 @@ public class LevelManager : MonoBehaviour
     // play when level complete pops up
     public AudioClip levelCompleteSound;
     public GameObject LevelCompleteArrow;
+    // tells the player they got a new high score
+    public GameObject HighScoreMsg;
 
     [Header ("Pause")]
     public GameObject pauseScreen;
@@ -118,6 +120,8 @@ public class LevelManager : MonoBehaviour
 
             // check if the score is better
             if (CheckIfBetterScore()){
+                // display the high score msg
+                HighScoreMsg.SetActive(true);
                 // saving this level data
                 SaveNewLevelData();
             }
@@ -149,7 +153,8 @@ public class LevelManager : MonoBehaviour
     #region Pause
     // toggle the pause menu
     public void PauseGame(bool show){
-        if (pauseScreen != null)
+        // check if the pause screen exsists, check if the game over or level complete screen is active
+        if (pauseScreen != null && !gameOverScreen.activeSelf && !levelCompleteScreen.activeSelf)
         {
             pauseScreen.SetActive(show);
             // turn off the counters
