@@ -369,6 +369,7 @@ MonoBehaviour:
   LevelCompleteArrow: {fileID: 1830172329}
   pauseScreen: {fileID: 511861285}
   settingsScreen: {fileID: 1745006717}
+  hasCutscene: 1
 --- !u!114 &259233747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5295,6 +5296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 1232359865}
   videoCanvas: {fileID: 1792199819}
+  isVideoFinished: 0
   bgm: {fileID: 2045381907}
   videoMusic: {fileID: 967945654}
   crossfadeDuration: 2

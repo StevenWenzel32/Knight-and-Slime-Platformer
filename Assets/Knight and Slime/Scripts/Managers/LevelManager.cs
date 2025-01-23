@@ -43,6 +43,10 @@ public class LevelManager : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject settingsScreen;
 
+    [Header ("Options")]
+    // for running a cutscene after the level is completed
+    public bool hasCutscene;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,8 +105,26 @@ public class LevelManager : MonoBehaviour
         ScoreCounter.instance.EndOfLevelCalc();
         // display the players performance 
         DisplayStats();
-        // Play video before showing the Level Complete screen
-        StartCoroutine(PlayVideoThenCompleteLevel());
+        // check if the level has a cutscene to play at the end of the level
+        if (hasCutscene){
+            // Play video before showing the Level Complete screen
+            StartCoroutine(PlayVideoThenCompleteLevel());
+        } else {
+            // put up the level complete screen
+            LevelComplete();
+
+            // reactivate the selection arrow
+            LevelCompleteArrow.SetActive(true);
+
+            // check if the score is better
+            if (CheckIfBetterScore()){
+                // saving this level data
+                SaveNewLevelData();
+            }
+
+            // unlock the next level
+            UnlockNextLevel();
+        }
     }
 
     // for retry level button
@@ -173,29 +195,14 @@ public class LevelManager : MonoBehaviour
         // reactivate the selection arrow
         LevelCompleteArrow.SetActive(true);
 
-        // saving this level data
         // check if the score is better
-        if (checkIfBetterScore()){
-            Debug.Log("Player got a new high score!");
-            // display a new high score message to the player
-
-            // send the level data from the counters to the levelInfo which is currently empty
-            updateLevelInfo();
-            // save the levelInfo to the array in the saveManager
-            SaveManager.instance.levels[levelNumber - 1] = levelInfo;
-            // have the saveManager save the new current level data to playerPrefs
-            SaveManager.instance.SaveLevelData(levelInfo, levelNumber);
+        if (CheckIfBetterScore()){
+            // saving this level data
+            SaveNewLevelData();
         }
 
-        // unlocking the next level
-        // check if the lock is active and if levelNumber is the last level, and only change save data if it is
-        if (levelNumber != SaveManager.instance.levels.Length && SaveManager.instance.levels[levelNumber + 1].locked){
-            Debug.Log("Changing lock data for level: " + (levelNumber + 1));
-            // turn off the lock for the next level in the LevelInfo
-            SaveManager.instance.levels[levelNumber].locked = false;
-            // save just the lock change for the next level to playerPrefs
-            SaveManager.instance.SaveLevelLock(false, levelNumber + 1);
-        }
+        // unlock the next level
+        UnlockNextLevel();
     }
 
     public void DisplayStats(){
@@ -211,7 +218,7 @@ public class LevelManager : MonoBehaviour
     }
 
     // update the levelInfo for the level just completed
-    private void updateLevelInfo(){
+    private void UpdateLevelInfo(){
         levelInfo.gems = GemCounter.instance.gemsCollected;
         levelInfo.time = ScoreCounter.instance.playerTime;    
         levelInfo.score = ScoreCounter.instance.score;
@@ -220,7 +227,8 @@ public class LevelManager : MonoBehaviour
         levelInfo.locked = false;
     }
 
-    private bool checkIfBetterScore(){
+    // check if the player got a new high score
+    private bool CheckIfBetterScore(){
         bool better = false;
         int gemsOld = SaveManager.instance.levels[levelNumber - 1].gems;
         int gemsNew = GemCounter.instance.gemsCollected;
@@ -236,5 +244,30 @@ public class LevelManager : MonoBehaviour
         }
 
         return better;
+    }
+
+    // save the new high score 
+    private void SaveNewLevelData(){
+        Debug.Log("Player got a new high score!");
+        // display a new high score message to the player
+
+        // send the level data from the counters to the levelInfo which is currently empty
+        UpdateLevelInfo();
+        // save the levelInfo to the array in the saveManager
+        SaveManager.instance.levels[levelNumber - 1] = levelInfo;
+        // have the saveManager save the new current level data to playerPrefs
+        SaveManager.instance.SaveLevelData(levelInfo, levelNumber);
+    }
+
+    // unlock the next level if it isn't already unlocked
+    private void UnlockNextLevel(){
+        // check if the lock is active and if levelNumber is the last level, and only change save data if it is
+        if (levelNumber != SaveManager.instance.levels.Length && SaveManager.instance.levels[levelNumber + 1].locked){
+            Debug.Log("Changing lock data for level: " + (levelNumber + 1));
+            // turn off the lock for the next level in the LevelInfo
+            SaveManager.instance.levels[levelNumber].locked = false;
+            // save just the lock change for the next level to playerPrefs
+            SaveManager.instance.SaveLevelLock(false, levelNumber + 1);
+        }
     }
 }
