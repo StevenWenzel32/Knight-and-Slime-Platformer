@@ -62,9 +62,6 @@ ExportedObj/
 *.VC.db
 
 # Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
-*.mdb.meta
 [Tt]extMesh Pro*.meta
 [Uu]paToolkit*.meta
 
