@@ -1,23 +1,21 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Gems : Collectible2D
+public class Keys : Collectible2D
 {
-    // score value if wanted
-    public float scoreValue;
-    // get gem counter
-    private GemCounter gemCounter;
+    // get key counter
+    private KeyCounter keyCounter;
 
     protected override void Awake(){
         base.Awake();
         // looks for the first object in the hiearchy 
-        gemCounter = FindObjectOfType<GemCounter>();
+        keyCounter = FindObjectOfType<KeyCounter>();
     }
 
     // unique actions when collected
     protected override void Collect() {
         base.Collect();
-        // up the gem count
-        gemCounter.UpGemCount();
+        // up the key count
+        keyCounter.UpKeyCount();
     }
 }

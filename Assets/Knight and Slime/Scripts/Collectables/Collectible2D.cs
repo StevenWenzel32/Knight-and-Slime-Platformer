@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class Collectible2D : MonoBehaviour
 {
+    // shared rotation speed defintiley want to keep this here
     public float rotationSpeed = 0.5f;
+    // for shared collect effects for all objects
     public GameObject onCollectEffect;
+    // collect sound used for all collectables - eventually have each object have its own sound
     public AudioClip onCollectSound;
 
     protected virtual void Awake()
@@ -16,16 +19,13 @@ public class Collectible2D : MonoBehaviour
         transform.Rotate(0, rotationSpeed, 0);
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D other) {
-         // Check if the other object is in player layer
-        if (other.gameObject.layer == LayerMask.NameToLayer("Slime") || other.gameObject.layer == LayerMask.NameToLayer("Slime")) {
-            // disable collectable
-            gameObject.SetActive(false);
-            // play sound
-            SoundManager.instance.PlaySound(onCollectSound);
-            // Instantiate the particle effect
- //           Instantiate(onCollectEffect, transform.position, transform.rotation);
-        }
+    protected virtual void Collect(){
+        // disable the object
+        gameObject.SetActive(false);
+        // play collect sound
+        SoundManager.instance.PlaySound(onCollectSound);
+        // play the collect partiacale effect 
+//           Instantiate(onCollectEffect, transform.position, transform.rotation);
     }
 }
 

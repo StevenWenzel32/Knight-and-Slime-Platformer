@@ -20,4 +20,7 @@ public class Knight : PlayerBase
     public void setHasKey(bool key){
         hasKey = key;
     }
+
+    // mark that the knight has a key -- put this in knight 
+
 }
