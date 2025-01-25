@@ -1,0 +1,1253 @@
+fileFormatVersion: 2
+guid: e6eba8fe62b587c4c844cba5f86b71fb
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pixel items-keys-equip_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 862
+        width: 500
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aef18ee682d51c24f823119e2035dcfe
+      internalID: 1568800747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_1
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 910
+        width: 244
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74c49b3bb86ab374aa70e7c4a235517c
+      internalID: -1714160488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_2
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 686
+        width: 276
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a78a6946e2244d147b7daa5ee799436a
+      internalID: -1385829919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_3
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 734
+        width: 179
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a319dab4a671a97468f80fd922163232
+      internalID: 1905125892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_4
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 766
+        width: 68
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1f93d8a724059641bef1a073e5346b6
+      internalID: -896695182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_5
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 750
+        width: 148
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15c69c439773d424db13c97df700546f
+      internalID: 1991568874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_6
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 681
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e983c7e5a64717d46b42b4c96d0f0bc8
+      internalID: -1288752748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_7
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 670
+        width: 276
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f199fe49138f30647851c317f27c836e
+      internalID: -1501085258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_8
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 510
+        width: 388
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f063b7f4062d5c4198af2a3c3c7908d
+      internalID: -456512767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_9
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 666
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 218070cbcb347be4f8f59778959b9a28
+      internalID: 817442628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_10
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 650
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0982c1d14f3a97429b8471f8af70111
+      internalID: -1201153017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_11
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 633
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2053ef9be6c3fe34091a49efdca32f87
+      internalID: -2098258135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 628
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f0852dbfb41a424cb55b9db411f339b
+      internalID: 1653421993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_13
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 576
+        width: 7
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b06dd4c4286b229448ea4b95b4aa0df2
+      internalID: -565499774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_14
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 576
+        width: 7
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dbaffc59b4435c4aae197fd6a9f0164
+      internalID: -287896043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_15
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 628
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fb42fe7755016a48bc05cb78dd1781b
+      internalID: 1542565382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_16
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 628
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 511564a02cde1474280f6c1b325d83c6
+      internalID: 789964562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_17
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 625
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 937ee3bcc0ec2e646971c3766932a11e
+      internalID: 2123686001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_18
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 625
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ebfb14794ba134da49d2bf14f621e3
+      internalID: -1243591003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_19
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 628
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9bead714013b5742b7a103cdfdc57f1
+      internalID: -689195758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_20
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 576
+        width: 7
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75fc864e9d54a9d4dbbfa8310586246e
+      internalID: 681973531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_21
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 576
+        width: 7
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 422b6818140a3a74aa318e9066d39cfd
+      internalID: -188317287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_22
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 590
+        width: 180
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25edcef967e5c084f9df43a7117d990f
+      internalID: 2069678086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_23
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 613
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe33ee17a6792c842a5bc64f0bd5b08e
+      internalID: 44357147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_24
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 613
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 262833bdef81a34449e6a1a00cb049dc
+      internalID: 1776607968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_25
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 613
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28cb40cd9d2e8d94d80037179f9455eb
+      internalID: -458987621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_26
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 609
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ecd0ad90a57e9a4bb5254decbfd3fc3
+      internalID: 1629357419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_27
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 609
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 124afd25baeaaab4d8e5dd3810cbca39
+      internalID: 481879526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_28
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 612
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a7ee3684499ff4a930fd4459a64ec1
+      internalID: -1601075667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_29
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 597
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0967af3723635d41a012b2597d1cb37
+      internalID: 1569985480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_30
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 597
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae7ad83a875a05342908923e616277b0
+      internalID: 329162582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_31
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 597
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ef9ac7ca53e6d459ca87074c6d2b9d
+      internalID: 1081187981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_32
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 593
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56c6550aa2f764a4094e3a5f00cf8a4f
+      internalID: -380644845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_33
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 593
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 801ac400f952184449d48645ce7aedbf
+      internalID: 1666204543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_34
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 596
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7c1c630a3b0a2c4d9733691fd158bf0
+      internalID: -992624115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_35
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 580
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74a7def4066783546968cefaa84db9f4
+      internalID: -1787476705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_36
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 580
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8543893e5407e4340a3d5beffccc1b6f
+      internalID: -1479405142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_37
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 580
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 475d22ed739a13d41a8221657d6cf5f5
+      internalID: 1790608969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_38
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 577
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa6f8ed6d830b694aad3da20b694b683
+      internalID: -745772706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_39
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 577
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e7d370cb56b9864a8be9be08a9e643b
+      internalID: -1875024873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_40
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 580
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 255f46e2ccc46f845a474ce9d45ba50b
+      internalID: 368373826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_41
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 510
+        width: 228
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32ab3efc7db840046b73b6b0d276cf26
+      internalID: -816798077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_42
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 494
+        width: 149
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68eb0936431453442895fd40e2d5cf8d
+      internalID: 283569502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_43
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 237
+        width: 820
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5159044b243ebba4a9b396c4dfa76d53
+      internalID: -1366346572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_44
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 448
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 983383d4e7a4f3845aa7e487a6acb0ff
+      internalID: 992489928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_45
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 448
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7615b3e784b1e428eb228664abb945
+      internalID: -1890426069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_46
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 437
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b374e2110320464fa9c742a8e2605c5
+      internalID: -1417164088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_47
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 438
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 079be9cabdcee674189f4ecdaddc5cf3
+      internalID: -850970292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_48
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 0
+        width: 468
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75ef0e29659607941b9d624e4b6a35fa
+      internalID: -142798532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixel items-keys-equip_49
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 142
+        width: 148
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec16644e6cdda274d857ce537ab8d0b2
+      internalID: -1419308418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: c50e0668ffe3fc34b8f67e29cae2bde7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      pixel items-keys-equip_0: 1568800747
+      pixel items-keys-equip_1: -1714160488
+      pixel items-keys-equip_10: -1201153017
+      pixel items-keys-equip_11: -2098258135
+      pixel items-keys-equip_12: 1653421993
+      pixel items-keys-equip_13: -565499774
+      pixel items-keys-equip_14: -287896043
+      pixel items-keys-equip_15: 1542565382
+      pixel items-keys-equip_16: 789964562
+      pixel items-keys-equip_17: 2123686001
+      pixel items-keys-equip_18: -1243591003
+      pixel items-keys-equip_19: -689195758
+      pixel items-keys-equip_2: -1385829919
+      pixel items-keys-equip_20: 681973531
+      pixel items-keys-equip_21: -188317287
+      pixel items-keys-equip_22: 2069678086
+      pixel items-keys-equip_23: 44357147
+      pixel items-keys-equip_24: 1776607968
+      pixel items-keys-equip_25: -458987621
+      pixel items-keys-equip_26: 1629357419
+      pixel items-keys-equip_27: 481879526
+      pixel items-keys-equip_28: -1601075667
+      pixel items-keys-equip_29: 1569985480
+      pixel items-keys-equip_3: 1905125892
+      pixel items-keys-equip_30: 329162582
+      pixel items-keys-equip_31: 1081187981
+      pixel items-keys-equip_32: -380644845
+      pixel items-keys-equip_33: 1666204543
+      pixel items-keys-equip_34: -992624115
+      pixel items-keys-equip_35: -1787476705
+      pixel items-keys-equip_36: -1479405142
+      pixel items-keys-equip_37: 1790608969
+      pixel items-keys-equip_38: -745772706
+      pixel items-keys-equip_39: -1875024873
+      pixel items-keys-equip_4: -896695182
+      pixel items-keys-equip_40: 368373826
+      pixel items-keys-equip_41: -816798077
+      pixel items-keys-equip_42: 283569502
+      pixel items-keys-equip_43: -1366346572
+      pixel items-keys-equip_44: 992489928
+      pixel items-keys-equip_45: -1890426069
+      pixel items-keys-equip_46: -1417164088
+      pixel items-keys-equip_47: -850970292
+      pixel items-keys-equip_48: -142798532
+      pixel items-keys-equip_49: -1419308418
+      pixel items-keys-equip_5: 1991568874
+      pixel items-keys-equip_6: -1288752748
+      pixel items-keys-equip_7: -1501085258
+      pixel items-keys-equip_8: -456512767
+      pixel items-keys-equip_9: 817442628
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
