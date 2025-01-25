@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6066921591880707786}
   - component: {fileID: 1305569249008568314}
   - component: {fileID: 5830611457288511187}
-  - component: {fileID: 2269072813490975281}
+  - component: {fileID: 8359047644581844043}
   m_Layer: 7
   m_Name: Key Collectable
-  m_TagString: Untagged
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16179535, y: 0.07024126}
   m_EdgeRadius: 0
---- !u!114 &2269072813490975281
+--- !u!114 &8359047644581844043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,10 +140,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8510399389175503280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1970b40e350cfa45b5402a8c280114b, type: 3}
+  m_Script: {fileID: 11500000, guid: f33e055c5263a3f4685aa97bdafd3d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 0.5
   onCollectEffect: {fileID: 0}
   onCollectSound: {fileID: 8300000, guid: 3e58664f8e41cf2479ee1feb8e9c5492, type: 3}
-  scoreValue: 500

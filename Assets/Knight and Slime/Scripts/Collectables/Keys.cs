@@ -13,8 +13,8 @@ public class Keys : Collectible2D
     }
 
     // unique actions when collected
-    protected override void Collect() {
-        base.Collect();
+    public override void Collect(GameObject collector) {
+        base.Collect(collector);
         // up the key count
         keyCounter.UpKeyCount();
     }

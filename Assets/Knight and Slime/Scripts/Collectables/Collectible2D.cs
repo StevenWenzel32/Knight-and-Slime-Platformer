@@ -19,7 +19,7 @@ public class Collectible2D : MonoBehaviour
         transform.Rotate(0, rotationSpeed, 0);
     }
 
-    protected virtual void Collect(){
+    public virtual void Collect(GameObject collector){
         // disable the object
         gameObject.SetActive(false);
         // play collect sound

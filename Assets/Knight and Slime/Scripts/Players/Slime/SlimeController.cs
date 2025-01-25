@@ -37,13 +37,18 @@ public class SlimeController : PlayerControllerBase
         // get the current size of the slimes collider and save it for later 
         currentSize = slimeCollider.size; 
         rb = GetComponent<Rigidbody2D>();
-    }
+    }    
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         // call the base collsion
         base.OnCollisionEnter2D(collision);
 
+        // check if the object is a collectable
+        Collectible2D collectible = collision.gameObject.GetComponent<Collectible2D>();
+
+        // check if the object is a liquid
+        
         // check for liquid collisions -- put into a seperate func later on ******
         // if the object is honey
         if (collision.gameObject.CompareTag("Honey") && !GetComponent<Slime>().GetLiquidAbsorbed()){
@@ -144,9 +149,15 @@ public class SlimeController : PlayerControllerBase
     // adds in the slime specifc collisions
     protected void OnTriggerEnter2D(Collider2D collider)
     {   
+        Collectible2D collectible = collider.GetComponent<Collectible2D>();
+
+        // collectables for the slime 
+        if (collectible != null && !collectible.CompareTag("Key")){
+            // call the objects collect func
+            collectible.Collect(gameObject);
+        }
         // check for collision with tunnel x and tunnel y
-        if (collider.gameObject.CompareTag("Tunnel Y"))
-        {
+        else if (collider.gameObject.CompareTag("Tunnel Y")){
             Debug.Log("Slime has hit a tunnel Y");
             // convert the collision into a boxCollider to get its size 
             BoxCollider2D boxCollider = collider as BoxCollider2D;

@@ -15,8 +15,8 @@ public class Gems : Collectible2D
     }
 
     // unique actions when collected
-    protected override void Collect() {
-        base.Collect();
+    public override void Collect(GameObject collector) {
+        base.Collect(collector);
         // up the gem count
         gemCounter.UpGemCount();
     }

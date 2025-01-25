@@ -13,14 +13,11 @@ public class Knight : PlayerBase
     }
 
     // getters and setters
-    public bool getHasKey(){
+    public bool GetHasKey(){
         return hasKey;
     }
 
-    public void setHasKey(bool key){
+    public void SetHasKey(bool key){
         hasKey = key;
     }
-
-    // mark that the knight has a key -- put this in knight 
-
 }

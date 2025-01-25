@@ -7,7 +7,7 @@ public class GemCounter : MonoBehaviour
     // only have one instance ever in the scene, can get else where but can only set here -- singleton -- if you use don't destroy on load it will last across scenes
     public static GemCounter instance {get; private set;}
 
-    // Total Gems in level -- usually 3
+    // Total Gems in level -- usually 4
     public int gemsToCollect;
     // Gems that have been picked up
     public int gemsCollected;

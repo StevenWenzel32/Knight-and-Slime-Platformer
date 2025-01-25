@@ -9,8 +9,22 @@ public class KnightController : PlayerControllerBase
     {
         // call the base collsion
         base.OnCollisionEnter2D(collision);
+        // Debug.Log($"Knight collided with: {collision.gameObject.name}");
+    }
 
-        // check if collision with a key object
-        
+    protected void OnTriggerEnter2D(Collider2D other)
+    {
+        Collectible2D collectible = other.GetComponent<Collectible2D>();
+        // collectables for the knight
+        if (collectible != null){
+            // call the objects collect func
+            collectible.Collect(gameObject);
+
+            // for keys
+            if (collectible.CompareTag("Key")){
+                // mark that the knight has a key
+                GetComponent<Knight>().SetHasKey(true);
+            }
+        }
     }
 }
