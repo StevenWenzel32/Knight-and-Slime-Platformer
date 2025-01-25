@@ -10,9 +10,15 @@ public class ScoreCounter : MonoBehaviour
     [Header ("Gems")]
     public int gemValue;
 
+    [Header ("Time Score Nums")]
+    // the point pool that the time is subtracted from
+    public int basePts = 500;
+    // what the time conversion is multipled by 
+    public int multiplier = 1;
+
+
     [Header ("Time (in secs)")]
     public Timer timer;
-    public int timeModifier;
     public float threeStarTime;
     public float twoStarTime;
 
@@ -71,15 +77,16 @@ public class ScoreCounter : MonoBehaviour
         }
     }
 
-    // adds time to score
+    // calc bonus points based on time
     public void FinalScore(){
-        // calc score from time
-        if (playerTime <= threeStarTime){
-            int bonus = (int)((threeStarTime - playerTime) * timeModifier);
-            // check if the bonus is positive
-            if (bonus > 0){
-                score += bonus;
-            }
+        // grab the players time and convert into a num
+        float timeConversion = playerTime;
+        Debug.Log("time = " + playerTime);
+        // calc the bonus
+        int bonus = (int)(basePts - (timeConversion * 1));
+        // check if the bonus is positive
+        if (bonus > 0){
+            score += bonus;
         }
     }
 }
