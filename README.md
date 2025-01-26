@@ -1,10 +1,10 @@
-Link to executable *v0.0.5.1 (built for Windows): https://drive.google.com/file/d/1xnAZMwZL07k1Xak-39QxbT8alw_HSAD4/view?usp=sharing
+Link to executable *v0.0.5.3 (built for Windows): https://drive.google.com/file/d/1ZqLApS0G-p3JqBFhKiv9pon6ITTWFPuP/view?usp=sharing
 
 *Only tested on Windows and Linux. Not designed for phones or consoles.
 
 ### Windows:
 1. Download the folder, and unzip it
-2. Run the Knight and Slime executable
+2. Run the "Knight and Slime.exe"
 
 ### Linux or Mac Proton layers
 1. Download the folder, and unzip it
@@ -61,6 +61,8 @@ These are the spots open on my dev team:
 - *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for Unity to fix this.
 
 ## Version Changes:
+
+v0.0.5.3: New player displays in game. Level complete time now effects your score. Added keys and locked doors to be used in level 7. Added splash screen. 
 
 v0.0.5.1: Cutscene is only on the first level. Skip button added to all cutscenes. High score notice. Menu bug fixes, can no longer access pause menu during death or level complete, can't access the menu during cutscenes.
 
