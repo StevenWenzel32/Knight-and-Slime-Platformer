@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class RoomCamera : MonoBehaviour
 {
     public Transform previousRoom;
     public Transform nextRoom;

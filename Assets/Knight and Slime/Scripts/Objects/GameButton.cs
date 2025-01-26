@@ -14,7 +14,7 @@ public class GameButton : MonoBehaviour
     // how much to rotate
     public float rotation;
     public float rotationSpeed;
-
+ 
     // could add in a speed option later for both distance and rotation
 
     [Header ("Direction to Move (only one)")]
@@ -82,7 +82,7 @@ public class GameButton : MonoBehaviour
         // to check if the object is something else just add another assignment for that object
         // create make a seperate assignObject() to do the checks and assigns and then passes the object var to other funcs ************
         MovingPlatform bridge = controlled?.GetComponent<MovingPlatform>();
-        Doors door = controlled?.GetComponent<Doors>();
+        Gate gate = controlled?.GetComponent<Gate>();
         Removable removable = controlled?.GetComponent<Removable>();
 
         // if the object is a moving platform
@@ -106,9 +106,9 @@ public class GameButton : MonoBehaviour
                 bridge.TogglePlatform("down", distance, moveSpeed);
             }
         } 
-        // if the object is a door
-        else if (door != null){
-            door.ToggleDoor();
+        // if the object is a gate
+        else if (gate != null){
+            gate.ToggleGate();
         } 
         // if the object is something to be removed
         else if (removable != null){

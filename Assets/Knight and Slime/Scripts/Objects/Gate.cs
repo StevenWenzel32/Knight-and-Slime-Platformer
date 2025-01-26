@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Doors : MonoBehaviour
+public class Gate : MonoBehaviour 
 {
     private Animator anim;
     // will be changed inside a switch or button
@@ -24,7 +24,7 @@ public class Doors : MonoBehaviour
         boxCollider.enabled = !action;  
     }
 
-    public void ToggleDoor(){
+    public void ToggleGate(){
         action = !action;
     }
 }

@@ -4,12 +4,34 @@ using UnityEngine;
 
 public class KnightController : PlayerControllerBase
 {
+    // private vars
+    Knight knight;
+
+    protected override void Start(){
+        base.Start();
+        // ref the knight 
+        knight = GetComponent<Knight>();
+    }
+
     // very basic player until knight unique abilties are added in
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         // call the base collsion
         base.OnCollisionEnter2D(collision);
         // Debug.Log($"Knight collided with: {collision.gameObject.name}");
+
+        // ref the door
+        Door door = collision.gameObject.GetComponent<Door>();
+        // check if its a door
+        if (door != null){
+            // check if Knight has a key
+            if (knight.GetHasKey()){
+                // open the door
+                door.ToggleDoor();
+                // use up key
+                KeyCounter.instance.DownKeyCount();
+            }
+        }
     }
 
     protected void OnTriggerEnter2D(Collider2D other)
@@ -23,7 +45,7 @@ public class KnightController : PlayerControllerBase
             // for keys
             if (collectible.CompareTag("Key")){
                 // mark that the knight has a key
-                GetComponent<Knight>().SetHasKey(true);
+                knight.SetHasKey(true);
             }
         }
     }

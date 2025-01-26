@@ -12,7 +12,7 @@ public class Switch : MonoBehaviour
 
     [Header ("If Moving Platform")]
     // how far to move
-    public float distance;
+    public float distance; 
     public float moveSpeed = 1f;
     // how much to rotate
     public float rotation;
@@ -68,7 +68,7 @@ public class Switch : MonoBehaviour
         // these object creations also check the type of the object 
         // to check if the object is something else just add another assignment for that object
         MovingPlatform bridge = controlled?.GetComponent<MovingPlatform>();
-        Doors door = controlled?.GetComponent<Doors>();
+        Gate gate = controlled?.GetComponent<Gate>();
         Removable removable = controlled?.GetComponent<Removable>();
 
         // if the object is a moving platform
@@ -79,9 +79,9 @@ public class Switch : MonoBehaviour
                 bridge.TogglePlatform("left", distance, moveSpeed);
             }
         } 
-        // if the object is a door
-        else if (door != null){
-            door.ToggleDoor();
+        // if the object is a gate
+        else if (gate != null){
+            gate.ToggleGate();
         }
         // if the object is something to be removed
         else if (removable != null){
