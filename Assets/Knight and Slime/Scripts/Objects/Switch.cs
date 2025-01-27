@@ -43,7 +43,7 @@ public class Switch : MonoBehaviour
     // check if the tigger collider was hit 
     private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
-        // Check for collisions with player 
+        // Check for collisions with player - add the slime here too ***
         if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") && !isFlipped)
         {
             FlipSwitch();
