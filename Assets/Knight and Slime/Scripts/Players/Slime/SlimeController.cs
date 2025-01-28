@@ -178,7 +178,7 @@ public class SlimeController : PlayerControllerBase
                 // set the width to the tunnel width
                 newCollider.x = tunnelWidth - colliderWidthShrinkBuffer;
                 // set the height to the slimes current hight
-                newCollider.y = currentSize.y;
+                newCollider.y = currentSize.y - 0.1f;
                 Debug.Log("Tunnel Width: " + tunnelWidth);
                 // change the collider box of the slime so it can squish through the tunnel
                 slimeCollider.size = newCollider;
