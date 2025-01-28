@@ -143,8 +143,8 @@ public abstract class PlayerControllerBase : MonoBehaviour
     private void GroundingLayerSetup(){
         // the layers to put in the grounding layer types
         int groundLayer = LayerMask.NameToLayer("Ground");
-        int objectLayer = LayerMask.NameToLayer("Objects");
-        int movingPlatformLayer = LayerMask.NameToLayer("Moving Platforms");
+        int objectLayer = LayerMask.NameToLayer("Object");
+        int movingPlatformLayer = LayerMask.NameToLayer("Moving Platform");
 
         int waterLayer = LayerMask.NameToLayer("Water");
 

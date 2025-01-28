@@ -33,11 +33,15 @@ public class Switch : MonoBehaviour
     // private vars
     private Animator anim;
     private bool isFlipped = false;
+    private int backgroundLayer;
+    private int objectLayer;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        backgroundLayer = LayerMask.NameToLayer("Background");
+        objectLayer = LayerMask.NameToLayer("Object");
     }
 
     // check if the tigger collider was hit 
@@ -59,6 +63,7 @@ public class Switch : MonoBehaviour
         ControlObject(controlled);
         // check if a second object was given
         if (controlledTwo != null){
+            Debug.Log("controlling second object");
             ControlObject(controlledTwo);
         }
     }
@@ -70,6 +75,7 @@ public class Switch : MonoBehaviour
         MovingPlatform bridge = controlled?.GetComponent<MovingPlatform>();
         Gate gate = controlled?.GetComponent<Gate>();
         Removable removable = controlled?.GetComponent<Removable>();
+        Switch otherSwitch = controlled?.GetComponent<Switch>();
 
         // if the object is a moving platform
         if (bridge != null){
@@ -86,6 +92,33 @@ public class Switch : MonoBehaviour
         // if the object is something to be removed
         else if (removable != null){
             removable.ToggleRemovable();
+        } 
+        // if the object is a different switch
+        else if (otherSwitch != null){
+            otherSwitch.ToggleLayer();
+        }
+    }
+
+    // change the layer of the object between background and object
+    public void ToggleLayer(){
+        // grab current layer
+        int currentLayer = gameObject.layer;
+        // get the objects current color
+        Color color = gameObject.GetComponent<SpriteRenderer>().color;
+
+        // check if the current layer is the background
+        if (currentLayer == backgroundLayer){
+            // set the layer to object 
+            gameObject.layer = objectLayer;
+            // make the color full
+            color.a = 1;
+            gameObject.GetComponent<SpriteRenderer>().color = color;
+        } else {
+            // set the layer to background 
+            gameObject.layer = backgroundLayer;
+            // make the color more see through
+            color.a = 0.3f;
+            gameObject.GetComponent<SpriteRenderer>().color = color;
         }
     }
 }

@@ -54,7 +54,7 @@ public class SlimeController : PlayerControllerBase
         }
 
         // if the object is a wall
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Walls") || collision.gameObject.CompareTag("Wall")){
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.CompareTag("Wall")){
             // up the wall contact count
             wallContactCount++;
             // slime is touching wall 
@@ -86,7 +86,7 @@ public class SlimeController : PlayerControllerBase
     private void OnCollisionExit2D(Collision2D collision)
     {
         // if the object is a wall
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Walls") || collision.gameObject.CompareTag("Wall")){
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall") || collision.gameObject.CompareTag("Wall")){
             Debug.Log("Slime is no longer touching wall");
             // reduce the wall count 
             wallContactCount--;

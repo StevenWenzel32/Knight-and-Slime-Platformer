@@ -34,10 +34,24 @@ public class Liquid : MonoBehaviour
         // mark the slime has having absorbed a liquid
         slime.SetLiquidAbsorbed(true);
         
+        // play absorb/eating animation 
+
+        // change the slimes color
+        ChangeColor(absorber);
+
         // play absorb sound
         SoundManager.instance.PlaySound(onAbsorbSound);
         // play the collect partiacale effect 
 //           Instantiate(onAbsrobEffect, transform.position, transform.rotation);
+    }
+
+    protected void ChangeColor(GameObject absorber){
+        // get the liquids color
+        Color liquidColor = gameObject.GetComponent<SpriteRenderer>().color;
+        // set the opacity to solid 
+        liquidColor.a = 1;
+        // set the slimes color to the liquid color
+        absorber.GetComponent<SpriteRenderer>().color = liquidColor;
     }
 
     // turns off/clears all the slimes liquid granted abilties

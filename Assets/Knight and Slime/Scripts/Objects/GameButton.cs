@@ -32,12 +32,16 @@ public class GameButton : MonoBehaviour
     private bool isPushed = false;
     // how many things are on the button
     private int contacts = 0;
+    private int backgroundLayer;
+    private int objectLayer;
 
     // Start is called before the first frame update
     void Start()
     {   if (anim != null){
             anim = GetComponent<Animator>();
         }   
+        backgroundLayer = LayerMask.NameToLayer("Background");
+        objectLayer = LayerMask.NameToLayer("Object");
     }
 
     // check if the trigger collider was hit 
@@ -84,6 +88,7 @@ public class GameButton : MonoBehaviour
         MovingPlatform bridge = controlled?.GetComponent<MovingPlatform>();
         Gate gate = controlled?.GetComponent<Gate>();
         Removable removable = controlled?.GetComponent<Removable>();
+        Switch otherSwitch = controlled?.GetComponent<Switch>();
 
         // if the object is a moving platform
         if (bridge != null){
@@ -113,6 +118,10 @@ public class GameButton : MonoBehaviour
         // if the object is something to be removed
         else if (removable != null){
             removable.ToggleRemovable();
+        }
+        // if the object is a different switch
+        else if (otherSwitch != null){
+            otherSwitch.ToggleLayer();
         }
     }
 }
