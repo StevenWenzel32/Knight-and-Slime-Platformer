@@ -44,11 +44,15 @@ public class SlimeController : PlayerControllerBase
         // call the base collsion
         base.OnCollisionEnter2D(collision);
 
-        // check if the object is a collectable
-        Collectible2D collectible = collision.gameObject.GetComponent<Collectible2D>();
-
         // check if the object is a liquid
-        
+        Liquid liquid = collision.gameObject.GetComponent<Liquid>(); 
+
+        // collectables for the slime 
+        if (liquid != null){
+            // call the liquids absorb func
+            liquid.Absorb(gameObject);
+        }
+
         // check for liquid collisions -- put into a seperate func later on ******
         // if the object is honey
         if (collision.gameObject.CompareTag("Honey") && !GetComponent<Slime>().GetLiquidAbsorbed()){
@@ -60,6 +64,7 @@ public class SlimeController : PlayerControllerBase
         }
         // if the object is super jump 
         if (collision.gameObject.CompareTag("Super Jump") && !GetComponent<Slime>().GetLiquidAbsorbed()){
+            // check if the slime 
             // mark the slime has having absorbed a liquid
             GetComponent<Slime>().SetLiquidAbsorbed(true);
             // turn on the slime ability to climbWalls

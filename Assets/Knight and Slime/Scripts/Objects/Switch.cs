@@ -44,7 +44,7 @@ public class Switch : MonoBehaviour
     private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
         // Check for collisions with player - add the slime here too ***
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") && !isFlipped)
+        if ((collision.gameObject.layer == LayerMask.NameToLayer("Knight") || collision.gameObject.layer == LayerMask.NameToLayer("Slime"))&& !isFlipped)
         {
             FlipSwitch();
         }
