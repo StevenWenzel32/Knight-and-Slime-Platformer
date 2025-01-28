@@ -128,8 +128,9 @@ GameObject:
   - component: {fileID: 2958822201706752854}
   - component: {fileID: 4705399316354152130}
   - component: {fileID: 3366247044895203009}
+  - component: {fileID: 2145451270160567442}
   m_Layer: 4
-  m_Name: Liquid
+  m_Name: Honey
   m_TagString: Honey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,6 +289,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2145451270160567442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283015551947229084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d87b3e65b4a3f4a8bbbb216e2dd300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAbsorbEffect: {fileID: 0}
+  onAbsorbSound: {fileID: 0}
 --- !u!1 &6347001271355154534
 GameObject:
   m_ObjectHideFlags: 0

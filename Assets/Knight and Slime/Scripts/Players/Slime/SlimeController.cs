@@ -53,27 +53,6 @@ public class SlimeController : PlayerControllerBase
             liquid.Absorb(gameObject);
         }
 
-        // check for liquid collisions -- put into a seperate func later on ******
-        // if the object is honey
-        if (collision.gameObject.CompareTag("Honey") && !GetComponent<Slime>().GetLiquidAbsorbed()){
-            // mark the slime has having absorbed a liquid
-            GetComponent<Slime>().SetLiquidAbsorbed(true);
-            // turn on the slime ability to climbWalls
-            GetComponent<Slime>().SetClimbWalls(true);
-            Debug.Log("Slime climbWall state: " + GetComponent<Slime>().GetClimbWalls());
-        }
-        // if the object is super jump 
-        if (collision.gameObject.CompareTag("Super Jump") && !GetComponent<Slime>().GetLiquidAbsorbed()){
-            // check if the slime 
-            // mark the slime has having absorbed a liquid
-            GetComponent<Slime>().SetLiquidAbsorbed(true);
-            // turn on the slime ability to climbWalls
-            GetComponent<Slime>().SetSuperJump(true);
-            // turn on the super jump
-            SuperJump();
-            Debug.Log("Slime superJump state: " + GetComponent<Slime>().GetSuperJump());
-        }
-
         // if the object is a wall
         if (collision.gameObject.layer == LayerMask.NameToLayer("Walls") || collision.gameObject.CompareTag("Wall")){
             // up the wall contact count
@@ -262,7 +241,7 @@ public class SlimeController : PlayerControllerBase
     }
 
     // activates the super jump ability
-    private void SuperJump(){
+    public void SuperJump(){
         // turn the jump option on 
         this.jump = true;
         // set the jump force to SUPER
