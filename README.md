@@ -1,4 +1,4 @@
-Link to executable *v0.0.5.3 (built for Windows): https://drive.google.com/file/d/1ZqLApS0G-p3JqBFhKiv9pon6ITTWFPuP/view?usp=sharing
+Link to executable *v0.0.6 (built for Windows): https://drive.google.com/file/d/1nYPyVRCc2e2J5OsyjzOUGOqRtFmGew6a/view?usp=sharing
 
 *Only tested on Windows and Linux. Not designed for phones or consoles.
 
@@ -61,6 +61,8 @@ These are the spots open on my dev team:
 - *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for Unity to fix this.
 
 ## Version Changes:
+
+v0.0.6: Added level 7, featuring keys and locked doors usable by the knight. Improved the splash screen logos. Redid the collectable and liquid classes, they work much better now.
 
 v0.0.5.3: New player displays in game. Level complete time now effects your score. Added keys and locked doors to be used in level 7. Added splash screen. 
 
