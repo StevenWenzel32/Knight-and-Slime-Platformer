@@ -7,7 +7,7 @@ public class Slime : PlayerBase
 {
     // public vars
     // list for item tracking and return. used for activating and moving items
-    public List<GameObject> itemsAbsorbed;
+    public List<Collectible2D> itemsAbsorbed;
 
     // private vars
     // how big the slime is - affects other abilities

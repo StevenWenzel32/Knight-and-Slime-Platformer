@@ -9,7 +9,14 @@ public class SlimeController : PlayerControllerBase
 
     [Header("Tunnels")]
     public float colliderWidthShrinkBuffer = 0.8f;
+
+    [Header("Inventory")]
+    // how far to the right of the slime is the item dropped *** change to whatever direction the slime is facing
+    public float itemDropBuffer = 1f;
+
     // private vars
+    // ref for the slime
+    private Slime slime;
     // save the origional size of the slime collider
     private UnityEngine.Vector2 startSize;
     // save the current size of the slime colldier
@@ -30,10 +37,13 @@ public class SlimeController : PlayerControllerBase
     // consts
     const float SUPER_JUMP_FORCE = 21; 
     const string absorbButton = "SlimeAbsorb";
+    const string dropButton = "SlimeDrop";
 
     protected override void Start()
     {
         base.Start();
+        // ref the slime
+        slime = GetComponent<Slime>();
         // set the slime collider 
         slimeCollider = GetComponent<BoxCollider2D>();
         // get the current size of the slimes collider and save it for later 
@@ -50,13 +60,18 @@ public class SlimeController : PlayerControllerBase
             // reset canAbsorb
             canAbsorb = false;
         }
+        // check for drop button and an item is adbosrbed
+        if (Input.GetButtonDown(dropButton) && (slime.itemsAbsorbed.Count > 0)){
+            // drop the item
+            DropItem();
+        }
     }
 
     protected override void FixedUpdate(){
         // run the basic update
         base.FixedUpdate();
         // slime specifc update
-        if (GetComponent<Slime>().GetClimbWalls() && isTouchingWall){
+        if (slime.GetClimbWalls() && isTouchingWall){
             Debug.Log("Slime can start climbing wall");
             // check for vertical input from the arrow keys
             float verticalInput = Input.GetAxis("VerticalArrowKeys");
@@ -276,10 +291,22 @@ public class SlimeController : PlayerControllerBase
     public void DropItem(){
         // selection menu pops up, item picked stored
         // play spit animation
-        // move absorbed item to slightly slimes right side -- later change based on which direction the slime is facing ****
-
+        // get the item
+        Collectible2D item = slime.itemsAbsorbed[0];
+        // remove the item
+        slime.itemsAbsorbed.RemoveAt(0);
+        // get the slimes position
+        UnityEngine.Vector3 slimePos = slime.gameObject.transform.position;
+        // check which direction the slime is facing 
+        // move absorbed item to slightly slimes right side, increase the X -- make the drop range varible ****  -- later change based on which direction the slime is facing ****
+        slimePos.x += itemDropBuffer;
+        // assign new item position
+        item.gameObject.transform.position = slimePos;
         // active the item again
+        item.gameObject.SetActive(true);
         // reduce the item count
-        
+        slime.DownItemsAbsorbed();
+        // turn off the items icon
+        item.ChangeDisplayInSlime(gameObject, item.gameObject.tag, false);
     }
 }

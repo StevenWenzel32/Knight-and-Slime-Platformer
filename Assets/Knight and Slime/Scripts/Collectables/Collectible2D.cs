@@ -45,11 +45,11 @@ public class Collectible2D : MonoBehaviour
             // disable the object
             gameObject.SetActive(false);
             // put object in slimes inventory
-            slime.itemsAbsorbed.Add(gameObject);
+            slime.itemsAbsorbed.Add(gameObject.GetComponent<Collectible2D>());
             // up the slimes item count
             slime.UpItemsAbsorbed();
             // use the object tag to display the object inside the slime
-            DisplayInSlime(absorber, gameObject.tag);
+            ChangeDisplayInSlime(absorber, gameObject.tag, true);
             // play absorb sound
     //        SoundManager.instance.PlaySound(onAbsorbSound);
             // play the collect partiacale effect 
@@ -58,7 +58,7 @@ public class Collectible2D : MonoBehaviour
     }
 
     // turn on the icon in the slime with the same tag given
-    public virtual void DisplayInSlime(GameObject absorber, string tag){
+    public virtual void ChangeDisplayInSlime(GameObject absorber, string tag, bool state){
         Debug.Log("Inside display func");
         // search through the children
         foreach (Transform child in absorber.transform){
@@ -66,7 +66,7 @@ public class Collectible2D : MonoBehaviour
             if (child.CompareTag(tag)){
                 Debug.Log("found the object");
                 // turn the icon on
-                child.gameObject.SetActive(true);
+                child.gameObject.SetActive(state);
                 break;
             }
         }
