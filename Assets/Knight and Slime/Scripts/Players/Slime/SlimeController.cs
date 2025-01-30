@@ -146,6 +146,9 @@ public class SlimeController : PlayerControllerBase
             // display prompt to absorb the item
             // check for key press
                 collectible.Absorb(gameObject);
+                if (collectible.CompareTag("Key")){
+                    
+                }
         }
         // check for collision with tunnel x and tunnel y
         else if (collider.gameObject.CompareTag("Tunnel Y")){
@@ -253,5 +256,17 @@ public class SlimeController : PlayerControllerBase
         jump = true;
         // set the jump force to SUPER
         jumpForce = SUPER_JUMP_FORCE;
+    }
+
+    // slimes drops/spits out an item
+    // once slime can hold multiple items make a selection menu/wheel thing
+    public void DropItem(){
+        // selection menu pops up, item picked stored
+        // play spit animation
+        // move absorbed item to slightly slimes right side -- later change based on which direction the slime is facing ****
+
+        // active the item again
+        // reduce the item count
+        
     }
 }

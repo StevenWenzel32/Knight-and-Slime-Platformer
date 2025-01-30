@@ -21,18 +21,6 @@ public class Keys : Collectible2D
     }
 
     public override void Absorb(GameObject absorber){
-        // ref the slime
-        Slime slime = absorber.GetComponent<Slime>();
-        // check if the slime has space to absorb another item
-        if (slime.CheckItemSpace()){
-            base.Absorb(absorber);
-            // display a key inside the slime
-            
-            // up the slimes item count
-            slime.UpItemsAbsorbed();
-            // up the slimes key count
-            slime.UpKeyCount();
-        }
-        
+        base.Absorb(absorber);      
     }
 }

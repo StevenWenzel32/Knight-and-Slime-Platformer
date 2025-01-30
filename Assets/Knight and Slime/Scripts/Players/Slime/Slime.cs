@@ -1,15 +1,21 @@
+using System.Collections.Generic;
 using System.Drawing;
+using System.Numerics;
 using UnityEngine;
 
 public class Slime : PlayerBase
 {
+    // public vars
+    // list for item tracking and return. used for activating and moving items
+    public List<GameObject> itemsAbsorbed;
+
     // private vars
     // how big the slime is - affects other abilities
     private int size = 1;
     // how many items the slime can hold - affected by size
     private int itemLimit;
     // how many items the slime is holding
-    private int itemsAbsorbed = 0;
+    private int numItemsAbsorbed = 0;
     // has the slime abosorbed a liquid 
     private bool liquidAbsorbed = false;
     // abilities granted by liquids; false by default; only one can be active unless alLiquid has been absorbed
@@ -17,9 +23,6 @@ public class Slime : PlayerBase
     private bool climbWalls = false;
     // derived from super jump -- Need a new liquid name ********
     private bool superJump = false;
-    // temp solution for item tracking and return
-    // later replace with an array of enums/words of the items absorbed by the slime *****
-    private int keyCount = 0;
     
     protected override void Awake()
     {
@@ -39,27 +42,19 @@ public class Slime : PlayerBase
 
     // returns true if the slime has space for more items
     public bool CheckItemSpace(){
-        if (itemsAbsorbed < itemLimit){
+        if (numItemsAbsorbed < itemLimit){
             return true;
         } else {
             return false;
         }
     }
 
-    public void UpKeyCount(){
-        keyCount++;
-    }
- 
-    public void DownKeyCount(){
-        keyCount--;
-    }
-
     public void UpItemsAbsorbed(){
-        itemsAbsorbed++;
+        numItemsAbsorbed++;
     }
  
     public void DownItemsAbsorbed(){
-        itemsAbsorbed--;
+        numItemsAbsorbed--;
     }
  
     // might change the math behind the item limit later as the game changes ***

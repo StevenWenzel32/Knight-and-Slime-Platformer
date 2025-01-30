@@ -75,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: -445339699
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1569985480, guid: e6eba8fe62b587c4c844cba5f86b71fb, type: 3}
+  m_Sprite: {fileID: 2031319688, guid: 3f6d7a14ffcda0d41bf45aaa597e2159, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.1, y: 0.15}
+  m_Size: {x: 0.16, y: 0.07}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -123,7 +123,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.16, y: 0.07}
-    newSize: {x: 0.1, y: 0.15}
+    newSize: {x: 0.16, y: 0.07}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -145,4 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 0.5
   onCollectEffect: {fileID: 0}
+  onAbsorbEffect: {fileID: 0}
   onCollectSound: {fileID: 8300000, guid: 3e58664f8e41cf2479ee1feb8e9c5492, type: 3}
+  onAbsorbSound: {fileID: 0}
+  absorbable: 0

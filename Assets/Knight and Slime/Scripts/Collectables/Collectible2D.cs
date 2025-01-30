@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Collectible2D : MonoBehaviour
@@ -36,13 +37,39 @@ public class Collectible2D : MonoBehaviour
     }
 
     // what to do when it's absorbed by the slime
-    public virtual void Absorb(GameObject collector){
-        // disable the object
-        gameObject.SetActive(false);
-        // play absorb sound
-//        SoundManager.instance.PlaySound(onAbsorbSound);
-        // play the collect partiacale effect 
-//           Instantiate(onAbsorbEffect, transform.position, transform.rotation);
+    public virtual void Absorb(GameObject absorber){
+        // ref the slime
+        Slime slime = absorber.GetComponent<Slime>();
+        // check if the slime has space to absorb another item
+        if (slime.CheckItemSpace()){
+            // disable the object
+            gameObject.SetActive(false);
+            // put object in slimes inventory
+            slime.itemsAbsorbed.Add(gameObject);
+            // up the slimes item count
+            slime.UpItemsAbsorbed();
+            // use the object tag to display the object inside the slime
+            DisplayInSlime(absorber, gameObject.tag);
+            // play absorb sound
+    //        SoundManager.instance.PlaySound(onAbsorbSound);
+            // play the collect partiacale effect 
+    //           Instantiate(onAbsorbEffect, transform.position, transform.rotation);
+        }
+    }
+
+    // turn on the icon in the slime with the same tag given
+    public virtual void DisplayInSlime(GameObject absorber, string tag){
+        Debug.Log("Inside display func");
+        // search through the children
+        foreach (Transform child in absorber.transform){
+            // if child has the tag
+            if (child.CompareTag(tag)){
+                Debug.Log("found the object");
+                // turn the icon on
+                child.gameObject.SetActive(true);
+                break;
+            }
+        }
     }
 }
 
