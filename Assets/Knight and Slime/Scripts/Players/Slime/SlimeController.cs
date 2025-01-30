@@ -102,7 +102,7 @@ public class SlimeController : PlayerControllerBase
             }
         }
     }
-
+ 
     protected override void FixedUpdate(){
         // run the basic update
         base.FixedUpdate();
@@ -136,9 +136,16 @@ public class SlimeController : PlayerControllerBase
         Collectible2D collectible = collider.GetComponent<Collectible2D>();
 
         // collectables for the slime 
-        if (collectible != null && !collectible.CompareTag("Key")){
+        if (collectible != null && !collectible.absorbable){
             // call the objects collect func
             collectible.Collect(gameObject);
+        }
+        // items the slime can absorb
+        else if (collectible != null && collectible.absorbable){
+            Debug.Log("Slime hit an absorbable object");
+            // display prompt to absorb the item
+            // check for key press
+                collectible.Absorb(gameObject);
         }
         // check for collision with tunnel x and tunnel y
         else if (collider.gameObject.CompareTag("Tunnel Y")){
@@ -243,8 +250,8 @@ public class SlimeController : PlayerControllerBase
     // activates the super jump ability
     public void SuperJump(){
         // turn the jump option on 
-        this.jump = true;
+        jump = true;
         // set the jump force to SUPER
-        this.jumpForce = SUPER_JUMP_FORCE;
+        jumpForce = SUPER_JUMP_FORCE;
     }
 }

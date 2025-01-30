@@ -12,7 +12,7 @@ public class PlayerBase : MonoBehaviour
     // get the menu manager
     private LevelManager levelManager;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         // looks for the first object in the hiearchy 
         levelManager = FindObjectOfType<LevelManager>();

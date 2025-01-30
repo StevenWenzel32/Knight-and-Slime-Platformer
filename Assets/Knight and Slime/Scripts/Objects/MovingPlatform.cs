@@ -5,6 +5,9 @@ public class MovingPlatform : MonoBehaviour
     private Animator anim;
     // will be changed inside a switch or button
     private bool move = false;
+    // loop mode states
+    private bool loopStart = false;
+    private bool loopBack = false;
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private float moveSpeed;
@@ -27,17 +30,47 @@ public class MovingPlatform : MonoBehaviour
             anim.SetBool("Move", move);
         }  
         if (move){
-            // smoothly move to the target
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            MoveTo(targetPosition, moveSpeed);
+        } else if (loopStart){
+            MoveTo(targetPosition, moveSpeed);
+            // check if at target
+            if (transform.position == targetPosition){
+                // switch to loop back 
+                loopBack = true;
+                loopStart = false;
+            }  
+        } 
+        else if (loopBack){
+            MoveTo(startPosition, moveSpeed);
+            // check if at start
+            if (transform.position == startPosition){
+                // switch to loop start 
+                loopStart = true;
+                loopBack = false;
+            }  
         } else {
-            transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
+            MoveTo(startPosition, moveSpeed);
         }
     }
 
     // toggle the platform and call the function to move it the right direction -- can later add more directions and rotations and speeds
-    public void TogglePlatform(string direction, float distance, float speed){
-        // siwtch the move state
-        move = !move;
+    public void TogglePlatform(string direction, float distance, float speed, bool loopMode){
+        // check for auto/loop setting
+        if (loopMode){
+            if (!loopStart && !loopBack)  // Start looping only if it's not already moving
+            {
+                loopStart = true;
+                loopBack = false;
+            }
+            else
+            {
+                loopStart = false;
+                loopBack = false;
+            }
+        } else {
+            // siwtch the move state
+            move = !move;
+        }
         // set the move speed to the given
         moveSpeed = speed;
         // check what direction to move the platform
@@ -51,6 +84,11 @@ public class MovingPlatform : MonoBehaviour
             moveDown(distance);
         }
         // check if the platform should rotate ****
+    }
+
+    private void MoveTo(Vector3 targetPosition, float speed){
+        // smoothly move to the target
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
     }
 
     private void moveLeft(float distance){

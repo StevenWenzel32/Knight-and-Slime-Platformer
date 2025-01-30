@@ -5,18 +5,21 @@ using UnityEngine;
 public class Toggler : MonoBehaviour
 {
     [Header ("Object(s) to Control")]
+    // might need to make another class to be the controlled objects if this needs to be any more robust
+    // moving controlsd currently only apply to this 
     // set to the object to be controlled -- can be a door, bridge, elavator, fan, etc.
-    public GameObject controlled;
-    // second object to control/ event to trigger
+    public GameObject controlledOne;
+    // if it should continue to move back and forth on its own
+    public bool LoopModeOne;
+    // second object to control/ event to trigger -- currently can't move two objects
     public GameObject controlledTwo;
 
-    [Header ("If Moving Platform")]
+    [Header ("If Moving")]
+    //should this move
+    public bool move;
     // how far to move
     public float distance; 
     public float moveSpeed = 1f;
-    // how much to rotate
-    public float rotation;
-    public float rotationSpeed;
 
     // could add in a speed option later for both distance and rotation
 
@@ -25,6 +28,13 @@ public class Toggler : MonoBehaviour
     public bool right;
     public bool up;
     public bool down;
+
+    [Header ("If Rotating")]
+    // should this rotate
+    public bool rotate;
+    // how much to rotate
+    public float rotation;
+    public float rotationSpeed;
 
     [Header ("Direction to Rotate (only one)")]
     public bool rotateLeft;
@@ -44,7 +54,7 @@ public class Toggler : MonoBehaviour
     // Activate the toggler
     protected virtual void Activate(){
         // perform the actual action on the objects
-        ControlObject(controlled);
+        ControlObject(controlledOne);
         // check if a second object was given
         if (controlledTwo != null){
             Debug.Log("controlling second object");
@@ -57,29 +67,17 @@ public class Toggler : MonoBehaviour
         // these object creations also check the type of the object 
         // to check if the object is something else just add another assignment for that object
         // create make a seperate assignObject() to do the checks and assigns and then passes the object var to other funcs ************
-        MovingPlatform bridge = controlled?.GetComponent<MovingPlatform>();
+        MovingPlatform platform = controlled?.GetComponent<MovingPlatform>();
         Gate gate = controlled?.GetComponent<Gate>();
         Removable removable = controlled?.GetComponent<Removable>();
         Switch otherSwitch = controlled?.GetComponent<Switch>();
 
         // if the object is a moving platform
-        if (bridge != null){
-            // will later add in other functions to Move() and Rotate() with all the options
-            // add in enums for the directions *********
-            if (left){
-                Debug.Log("toggling platform, left");
-                bridge.TogglePlatform("left", distance, moveSpeed);
-            } else if (right){
-                Debug.Log("toggling platform, right");
-                bridge.TogglePlatform("right", distance, moveSpeed);
-            }
-            // check if moving up or down
-            if (up){
-                Debug.Log("toggling platform, up");
-                bridge.TogglePlatform("up", distance, moveSpeed);
-            } else if (down){
-                Debug.Log("toggling platform, down");
-                bridge.TogglePlatform("down", distance, moveSpeed);
+        if (platform != null){
+            if (move){
+                Move(platform);
+            } else if (rotate){
+                Rotate(platform);
             }
         } 
         // if the object is a gate
@@ -93,6 +91,37 @@ public class Toggler : MonoBehaviour
         // if the object is a switch
         else if (otherSwitch != null){
             otherSwitch.ToggleLayer();
+        }
+    }
+
+    // moves the controlled platform based on inputs
+    public void Move(MovingPlatform platform){
+        // add in enums for the directions *********
+        if (left){
+            Debug.Log("toggling platform, left");
+            platform.TogglePlatform("left", distance, moveSpeed, LoopModeOne);
+        } else if (right){
+            Debug.Log("toggling platform, right");
+            platform.TogglePlatform("right", distance, moveSpeed, LoopModeOne);
+        }
+        // check if moving up or down
+        if (up){
+            Debug.Log("toggling platform, up");
+            platform.TogglePlatform("up", distance, moveSpeed, LoopModeOne);
+        } else if (down){
+            Debug.Log("toggling platform, down");
+            platform.TogglePlatform("down", distance, moveSpeed, LoopModeOne);
+        }
+    }
+
+    // rotates the controlled platform based on inputs -- finish later
+    public void Rotate(MovingPlatform platform){
+        if (rotateLeft){
+            Debug.Log("rotating platform, left");
+//            platform.TogglePlatform("left", distance, moveSpeed, auto);
+        } else if (rotateRight){
+            Debug.Log("rotating platform, right");
+//            platform.TogglePlatform("right", distance, moveSpeed, auto);
         }
     }
 
