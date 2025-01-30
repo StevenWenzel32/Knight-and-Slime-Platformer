@@ -19,8 +19,4 @@ public class Keys : Collectible2D
         // up the key count
         keyCounter.UpKeyCount();
     }
-
-    public override void Absorb(GameObject absorber){
-        base.Absorb(absorber);      
-    }
 }

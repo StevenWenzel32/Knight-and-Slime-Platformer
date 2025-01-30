@@ -21,13 +21,15 @@ public class SlimeController : PlayerControllerBase
     // number of seperate walls the slime is touching 
     private int wallContactCount = 0;
     // if the is on the slimes left side
-    private bool isTouchingWallLeft = false;
+//    private bool isTouchingWallLeft = false;
     // if the wall is on the slimes right side
-    private bool isTouchingWallRight = false;
-    // the slimes sprite rendere
+//    private bool isTouchingWallRight = false;
+    private bool canAbsorb = false;
+    private Collectible2D absorbTarget;
 
     // consts
     const float SUPER_JUMP_FORCE = 21; 
+    const string absorbButton = "SlimeAbsorb";
 
     protected override void Start()
     {
@@ -38,6 +40,44 @@ public class SlimeController : PlayerControllerBase
         currentSize = slimeCollider.size; 
         rb = GetComponent<Rigidbody2D>();
     }    
+
+    protected override void Update(){
+        base.Update();
+        // check for absorb button
+        if (Input.GetButtonDown(absorbButton) && canAbsorb){
+            // absorb the item
+            absorbTarget.Absorb(gameObject);
+            // reset canAbsorb
+            canAbsorb = false;
+        }
+    }
+
+    protected override void FixedUpdate(){
+        // run the basic update
+        base.FixedUpdate();
+        // slime specifc update
+        if (GetComponent<Slime>().GetClimbWalls() && isTouchingWall){
+            Debug.Log("Slime can start climbing wall");
+            // check for vertical input from the arrow keys
+            float verticalInput = Input.GetAxis("VerticalArrowKeys");
+            // if moving 
+            if (Mathf.Abs(verticalInput) > 0.1f){
+                // check the movement of the character and flip it
+//                FlipCharacter();
+                // move the slime vertically on the wall
+                rb.velocity = new UnityEngine.Vector2(rb.velocity.x, verticalInput * wallClimbSpeed);
+            }else{
+                // stick to the wall when not moving
+                rb.velocity = new UnityEngine.Vector2(rb.velocity.x, 0f);
+            }
+
+            // set gravity to 0 -- see how it feels
+            rb.gravityScale = 0f;
+        } else {
+            // set the gravity to normal when not climbing
+            rb.gravityScale = 1.5f;
+        }
+    }
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
@@ -95,38 +135,11 @@ public class SlimeController : PlayerControllerBase
                 // slime is no longer touching wall 
                 isTouchingWall = false;
                 // its on the left side
-                isTouchingWallRight = false;
-                isTouchingWallLeft = false;
+//                isTouchingWallRight = false;
+//                isTouchingWallLeft = false;
                 // reset the slimes rotation to normal
 //                RotateCharacter(0, collision);
             }
-        }
-    }
- 
-    protected override void FixedUpdate(){
-        // run the basic update
-        base.FixedUpdate();
-        // slime specifc update
-        if (GetComponent<Slime>().GetClimbWalls() && isTouchingWall){
-            Debug.Log("Slime can start climbing wall");
-            // check for vertical input from the arrow keys
-            float verticalInput = Input.GetAxis("VerticalArrowKeys");
-            // if moving 
-            if (Mathf.Abs(verticalInput) > 0.1f){
-                // check the movement of the character and flip it
-//                FlipCharacter();
-                // move the slime vertically on the wall
-                rb.velocity = new UnityEngine.Vector2(rb.velocity.x, verticalInput * wallClimbSpeed);
-            }else{
-                // stick to the wall when not moving
-                rb.velocity = new UnityEngine.Vector2(rb.velocity.x, 0f);
-            }
-
-            // set gravity to 0 -- see how it feels
-            rb.gravityScale = 0f;
-        } else {
-            // set the gravity to normal when not climbing
-            rb.gravityScale = 1.5f;
         }
     }
 
@@ -143,12 +156,12 @@ public class SlimeController : PlayerControllerBase
         // items the slime can absorb
         else if (collectible != null && collectible.absorbable){
             Debug.Log("Slime hit an absorbable object");
+            // set that it can absorb
+            canAbsorb = true;
+            // store the item
+            absorbTarget = collectible;
             // display prompt to absorb the item
-            // check for key press
-                collectible.Absorb(gameObject);
-                if (collectible.CompareTag("Key")){
-                    
-                }
+            
         }
         // check for collision with tunnel x and tunnel y
         else if (collider.gameObject.CompareTag("Tunnel Y")){

@@ -12558,11 +12558,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
-    - target: {fileID: 6017596926011101223, guid: 947bd80690ea82142b2f68219d071e3f,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.59607846
-      objectReference: {fileID: 0}
     - target: {fileID: 6690821591886339976, guid: 947bd80690ea82142b2f68219d071e3f,
         type: 3}
       propertyPath: m_Size.x
