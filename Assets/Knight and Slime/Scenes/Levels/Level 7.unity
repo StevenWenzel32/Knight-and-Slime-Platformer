@@ -12290,6 +12290,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1683931133}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1683931135 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3648107936763908729, guid: 4f92359bf7def9d4d90445eee73d57b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1683931133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1699737447
 GameObject:
   m_ObjectHideFlags: 0
@@ -14150,6 +14156,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 3430156535195276643, guid: 947bd80690ea82142b2f68219d071e3f,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1683931135}
     - target: {fileID: 6690821591886339976, guid: 947bd80690ea82142b2f68219d071e3f,
         type: 3}
       propertyPath: m_Size.x
