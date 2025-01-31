@@ -2902,6 +2902,11 @@ PrefabInstance:
       propertyPath: controlled
       value: 
       objectReference: {fileID: 341107367}
+    - target: {fileID: 7579699490657178739, guid: d74fca2a20f3b9a4cbd82b9ff4ba2891,
+        type: 3}
+      propertyPath: controlledOne
+      value: 
+      objectReference: {fileID: 341107367}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4693,15 +4698,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcef5c83c8e1954e9607c7e7b722c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlled: {fileID: 1226847725}
+  controlledOne: {fileID: 1226847725}
+  LoopModeOne: 0
+  controlledTwo: {fileID: 0}
+  move: 1
   distance: 9
   moveSpeed: 2
-  rotation: 0
-  rotationSpeed: 0
   left: 0
   right: 0
   up: 0
   down: 1
+  rotate: 0
+  rotation: 0
+  rotationSpeed: 0
   rotateLeft: 0
   rotateRight: 0
 --- !u!61 &1213691153
@@ -6426,15 +6435,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcef5c83c8e1954e9607c7e7b722c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlled: {fileID: 1194079435}
+  controlledOne: {fileID: 1194079435}
+  LoopModeOne: 0
+  controlledTwo: {fileID: 0}
+  move: 1
   distance: 15
   moveSpeed: 2
-  rotation: 0
-  rotationSpeed: 0
   left: 0
   right: 0
   up: 0
   down: 1
+  rotate: 0
+  rotation: 0
+  rotationSpeed: 0
   rotateLeft: 0
   rotateRight: 0
 --- !u!212 &1902956787
@@ -6594,6 +6607,11 @@ PrefabInstance:
     - target: {fileID: 7579699490657178739, guid: d74fca2a20f3b9a4cbd82b9ff4ba2891,
         type: 3}
       propertyPath: controlled
+      value: 
+      objectReference: {fileID: 622291309}
+    - target: {fileID: 7579699490657178739, guid: d74fca2a20f3b9a4cbd82b9ff4ba2891,
+        type: 3}
+      propertyPath: controlledOne
       value: 
       objectReference: {fileID: 622291309}
     m_RemovedComponents: []

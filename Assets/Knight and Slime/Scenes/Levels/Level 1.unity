@@ -6096,6 +6096,11 @@ PrefabInstance:
       propertyPath: controlled
       value: 
       objectReference: {fileID: 1226847725}
+    - target: {fileID: 7579699490657178739, guid: d74fca2a20f3b9a4cbd82b9ff4ba2891,
+        type: 3}
+      propertyPath: controlledOne
+      value: 
+      objectReference: {fileID: 1226847725}
     - target: {fileID: 8438865510927454116, guid: d74fca2a20f3b9a4cbd82b9ff4ba2891,
         type: 3}
       propertyPath: controlled
@@ -7612,6 +7617,11 @@ PrefabInstance:
     - target: {fileID: 3346987134525769821, guid: bf196c1b60e3514438ac72feb8358caf,
         type: 3}
       propertyPath: controlled
+      value: 
+      objectReference: {fileID: 622291309}
+    - target: {fileID: 3346987134525769821, guid: bf196c1b60e3514438ac72feb8358caf,
+        type: 3}
+      propertyPath: controlledOne
       value: 
       objectReference: {fileID: 622291309}
     - target: {fileID: 6182956065688004890, guid: bf196c1b60e3514438ac72feb8358caf,

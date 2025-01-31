@@ -8,6 +8,5 @@ public class Honey : Liquid
         base.Absorb(absorber);
         // turn on the slime ability to climbWalls
         slime.SetClimbWalls(true);
-        Debug.Log("Slime climbWall state: " + GetComponent<Slime>().GetClimbWalls());
     }
 }

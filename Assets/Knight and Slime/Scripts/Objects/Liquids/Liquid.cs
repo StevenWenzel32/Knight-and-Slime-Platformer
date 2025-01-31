@@ -40,7 +40,7 @@ public class Liquid : MonoBehaviour
         ChangeColor(absorber);
 
         // play absorb sound
-        SoundManager.instance.PlaySound(onAbsorbSound);
+//        SoundManager.instance.PlaySound(onAbsorbSound);
         // play the collect partiacale effect 
 //           Instantiate(onAbsrobEffect, transform.position, transform.rotation);
     }
