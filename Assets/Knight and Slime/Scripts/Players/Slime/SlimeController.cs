@@ -176,7 +176,7 @@ public class SlimeController : PlayerControllerBase
             // store the item
             absorbTarget = collectible;
             // display prompt to absorb the item
-            
+            collectible?.TogglePrompt(gameObject);
         }
         // check for collision with tunnel x and tunnel y
         else if (collider.gameObject.CompareTag("Tunnel Y")){
@@ -228,6 +228,13 @@ public class SlimeController : PlayerControllerBase
 
     // slime specifc exit actions when leaving colliders
     private void OnTriggerExit2D(Collider2D collider){
+        Collectible2D collectible = collider.GetComponent<Collectible2D>();
+        // if slime can pick up
+        if (collectible != null && collectible.absorbable){
+            Debug.Log("Slime left an absorbable object");
+            // get rid of prompt
+            collectible?.TogglePrompt(gameObject);
+        }
         // check for collision with tunnel entrance
         if (collider.gameObject.CompareTag("Tunnel X"))
         {
@@ -289,17 +296,33 @@ public class SlimeController : PlayerControllerBase
     // slimes drops/spits out an item
     // once slime can hold multiple items make a selection menu/wheel thing
     public void DropItem(){
-        // selection menu pops up, item picked stored
+        // item ref
+        Collectible2D item;
         // play spit animation
-        // get the item
-        Collectible2D item = slime.itemsAbsorbed[0];
-        // remove the item
-        slime.itemsAbsorbed.RemoveAt(0);
+        if (slime.itemsAbsorbed.Count > 1){
+            int pos;
+            //selection menu pop up, item picked stored ***
+            // user picks item
+            pos = 0;
+            // item stored
+            item = slime.itemsAbsorbed[pos];
+            // remove item from list
+        } else {
+            // get the item
+            item = slime.itemsAbsorbed[0];
+            // remove the item
+            slime.itemsAbsorbed.RemoveAt(0);
+        }
         // get the slimes position
         UnityEngine.Vector3 slimePos = slime.gameObject.transform.position;
         // check which direction the slime is facing 
-        // move absorbed item to slightly slimes right side, increase the X -- make the drop range varible ****  -- later change based on which direction the slime is facing ****
-        slimePos.x += itemDropBuffer;
+        if (slime.gameObject.transform.localScale.x > 0){
+            // throw item to the right
+            slimePos.x += itemDropBuffer;
+        } else {
+            // throw item to the left
+            slimePos.x -= itemDropBuffer;
+        }
         // assign new item position
         item.gameObject.transform.position = slimePos;
         // active the item again
@@ -308,5 +331,15 @@ public class SlimeController : PlayerControllerBase
         slime.DownItemsAbsorbed();
         // turn off the items icon
         item.ChangeDisplayInSlime(gameObject, item.gameObject.tag, false);
+    }
+
+    protected override void Flip(){
+        base.Flip();
+        // ref the prompt 
+        Transform prompt = transform.Find("Prompts").transform.Find("Absorb Prompt");
+        // flip the prompt back to fix key prompt text
+        UnityEngine.Vector3 promptScale = prompt.localScale;
+        promptScale.x *= -1;
+        prompt.localScale = promptScale;
     }
 }

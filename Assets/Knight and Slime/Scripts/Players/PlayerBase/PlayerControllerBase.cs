@@ -192,11 +192,10 @@ public abstract class PlayerControllerBase : MonoBehaviour
         // Set movement direction
         movement = new UnityEngine.Vector2(horizontalInput, 0);
 
+        // flip the player if needed
         // flip player on x depending on direction movement
-        if (horizontalInput > 0.01f){
-            transform.localScale = UnityEngine.Vector3.one;
-        } else if (horizontalInput < -0.01f){
-            transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
+        if ((horizontalInput > 0.01f && transform.localScale.x < 0) || (horizontalInput < -0.01f && transform.localScale.x > 0)){
+            Flip();
         }
 
         // handle jumping
@@ -331,5 +330,15 @@ public abstract class PlayerControllerBase : MonoBehaviour
     protected void ResetCollider(){
         boxCollider.size = normalColliderSize;
         boxCollider.offset = normalColliderOffset;
+    }
+
+    // flip the player on the x
+    protected virtual void Flip(){
+        // grab the current scale
+        UnityEngine.Vector3 scale = transform.localScale;
+        // flip the x
+        scale.x *= -1;
+        // assign new scale
+        transform.localScale = scale;
     }
 }

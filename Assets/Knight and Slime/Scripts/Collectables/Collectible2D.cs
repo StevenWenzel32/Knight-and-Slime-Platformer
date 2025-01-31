@@ -16,6 +16,10 @@ public class Collectible2D : MonoBehaviour
     // if the slime can eat/absorb it 
     public bool absorbable = false;
 
+    // private vars
+    private bool promptDisplayed = false;
+    private string promptKeyword = "ctrl";
+
     protected virtual void Awake()
     {
     }
@@ -58,15 +62,30 @@ public class Collectible2D : MonoBehaviour
     }
 
     // turn on the icon in the slime with the same tag given
-    public virtual void ChangeDisplayInSlime(GameObject absorber, string tag, bool state){
+    public void ChangeDisplayInSlime(GameObject absorber, string tag, bool state){
         Debug.Log("Inside display func");
         // search through the children
-        foreach (Transform child in absorber.transform){
+        foreach (Transform child in absorber.transform.Find("Inventory").transform){
             // if child has the tag
             if (child.CompareTag(tag)){
                 Debug.Log("found the object");
                 // turn the icon on
                 child.gameObject.SetActive(state);
+                break;
+            }
+        }
+    }
+
+    // toggle the prompt for this object
+    public void TogglePrompt(GameObject absorber){
+        // toggle
+        promptDisplayed = !promptDisplayed;
+        // search through the children in the prompt container
+        foreach (Transform child in absorber.transform.Find("Prompts").transform){
+            if (child.CompareTag(promptKeyword)){
+                Debug.Log("found the prompt");
+                // turn the prompt on
+                child.gameObject.SetActive(promptDisplayed);
                 break;
             }
         }
