@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Collectible2D : MonoBehaviour
 {
@@ -48,10 +49,13 @@ public class Collectible2D : MonoBehaviour
         if (slime.CheckItemSpace()){
             // disable the object
             gameObject.SetActive(false);
+            // ref the object as a collectable 
+            Collectible2D item = gameObject.GetComponent<Collectible2D>();
             // put object in slimes inventory
-            slime.itemsAbsorbed.Add(gameObject.GetComponent<Collectible2D>());
+            slime.itemsAbsorbed.Add(item);
             // up the slimes item count
             slime.UpItemsAbsorbed();
+            slime.AddToInventoryUI(item);
             // use the object tag to display the object inside the slime
             ChangeDisplayInSlime(absorber, gameObject.tag, true);
             // play absorb sound

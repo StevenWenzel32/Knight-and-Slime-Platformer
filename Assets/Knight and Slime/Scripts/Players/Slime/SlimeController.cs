@@ -1,6 +1,7 @@
 using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlimeController : PlayerControllerBase
 {
@@ -315,6 +316,8 @@ public class SlimeController : PlayerControllerBase
         } else {
             // get the item
             item = slime.itemsAbsorbed[0];
+            // remove it from the inventory UI
+            slime.RemoveFromInventoryUI(item);
             // remove the item
             slime.itemsAbsorbed.RemoveAt(0);
         }
@@ -336,6 +339,7 @@ public class SlimeController : PlayerControllerBase
         slime.DownItemsAbsorbed();
         // turn off the items icon
         item.ChangeDisplayInSlime(gameObject, item.gameObject.tag, false);
+        
     }
 
     protected override void Flip(){

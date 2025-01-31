@@ -1,13 +1,14 @@
 using System.Collections.Generic;
-using System.Drawing;
-using System.Numerics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slime : PlayerBase
 {
     // public vars
     // list for item tracking and return. used for activating and moving items
     public List<Collectible2D> itemsAbsorbed;
+    // the slimes inventory UI
+    public GameObject inventory;
 
     // private vars
     // how big the slime is - affects other abilities
@@ -92,5 +93,37 @@ public class Slime : PlayerBase
 
     public bool GetSuperJump(){
         return superJump;
+    }
+
+    // add the item to the Slime's inventory UI
+    public void AddToInventoryUI(Collectible2D item){
+        // find the items index number
+        int index = itemsAbsorbed.IndexOf(item);
+        // ref the inventory slot image
+        Image slot = inventory.transform.Find($"Slot {index} Background").Find($"Item").GetComponent<Image>();
+        // assign items image
+        slot.sprite = item.gameObject.GetComponent<SpriteRenderer>().sprite;
+        // copy color
+        Color solid = slot.color;
+        // make solid
+        solid.a = 1;
+        // change color 
+        slot.color = solid;
+    }
+
+    // find an item in the slime's Inventory UI and remove it 
+    public void RemoveFromInventoryUI(Collectible2D item){
+        // find the items index number
+        int index = itemsAbsorbed.IndexOf(item);
+        // ref the inventory slot image
+        Image slot = inventory.transform.Find($"Slot {index} Background").Find($"Item").GetComponent<Image>();
+        // set image to null
+        slot.sprite = null;
+        // copy color
+        Color solid = slot.color;
+        // make see through
+        solid.a = 0;
+        // change color 
+        slot.color = solid;
     }
 }

@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alive: 1
   itemsAbsorbed: []
+  inventory: {fileID: 7034493913270037856}
 --- !u!114 &7208045258870704047
 MonoBehaviour:
   m_ObjectHideFlags: 0
