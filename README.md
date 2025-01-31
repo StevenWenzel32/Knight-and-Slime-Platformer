@@ -1,6 +1,8 @@
-Link to executable *v0.0.6 (built for Windows): https://drive.google.com/file/d/1nYPyVRCc2e2J5OsyjzOUGOqRtFmGew6a/view?usp=sharing
+Link to executable *v0.0.7 (built for Windows): https://drive.google.com/file/d/1gdzYTzuW6O3OWjNUiQeD0_0HXVcW_mKT/view?usp=sharing
 
 *Only tested on Windows and Linux. Not designed for phones or consoles.
+
+**Game production is currently on hold as I'm in school for the next 6 months**
 
 ### Windows:
 1. Download the folder, and unzip it
@@ -61,6 +63,8 @@ These are the spots open on my dev team:
 - *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for Unity to fix this.
 
 ## Version Changes:
+
+v0.0.7: Added level 8. Slime can now absorb keys and spit them out later. With updated guide. New inventory display for the Slime. Game icon improved. Temporary solution for the slime changing colors when it absorbs a liquid.
 
 v0.0.6: Added level 7, featuring keys and locked doors usable by the knight. Improved the splash screen logos. Redid the collectable and liquid classes, they work much better now.
 
