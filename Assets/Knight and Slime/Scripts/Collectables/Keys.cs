@@ -13,6 +13,12 @@ public class Keys : Collectible2D
         absorbable = true;
     }
 
+    // Update is called once per frame
+    protected override void Update()
+    {
+        
+    }
+
     // unique actions when collected
     public override void Collect(GameObject collector) {
         base.Collect(collector);

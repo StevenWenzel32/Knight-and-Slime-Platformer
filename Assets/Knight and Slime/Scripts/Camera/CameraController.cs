@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 // make sure that there is a camera before running the code
@@ -103,8 +104,12 @@ public class Controller : MonoBehaviour
     private void ZoomCamera(){
         // the width of the bounds box -- max distance between all targets + buffer
         float width = bounds.size.x + screenBuffer;
+        // find the height of the bounds box
+        float height = bounds.size.y + screenBuffer;
+        // compare width and height
+        float max = Mathf.Max(width, height); 
         // keep the zoom in the set bounds
-        float targetZoom = Mathf.Clamp(width, minZoom, maxZoom);
+        float targetZoom = Mathf.Clamp(max, minZoom, maxZoom);
         // change the orthographicSize of the camera -- the zooming
         cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, targetZoom, ref zoomVelocity, zoomDampTime);
     }

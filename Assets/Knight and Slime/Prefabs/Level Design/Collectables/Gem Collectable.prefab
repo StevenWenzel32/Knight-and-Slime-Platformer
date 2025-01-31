@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4209190788067274589}
   - component: {fileID: 8844097767393563367}
   - component: {fileID: -8059514959493750088}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: Gem Collectable
   m_TagString: Gem
   m_Icon: {fileID: 0}
@@ -145,5 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 0.5
   onCollectEffect: {fileID: 0}
+  onAbsorbEffect: {fileID: 0}
   onCollectSound: {fileID: 8300000, guid: 3e58664f8e41cf2479ee1feb8e9c5492, type: 3}
+  onAbsorbSound: {fileID: 0}
+  absorbable: 0
   scoreValue: 500

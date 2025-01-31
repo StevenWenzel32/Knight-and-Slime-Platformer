@@ -20,7 +20,8 @@ public class GameButton : Toggler
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check for collisions with player and toggle if the button is not already pushed 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") || collision.gameObject.layer == LayerMask.NameToLayer("Slime"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") || collision.gameObject.layer == LayerMask.NameToLayer("Slime")
+         || collision.gameObject.layer == LayerMask.NameToLayer("Object"))
         {
             if (contacts == 0){
                 Activate();   
@@ -34,7 +35,8 @@ public class GameButton : Toggler
     private void OnTriggerExit2D(Collider2D collision)
     {
         // Check for collisions with player 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") || collision.gameObject.layer == LayerMask.NameToLayer("Slime"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") || collision.gameObject.layer == LayerMask.NameToLayer("Slime")
+         || collision.gameObject.layer == LayerMask.NameToLayer("Object"))
         {
             contacts--;
             // check if all players have left the button

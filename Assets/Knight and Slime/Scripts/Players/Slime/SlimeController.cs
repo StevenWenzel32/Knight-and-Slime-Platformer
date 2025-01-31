@@ -1,4 +1,5 @@
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlimeController : PlayerControllerBase
@@ -234,6 +235,10 @@ public class SlimeController : PlayerControllerBase
             Debug.Log("Slime left an absorbable object");
             // get rid of prompt
             collectible?.TogglePrompt(gameObject);
+            // reset that it can absorb
+            canAbsorb = false;
+            // empty the item 
+            absorbTarget = null;
         }
         // check for collision with tunnel entrance
         if (collider.gameObject.CompareTag("Tunnel X"))
