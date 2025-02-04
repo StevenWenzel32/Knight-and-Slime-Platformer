@@ -28,6 +28,13 @@ I plan to pretty much never update this video until the game is published (had t
 This repo contains everything inside the Assets folder of my game Knight and Slime that I'm making inside of Unity. 
 The main reason for this repo is that it allows me to edit my scripts from my phone and now it lets other people access the game when I bother to update the builds.
 
+# Branches
+While in order to run the game itself its done through the link above. Here's an explanation of the branches.
+
+- Main: contains the current stable version of the game that has been released
+- Working: The branch that I'm actively working on. That means things may be broken or in the middle of changes. (If my team ever grows we will each have one of these)
+- Test: **This branch will be made once there is a difference between players and testers.** This is where changes go before they are confirmed to be stable and are moved into the main branch.
+
 ## Git Notes
 
 I'm using an extension called git for Unity to facilitate uploading my project directly inside of Unity to this remote repo.
