@@ -2,7 +2,12 @@ Link to executable *v0.0.7 (built for Windows): https://drive.google.com/file/d/
 
 *Only tested on Windows and Linux. Not designed for phones or consoles.
 
-**Game production is currently on hold as I'm in school for the next 6 months**
+**Game production is currently on hold as I'm in school from 2/1/2025 to 8/1/2025**
+
+**Pray for my soul as I will be trying to speed run 18 classes in 6 months**
+
+**Class Status**
+**2/18 off to a good start!**
 
 ### Windows:
 1. Download the folder, and unzip it
