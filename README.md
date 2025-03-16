@@ -6,7 +6,7 @@ Link to executable *v0.0.7 (built for Windows): https://drive.google.com/file/d/
 
 **Pray for my soul as I will be trying to speed run 18 classes in 6 months**
 
-**Class Status: 2/18 off to a good start!**
+**Class Status: 6/18 almost half way done and in the 2nd month!**
 
 ### Windows:
 1. Download the folder, and unzip it
