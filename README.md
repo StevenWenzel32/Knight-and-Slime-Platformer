@@ -2,7 +2,11 @@ Link to executable *v0.0.7 (built for Windows): https://drive.google.com/file/d/
 
 *Only tested on Windows and Linux. Not designed for phones or consoles.
 
-**Game production is currently on hold as I'm in school for the next 6 months**
+**Game production is currently on hold as I'm in school from 2/1/2025 to 8/1/2025**
+
+**Pray for my soul as I will be trying to speed run 18 classes in 6 months**
+
+**Class Status: 2/18 off to a good start!**
 
 ### Windows:
 1. Download the folder, and unzip it
@@ -27,6 +31,13 @@ I plan to pretty much never update this video until the game is published (had t
 
 This repo contains everything inside the Assets folder of my game Knight and Slime that I'm making inside of Unity. 
 The main reason for this repo is that it allows me to edit my scripts from my phone and now it lets other people access the game when I bother to update the builds.
+
+# Branches
+While in order to run the game itself its done through the link above. Here's an explanation of the branches.
+
+- Main: contains the current stable version of the game that has been released
+- Working: The branch that I'm actively working on. That means things may be broken or in the middle of changes. (If my team ever grows we will each have one of these)
+- Test: **This branch will be made once there is a difference between players and testers.** This is where changes go before they are confirmed to be stable and are moved into the main branch.
 
 ## Git Notes
 
