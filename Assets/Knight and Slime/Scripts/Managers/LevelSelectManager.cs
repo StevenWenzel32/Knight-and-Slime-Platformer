@@ -1,12 +1,22 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// handles the functions for the level select menu
 public class LevelSelectManager : MonoBehaviour
 {
     // only have one instance ever, can get else where but can only set here -- singleton
     public static LevelSelectManager instance {get; private set;}
     public Transform levelsUICanvas;
 
+    // chapter completion progress
+    [Header ("Chapter Info")]
+    public TMP_Text title;
+    public TMP_Text levelsCompleted;
+    public TMP_Text gems;
+    public TMP_Text percentCompleted;
+
+    // the current chapter / level select page 
+    private int pageNum = 0;
     // the current level being looked at 
     private Transform level;
     // the lock of the current level
@@ -29,6 +39,7 @@ public class LevelSelectManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DisplayChapterCompletionInfo(pageNum);
         SetUpLevels();
     }
 
@@ -108,5 +119,41 @@ public class LevelSelectManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    // get the chapter completion info from the save file
+    public void DisplayChapterCompletionInfo(int pageNum){
+        // display the title of pop up
+        title.text = "Chapter " + data.levelNum;
+        // check if the level has been beaten 
+        if (SaveManager.instance.levels[data.levelNum - 1].stars != 0){
+            // just having the # of gems always be 4 for now
+            gems.text = SaveManager.instance.levels[data.levelNum - 1].gems + "/4";
+            // convert the float time into a timespan
+            TimeSpan timeSpan = TimeSpan.FromSeconds(SaveManager.instance.levels[data.levelNum - 1].time);
+            // set the text object to the timespan and format it
+            time.text = timeSpan.ToString(format:@"mm\:ss\:ff");
+            score.text = "Score: " + SaveManager.instance.levels[data.levelNum - 1].score;
+            // might add this later -- not needed for now -- better if it was visual -- ****
+            // stars.text = "Stars: " + SaveManager.instance.levels[data.levelNum - 1].stars;
+        }
+        // if not beaten set them all to 0s -- maybe change it to a cute icon later
+        else {
+            gems.text = "0/4";
+            time.text = "00:00:00";
+            score.text = "Score: 0";
+            // later for when stars are enabled -- future update ***
+            // stars.text = "Stars: 0"
+        }
+    }
+
+    // up the page number
+    public void UpPageNum(){
+        pageNum++;
+    }
+
+    // down the page number
+    public void DownPageNum(){
+        pageNum--;
     }
 }

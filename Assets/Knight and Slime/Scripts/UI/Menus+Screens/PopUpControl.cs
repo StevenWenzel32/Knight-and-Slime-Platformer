@@ -133,6 +133,7 @@ public class PopUpControl : MonoBehaviour
         }
     }
 
+    // get the level info from the save file
     public void DisplayLevelInfo(ButtonData data){
         // display the title of pop up
         title.text = "Level " + data.levelNum;
