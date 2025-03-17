@@ -145,6 +145,7 @@ public class LevelSelectManager : MonoBehaviour
 
     // get the chapter completion info from the save file and display it
     public void DisplayChapterCompletionInfo(int pageNum){
+        Debug.Log("displaying chapter info for chapter: " + pageNum);
         // display the title of pop up
         chapterNum.text = "Chapter " + pageNum;
         // get the number of levels passed
@@ -159,6 +160,7 @@ public class LevelSelectManager : MonoBehaviour
     // based on the page number change the level select chapter to display 
     // calls the funcs to setup the chapter info and the levels
     public void DisplayChapter(int pageNum){
+        Debug.Log("displaying chapter: " + pageNum);
         // set last chapter to current chapter
         lastChapter = currentChapter;
         // find the chapter with the same number as the current page
