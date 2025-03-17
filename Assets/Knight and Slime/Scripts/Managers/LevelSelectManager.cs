@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,23 +7,28 @@ public class LevelSelectManager : MonoBehaviour
 {
     // only have one instance ever, can get else where but can only set here -- singleton
     public static LevelSelectManager instance {get; private set;}
-    public Transform levelsUICanvas;
+    // to help find the chapter page objects to display -- kind of like giving it the right folder to look in
+    public Transform chapters;
 
     // chapter completion progress
     [Header ("Chapter Info")]
-    public TMP_Text title;
+    public TMP_Text chapterNum;
     public TMP_Text levelsCompleted;
-    public TMP_Text gems;
+    public TMP_Text totalGemsCollected;
     public TMP_Text percentCompleted;
 
     // the current chapter / level select page 
-    private int pageNum = 0;
+    private int pageNum = 1;
     // the current level being looked at 
     private Transform level;
     // the lock of the current level
     private Transform levelLock;
     // the # of the next level after the current level
     private int nextLevelNumber;
+    // to help switch which chapter is being displayed
+    private Transform currentChapter;
+    // helps with switching chapters
+    private Transform lastChapter;
 
     private void OnEnable(){
         
@@ -53,7 +59,7 @@ public class LevelSelectManager : MonoBehaviour
     // the level buttons will call this function when clicked
     public void SelectLevel(int levelNumber){
         // find the level UI object
-        level = levelsUICanvas?.Find("Level " + levelNumber);
+        level = currentChapter?.Find("Level " + levelNumber);
         // find it's lock
         levelLock = level?.Find("Level Lock");
 
@@ -85,7 +91,7 @@ public class LevelSelectManager : MonoBehaviour
         for (int i = 0; i < SaveManager.instance.levels.Length; i++)
         {
             // get the level buttons parent 
-            Transform levelButton = levelsUICanvas?.Find("Level " + (i + 1));
+            Transform levelButton = currentChapter?.Find("Level " + (i + 1));
             // if the parent exists set the on click function
             if (levelButton != null){
                 // get the button child and it's button component
@@ -105,7 +111,7 @@ public class LevelSelectManager : MonoBehaviour
             // check if the level is unlocked
             if (!SaveManager.instance.levels[i].locked){
                 // find the levelButton and make sure the lock is off
-                levelsUICanvas?.Find("Level " + (i + 1))?.Find("Level Lock").gameObject.SetActive(false);
+                currentChapter?.Find("Level " + (i + 1))?.Find("Level Lock").gameObject.SetActive(false);
                 Debug.Log("Unlocked level: " + (i + 1));
             }
             // check if the level has any stars
@@ -121,38 +127,36 @@ public class LevelSelectManager : MonoBehaviour
         }
     }
 
-    // get the chapter completion info from the save file
+    // get the chapter completion info from the save file and display it
     public void DisplayChapterCompletionInfo(int pageNum){
         // display the title of pop up
-        title.text = "Chapter " + data.levelNum;
-        // check if the level has been beaten 
-        if (SaveManager.instance.levels[data.levelNum - 1].stars != 0){
-            // just having the # of gems always be 4 for now
-            gems.text = SaveManager.instance.levels[data.levelNum - 1].gems + "/4";
-            // convert the float time into a timespan
-            TimeSpan timeSpan = TimeSpan.FromSeconds(SaveManager.instance.levels[data.levelNum - 1].time);
-            // set the text object to the timespan and format it
-            time.text = timeSpan.ToString(format:@"mm\:ss\:ff");
-            score.text = "Score: " + SaveManager.instance.levels[data.levelNum - 1].score;
-            // might add this later -- not needed for now -- better if it was visual -- ****
-            // stars.text = "Stars: " + SaveManager.instance.levels[data.levelNum - 1].stars;
-        }
-        // if not beaten set them all to 0s -- maybe change it to a cute icon later
-        else {
-            gems.text = "0/4";
-            time.text = "00:00:00";
-            score.text = "Score: 0";
-            // later for when stars are enabled -- future update ***
-            // stars.text = "Stars: 0"
-        }
+        chapterNum.text = "Chapter " + pageNum;
+        // get the number of levels passed
+        // SaveManager.instance.levels[data.levelNum - 1].stars != 0
+        levelsCompleted.text = "take a guess/10";
+        // get the total # of gems collected 
+        totalGemsCollected.text = "working on it/40";
+        // show the percent of the chapter completed -- need to have a percent calulator
+        percentCompleted.text = "Coming Soon%";
     }
 
-    // up the page number
+    // based on the page number change the level select chapter to display 
+    public void DisplayChapter(int pageNum){
+        // find the chapter with the same number as the current page
+        currentChapter = chapters?.Find("Chapter " + pageNum);
+        // turn on this chapters map 
+        currentChapter.gameObject.SetActive(true);
+        // turn off the old chapters map
+        lastChapter.gameObject.SetActive(false);
+    }
+
+    // up the page number -- chnage the name to change page right
     public void UpPageNum(){
         pageNum++;
+        // call disply chapter func
     }
 
-    // down the page number
+    // down the page number -- chnage the name to change page left 
     public void DownPageNum(){
         pageNum--;
     }
