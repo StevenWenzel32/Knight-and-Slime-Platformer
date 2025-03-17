@@ -7,8 +7,17 @@ public class LevelSelectManager : MonoBehaviour
 {
     // only have one instance ever, can get else where but can only set here -- singleton
     public static LevelSelectManager instance {get; private set;}
+    
+
+    [Header ("Setup Info")]
     // to help find the chapter page objects to display -- kind of like giving it the right folder to look in
     public Transform chapters;
+    // what chapter to display on start
+    public Transform startChapter;
+
+    [Header ("Page Controls")]
+    public Transform rightArrow;
+    public Transform leftArrow;
 
     // chapter completion progress
     [Header ("Chapter Info")]
@@ -19,6 +28,8 @@ public class LevelSelectManager : MonoBehaviour
 
     // the current chapter / level select page 
     private int pageNum = 1;
+    // to know when to have the page arrows disapear
+    private int maxPageNum = 1;
     // the current level being looked at 
     private Transform level;
     // the lock of the current level
@@ -45,8 +56,13 @@ public class LevelSelectManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DisplayChapterCompletionInfo(pageNum);
-        SetUpLevels();
+        // set the current chapter to the start chapter
+        currentChapter = startChapter;
+        // setup the chapter page
+        DisplayChapter(pageNum);
+        // make sure the arrows are displayed correctly 
+        ToggleLeftArrow();
+        ToggleRightArrow();
     }
 
     // sends the player to the designated scene
@@ -141,23 +157,62 @@ public class LevelSelectManager : MonoBehaviour
     }
 
     // based on the page number change the level select chapter to display 
+    // calls the funcs to setup the chapter info and the levels
     public void DisplayChapter(int pageNum){
+        // set last chapter to current chapter
+        lastChapter = currentChapter;
         // find the chapter with the same number as the current page
         currentChapter = chapters?.Find("Chapter " + pageNum);
         // turn on this chapters map 
         currentChapter.gameObject.SetActive(true);
-        // turn off the old chapters map
-        lastChapter.gameObject.SetActive(false);
+        // check if the last chapter is the current chapter
+        if (lastChapter != currentChapter){
+            // turn off the old chapters map
+            lastChapter.gameObject.SetActive(false);
+        }
+        DisplayChapterCompletionInfo(pageNum);
+        SetUpLevels();
     }
 
-    // up the page number -- chnage the name to change page right
-    public void UpPageNum(){
-        pageNum++;
-        // call disply chapter func
+    // decrease the page num and display the approriate chapter
+    public void ChangePageRight(){
+        // check if the page is at max
+        if (pageNum != maxPageNum){
+            pageNum++;
+        }
+        // call display chapter func
+        DisplayChapter(pageNum);
+        ToggleRightArrow();
     }
 
-    // down the page number -- chnage the name to change page left 
-    public void DownPageNum(){
-        pageNum--;
+    // decrease the page num and display the approriate chapter
+    public void ChangePageLeft(){
+        // check if the page is at max
+        if (pageNum != 1){
+            pageNum--;
+        }
+        // call display chapter func
+        DisplayChapter(pageNum);
+        ToggleLeftArrow();
+    }
+
+    // toggles the right arrow on and off if needed
+    private void ToggleRightArrow(){
+        // check if page num is max
+        if (pageNum == maxPageNum){
+            rightArrow.gameObject.SetActive(false);
+        } else {
+            rightArrow.gameObject.SetActive(true);
+        }
+    }
+
+    // toggles the left arrow on and off if needed
+    private void ToggleLeftArrow(){
+        // check if page num is max
+        if (pageNum == 1){
+            leftArrow.gameObject.SetActive(false);
+        } else {
+            leftArrow.gameObject.SetActive(true);
+        }
     }
 }

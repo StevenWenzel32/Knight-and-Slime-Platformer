@@ -267,7 +267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &43162650
 RectTransform:
   m_ObjectHideFlags: 0
@@ -346,46 +346,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1344244118}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 43162649}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 876367393}
+        m_TargetAssemblyTypeName: LevelSelectManager, Assembly-CSharp
+        m_MethodName: ChangePageLeft
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -799,7 +763,6 @@ GameObject:
   - component: {fileID: 166181538}
   - component: {fileID: 166181541}
   - component: {fileID: 166181540}
-  - component: {fileID: 166181539}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -826,19 +789,6 @@ RectTransform:
   m_AnchoredPosition: {x: 102, y: 0.000011444}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &166181539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166181537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71a2a215748f75848a8ba54664b6df2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelNumber: 0
 --- !u!114 &166181540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8987,7 +8937,6 @@ GameObject:
   - component: {fileID: 490067070}
   - component: {fileID: 490067073}
   - component: {fileID: 490067072}
-  - component: {fileID: 490067071}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -9014,20 +8963,6 @@ RectTransform:
   m_AnchoredPosition: {x: 76, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &490067071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490067069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c40274f66b4db24d925ac223f02f322, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gemsToCollect: 4
-  gemsCollected: 0
 --- !u!114 &490067072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9413,11 +9348,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04019b340d380dd4083e2cb90563d52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelsUICanvas: {fileID: 5453291}
-  chapterNum: {fileID: 0}
-  levelsCompleted: {fileID: 0}
-  totalGemsCollected: {fileID: 0}
-  percentCompleted: {fileID: 0}
+  chapters: {fileID: 659366371}
+  startChapter: {fileID: 1270663645}
+  rightArrow: {fileID: 1344244123}
+  leftArrow: {fileID: 43162650}
+  chapterNum: {fileID: 1988854229}
+  levelsCompleted: {fileID: 166181540}
+  totalGemsCollected: {fileID: 490067072}
+  percentCompleted: {fileID: 1882728166}
 --- !u!1001 &893359262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11897,44 +11835,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 876367393}
         m_TargetAssemblyTypeName: LevelSelectManager, Assembly-CSharp
-        m_MethodName: UpPageNum
+        m_MethodName: ChangePageRight
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 43162649}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1344244118}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12684,7 +12586,6 @@ GameObject:
   - component: {fileID: 1882728164}
   - component: {fileID: 1882728167}
   - component: {fileID: 1882728166}
-  - component: {fileID: 1882728165}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -12711,20 +12612,6 @@ RectTransform:
   m_AnchoredPosition: {x: 76, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1882728165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882728163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c40274f66b4db24d925ac223f02f322, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gemsToCollect: 0
-  gemsCollected: 0
 --- !u!114 &1882728166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13079,7 +12966,6 @@ GameObject:
   - component: {fileID: 1988854227}
   - component: {fileID: 1988854230}
   - component: {fileID: 1988854229}
-  - component: {fileID: 1988854228}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -13106,19 +12992,6 @@ RectTransform:
   m_AnchoredPosition: {x: 102, y: 0.000011444}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1988854228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988854226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71a2a215748f75848a8ba54664b6df2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelNumber: 0
 --- !u!114 &1988854229
 MonoBehaviour:
   m_ObjectHideFlags: 0
