@@ -150,11 +150,11 @@ public class LevelSelectManager : MonoBehaviour
         chapterNum.text = "Chapter " + pageNum;
         // get the number of levels passed
         // SaveManager.instance.levels[data.levelNum - 1].stars != 0
-        levelsCompleted.text = "take a guess/10";
+        levelsCompleted.text = "10/10";
         // get the total # of gems collected 
-        totalGemsCollected.text = "working on it/40";
+        totalGemsCollected.text = "40/40";
         // show the percent of the chapter completed -- need to have a percent calulator
-        percentCompleted.text = "Coming Soon%";
+        percentCompleted.text = "100%";
     }
 
     // based on the page number change the level select chapter to display 
