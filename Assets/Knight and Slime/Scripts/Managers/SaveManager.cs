@@ -7,33 +7,33 @@ public class SaveManager : MonoBehaviour
     public static SaveManager instance {get; private set;}
     // for initalizing size
     private int levelCount = 10;
-    // where the saved data gets loaded and where new data goes
+    // for initalizing chapters size
+    private int chapterCount = 4;
+
+    // where the saved level data gets loaded and where new data goes -- move into chapterInfo
     public LevelInfo[] levels;
+    // where the saved chapter data gets loaded and where new data goes
+    public ChapterInfo[] chapters;
 
     public void Awake(){
         // singleton stuff
         if (instance == null){
             instance = this;
-            // make sure this persists across scenes
+            // make sure the save manager persists across scenes
             DontDestroyOnLoad(gameObject);
-            // initalize the levels to a size
-            levels = new LevelInfo[levelCount];
-            // since the levelInfo is a class not a struct need to initalize the array before use
-            for (int i = 0; i < levelCount; i++)
-            {
-                levels[i] = new LevelInfo();
-                // if the first level make sure it's unlocked
-                if (i == 0){
-                    levels[i].locked = false;
-                }
-            }
-            // load in the saved PlayerData
-            LoadAllLevelData();
+
+            // setup the levels array
+            InitalizeLevelsArray();
+
+            // setup the chapters array
+            InitalizeChaptersArray();
+
         } else {
             Destroy(gameObject);
         }
     }
 
+#region Level Data
     // save all of the level data present in levels[] - called when the save button is pressed by the user
     public void SaveAllLevelData(){
         // loop through all the levels and save their data
@@ -58,10 +58,13 @@ public class SaveManager : MonoBehaviour
         if (levelData.gems > PlayerPrefs.GetInt($"Level_{levelNumber}_Gems")){
             // save the data 
             SaveData(levelData, levelNumber);
+            // save the updated chapter info
+//            SaveChapterData(ChapterInfo chapterData, int chapterNumber);
         } 
         // check if the player had the same amount of gems but a better time
         else if ((levelData.gems == PlayerPrefs.GetInt($"Level_{levelNumber}_Gems")) && (levelData.time < PlayerPrefs.GetFloat($"Level_{levelNumber}_Time"))){
             SaveData(levelData, levelNumber);
+ //           SaveChapterData(ChapterInfo chapterData, int chapterNumber)
         }
 
         // save them right away
@@ -78,7 +81,6 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt($"Level_{levelNumber}_Locked", levelData.locked ? 1 : 0);
     }
 
-    // pass in a LevelInfo and save it's data into the playerPrefs
     // call this when a level is completed
     public void SaveLevelLock(bool locked, int levelNumber)
     {
@@ -90,7 +92,7 @@ public class SaveManager : MonoBehaviour
     }
 
     // pass in a levelNumber and load that levels data into levels[]
-    // called when the game is loaded
+    // called when the game is loaded -- can switch to being loaded when the chapter is accessed
     public void LoadAllLevelData()
     {
         // loop through all the levels[] and load their data
@@ -106,4 +108,72 @@ public class SaveManager : MonoBehaviour
             levels[i].locked = PlayerPrefs.GetInt($"Level_{i + 1}_Locked", 1) == 1;
         }
     }
+
+    // create the array to store the level data and load in the saved data
+    private void InitalizeLevelsArray(){
+        // initalize the levels to a size
+        levels = new LevelInfo[levelCount];
+        // since the levelInfo is a class not a struct need to initalize the array before use
+        for (int i = 0; i < levelCount; i++)
+        {
+            levels[i] = new LevelInfo();
+            // if the first level make sure it's unlocked
+            if (i == 0){
+                levels[i].locked = false;
+            }
+        }
+        // load in the saved PlayerData
+        LoadAllLevelData();
+    }
+#endregion
+
+#region Chapter Data
+    // pass in a ChapterInfo and save it's data into the playerPrefs
+    // should be called when ever save data is called
+    public void SaveChapterData(ChapterInfo chapterData, int chapterNumber){
+        // Use keys with the level number as part of the key name
+        // save the data for the chapter
+        PlayerPrefs.SetInt($"Chapter_{chapterNumber}_Levels", chapterData.levelsCompleted);
+        PlayerPrefs.SetInt($"Chapter_{chapterNumber}_Gems", chapterData.gemsCollected);
+        PlayerPrefs.SetInt($"Chapter_{chapterNumber}_Percent", chapterData.percentCompleted);
+        PlayerPrefs.SetInt($"Chapter_{chapterNumber}_Locked", chapterData.locked ? 1 : 0);
+        // save them right away
+        PlayerPrefs.Save();
+    }
+
+    // load chapter data until chapters is full
+    // called when the game is loaded
+    public void LoadAllChapterData(){
+        // loop through all the chapters[] and load their data
+        for (int i = 0; i < chapters.Length; i++){
+            // check if a chapter is locked, if so it still has default data
+            if (PlayerPrefs.GetInt($"Chapter_{i + 1}_Locked", 1) == 1){
+                break;
+            }
+            chapters[i].levelsCompleted = PlayerPrefs.GetInt($"Chapter_{i + 1}_Levels", 0);
+            chapters[i].gemsCollected = PlayerPrefs.GetInt($"Chapter_{i + 1}_Gems", 0);
+            chapters[i].percentCompleted = PlayerPrefs.GetInt($"Chapter_{i + 1}_Percent", 0);
+            chapters[i].locked = PlayerPrefs.GetInt($"Chapter_{i + 1}_Locked", 1) == 1;
+            // load the level data for this chapter till the chapters levels[] is full
+            
+        }
+    }
+
+    // create the array to store the level data and load in the saved data
+    private void InitalizeChaptersArray(){
+        // initalize chapters[]
+        chapters = new ChapterInfo[chapterCount];
+        // since the chapterInfo is a class not a struct need to initalize the array before use
+        for (int i = 0; i < chapterCount; i++)
+        {
+            chapters[i] = new ChapterInfo();
+            // if the first level make sure it's unlocked
+            if (i == 0){
+                chapters[i].locked = false;
+            }
+        }
+        // load in the saved Chapter data from PlayerData
+        LoadAllChapterData();
+    }
+#endregion
 }

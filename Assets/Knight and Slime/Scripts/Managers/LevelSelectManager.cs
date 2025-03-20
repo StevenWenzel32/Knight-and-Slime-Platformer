@@ -7,12 +7,12 @@ public class LevelSelectManager : MonoBehaviour
 {
     // only have one instance ever, can get else where but can only set here -- singleton
     public static LevelSelectManager instance {get; private set;}
-    
 
-    [Header ("Setup Info")]
+    [Header ("Start Up Info")]
     // to help find the chapter page objects to display -- kind of like giving it the right folder to look in
     public Transform chapters;
-    // what chapter to display on start
+    // what chapter to display on start -- give players the option to bookmark a chapter which will set this
+    // the chapters that will be loaded will be the start - 1, start, start + 1
     public Transform startChapter;
 
     [Header ("Page Controls")]
@@ -20,27 +20,32 @@ public class LevelSelectManager : MonoBehaviour
     public Transform leftArrow;
 
     // chapter completion progress
-    [Header ("Chapter Info")]
+    [Header ("Chapter Display Info")]
     public TMP_Text chapterNum;
     public TMP_Text levelsCompleted;
     public TMP_Text totalGemsCollected;
     public TMP_Text percentCompleted;
 
+    // chapter managment stuff
+    // chapter info to be set to the one being saved
+    public ChapterInfo chapterInfo = new ChapterInfo ();
     // the current chapter / level select page 
     private int pageNum = 1;
     // to know when to have the page arrows disapear
     private int maxPageNum = 1;
+    // to help switch which chapter is being displayed
+    private Transform currentChapter;
+    // helps with switching chapters
+    private Transform lastChapter;
+
+    // level loading and pop up stuff
     // the current level being looked at 
     private Transform level;
     // the lock of the current level
     private Transform levelLock;
     // the # of the next level after the current level
     private int nextLevelNumber;
-    // to help switch which chapter is being displayed
-    private Transform currentChapter;
-    // helps with switching chapters
-    private Transform lastChapter;
-
+    
     private void OnEnable(){
         
     }
@@ -217,4 +222,13 @@ public class LevelSelectManager : MonoBehaviour
             leftArrow.gameObject.SetActive(true);
         }
     }
+
+// --- for saving chapter data ---
+    // level is completed
+    // level data is saved
+    // chapter data is updated/saved
+
+// --- for loading level data ---
+    // put the levels array inside the chapterInfo
+    // levels should be loaded after the chapter page has been loaded 
 }

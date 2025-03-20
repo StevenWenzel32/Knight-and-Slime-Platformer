@@ -7,6 +7,5 @@ public class LevelInfo{
     public int stars = 0;
     public int score = 0;
     public float time = 0;
-    // probably need this to let players access the proper levels
     public bool locked = true;
 }
