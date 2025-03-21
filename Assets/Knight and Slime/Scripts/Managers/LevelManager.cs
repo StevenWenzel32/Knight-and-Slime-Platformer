@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     // level info var to be set that the one that is being saved 
     public LevelInfo levelInfo = new LevelInfo();
     private int levelNumber;
+    private int chapterNumber;
 
     [Header ("Display Stats")]
     public TMP_Text levelNum;
@@ -66,6 +67,9 @@ public class LevelManager : MonoBehaviour
         HighScoreMsg.SetActive(false);
 
         levelNumber = LevelCounter.instance.levelNumber;
+        // for easy reference grab the current chapter num
+        chapterNumber = ChapterManager.instance.currentChapterNumber;
+
         // start timer
         EventManager.OnTimerStart();
     }
@@ -238,10 +242,10 @@ public class LevelManager : MonoBehaviour
     // check if the player got a new high score
     private bool CheckIfBetterScore(){
         bool better = false;
-        int gemsOld = SaveManager.instance.levels[levelNumber - 1].gems;
+        int gemsOld = ChapterManager.instance.chapters[chapterNumber].levels[levelNumber - 1].gems;
         int gemsNew = GemCounter.instance.gemsCollected;
         float newTime = ScoreCounter.instance.playerTime;
-        float oldTime = SaveManager.instance.levels[levelNumber - 1].time;
+        float oldTime = ChapterManager.instance.chapters[chapterNumber].levels[levelNumber - 1].time;
         // if more gems collected
         if (gemsNew > gemsOld){
             better = true;
@@ -264,8 +268,8 @@ public class LevelManager : MonoBehaviour
 
         // send the level data from the counters to the levelInfo which is currently empty
         UpdateLevelInfo();
-        // save the levelInfo to the array in the saveManager
-        SaveManager.instance.levels[levelNumber - 1] = levelInfo;
+        // save the levelInfo to the array in the current chapterInfo
+        ChapterManager.instance.chapters[chapterNumber].levels[levelNumber - 1] = levelInfo;
         // have the saveManager save the new current level data to playerPrefs
         SaveManager.instance.SaveLevelData(levelInfo, levelNumber);
     }
@@ -273,10 +277,10 @@ public class LevelManager : MonoBehaviour
     // unlock the next level if it isn't already unlocked
     private void UnlockNextLevel(){
         // check if the lock is active and if levelNumber is the last level, and only change save data if it is
-        if (levelNumber != SaveManager.instance.levels.Length && SaveManager.instance.levels[levelNumber + 1].locked){
+        if (levelNumber != ChapterManager.instance.chapters[chapterNumber].levels.Length && ChapterManager.instance.chapters[chapterNumber].levels[levelNumber + 1].locked){
             Debug.Log("Changing lock data for level: " + (levelNumber + 1));
             // turn off the lock for the next level in the LevelInfo
-            SaveManager.instance.levels[levelNumber].locked = false;
+            ChapterManager.instance.chapters[chapterNumber].levels[levelNumber].locked = false;
             // save just the lock change for the next level to playerPrefs
             SaveManager.instance.SaveLevelLock(false, levelNumber + 1);
         }

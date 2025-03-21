@@ -1,19 +1,12 @@
 using UnityEngine;
 
 // saves player data in binary form for security 
+// read and writes the game data for levels and chapters
 public class SaveManager : MonoBehaviour
 {
     // only have one instance ever, can get else where but can only set here -- singleton
     public static SaveManager instance {get; private set;}
-    // for initalizing size
-    private int levelCount = 10;
-    // for initalizing chapters size
-    private int chapterCount = 4;
 
-    // where the saved level data gets loaded and where new data goes -- move into chapterInfo
-    public LevelInfo[] levels;
-    // where the saved chapter data gets loaded and where new data goes
-    public ChapterInfo[] chapters;
 
     public void Awake(){
         // singleton stuff
@@ -22,12 +15,8 @@ public class SaveManager : MonoBehaviour
             // make sure the save manager persists across scenes
             DontDestroyOnLoad(gameObject);
 
-            // setup the levels array
-            InitalizeLevelsArray();
-
             // setup the chapters array
             InitalizeChaptersArray();
-
         } else {
             Destroy(gameObject);
         }
@@ -109,22 +98,6 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    // create the array to store the level data and load in the saved data
-    private void InitalizeLevelsArray(){
-        // initalize the levels to a size
-        levels = new LevelInfo[levelCount];
-        // since the levelInfo is a class not a struct need to initalize the array before use
-        for (int i = 0; i < levelCount; i++)
-        {
-            levels[i] = new LevelInfo();
-            // if the first level make sure it's unlocked
-            if (i == 0){
-                levels[i].locked = false;
-            }
-        }
-        // load in the saved PlayerData
-        LoadAllLevelData();
-    }
 #endregion
 
 #region Chapter Data
@@ -143,7 +116,7 @@ public class SaveManager : MonoBehaviour
 
     // load chapter data until chapters is full
     // called when the game is loaded
-    public void LoadAllChapterData(){
+    public void LoadAllChapterData(ChapterInfo chapter){
         // loop through all the chapters[] and load their data
         for (int i = 0; i < chapters.Length; i++){
             // check if a chapter is locked, if so it still has default data
@@ -154,26 +127,18 @@ public class SaveManager : MonoBehaviour
             chapters[i].gemsCollected = PlayerPrefs.GetInt($"Chapter_{i + 1}_Gems", 0);
             chapters[i].percentCompleted = PlayerPrefs.GetInt($"Chapter_{i + 1}_Percent", 0);
             chapters[i].locked = PlayerPrefs.GetInt($"Chapter_{i + 1}_Locked", 1) == 1;
-            // load the level data for this chapter till the chapters levels[] is full
-            
+
+            // setup the chapters levels array
+            chapter.InitalizeLevelsArray();
         }
     }
 
-    // create the array to store the level data and load in the saved data
-    private void InitalizeChaptersArray(){
-        // initalize chapters[]
-        chapters = new ChapterInfo[chapterCount];
-        // since the chapterInfo is a class not a struct need to initalize the array before use
-        for (int i = 0; i < chapterCount; i++)
-        {
-            chapters[i] = new ChapterInfo();
-            // if the first level make sure it's unlocked
-            if (i == 0){
-                chapters[i].locked = false;
-            }
-        }
-        // load in the saved Chapter data from PlayerData
-        LoadAllChapterData();
-    }
+    
 #endregion
+
+
+// needs a new home ------- **********
+        // load in the saved PlayerData
+        // load the level data for this chapter till the chapters levels[] is full
+        LoadAllLevelData();
 }

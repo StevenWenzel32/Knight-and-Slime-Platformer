@@ -2,7 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// handles the functions for the level select menu
+// handles the UI, transitions, and related functions for the level select menu
+// displays the chapter info, handles transitions between chapters, handles starting levels
 public class LevelSelectManager : MonoBehaviour
 {
     // only have one instance ever, can get else where but can only set here -- singleton
@@ -11,9 +12,6 @@ public class LevelSelectManager : MonoBehaviour
     [Header ("Start Up Info")]
     // to help find the chapter page objects to display -- kind of like giving it the right folder to look in
     public Transform chapters;
-    // what chapter to display on start -- give players the option to bookmark a chapter which will set this
-    // the chapters that will be loaded will be the start - 1, start, start + 1
-    public Transform startChapter;
 
     [Header ("Page Controls")]
     public Transform rightArrow;
@@ -28,7 +26,7 @@ public class LevelSelectManager : MonoBehaviour
 
     // chapter managment stuff
     // chapter info to be set to the one being saved
-    public ChapterInfo chapterInfo = new ChapterInfo ();
+    public ChapterInfo chapter = new ChapterInfo ();
     // the current chapter / level select page 
     private int pageNum = 1;
     // to know when to have the page arrows disapear
@@ -62,7 +60,7 @@ public class LevelSelectManager : MonoBehaviour
             Destroy(gameObject);
         }
         // set the current chapter to the start chapter
-        currentChapter = startChapter;
+        currentChapter = ChapterManager.instance.startChapter;
         // setup the chapter page
         DisplayChapter(pageNum);
         // make sure the arrows are displayed correctly 
