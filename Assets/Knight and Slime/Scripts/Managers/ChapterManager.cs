@@ -14,13 +14,17 @@ public class ChapterManager : MonoBehaviour
     // only have one instance ever in the scene, can get else where but can only set here -- singleton -- if you use don't destroy on load it will last across scenes
     public static ChapterManager instance {get; private set;}
     // for initalizing chapters[] size
-    private int chapterCount = 3;
+    // chnage back to a size of 3 once there are 3 or more chapters
+    // 1 is a place holder 
+    const int CHAPTER_COUNT = 1;
     // where the saved chapter data gets loaded and where new data goes
     // chapters are stored in this order: current, last, next
     public ChapterInfo[] chapters;
     // what chapter to display on start -- give players the option to bookmark a chapter which will set this
     // the chapter that starts as the current chapter on start up
     public Transform startChapter;
+    // keeps track of the chapter object that is currently being looked at and used
+    public ChapterInfo currentChapterInfo;
     // used to keep track of the current chapter #
     public int currentChapterNumber;
     // the offest used to keep track of the current levels location in the chapters[], is wrapping
@@ -35,8 +39,13 @@ public class ChapterManager : MonoBehaviour
         // singleton stuff
         if (instance == null){
             instance = this;
-            // Persist levelManager across scenes -- good for performance
+            // Persist chapterManager across scenes -- good for performance
             DontDestroyOnLoad(gameObject);
+
+            // initialize the chapters manager
+            InitalizeChaptersArray();
+            // load the default or the bookmarked chapter 
+            LoadChapterIntoBuffer(1,0);
         } else {
             Destroy(gameObject);
         }
@@ -44,29 +53,46 @@ public class ChapterManager : MonoBehaviour
     }
 
     // load the previous chapter -- called when moving a page to the left
+    // not needed until there are more than 10 levels ************
     public void LoadPreviousChapter(){
         
     }
 
     // load the next chapter -- called when moving a page to the right
+    // handles all the chapters[] buffer related operations
+    // not needed until there are more than 10 levels ************
     public void LoadNextChapter(){
         // update currentChapterNum
         currentChapterNumber++;
         // update offset
         IncreaseChapterOffset();
         // unload previous chapter
-        UnloadChapterFromBuffer(chapterNum, index);
+//        UnloadChapterFromBuffer(chapterNum, index);
         // load next chapter
-        LoadChapterIntoBuffer(chapterNum, index);
+//        LoadChapterIntoBuffer(chapterNum, index);
+    }
+
+    // changes the chapter being shown. calls helper functions that handle sepcific parts of the process
+    // changes based on if they are moving to the next or previous chapter
+    // true = show the next chapter
+    // false = show the previous chapter
+    private void ChangeChapter(bool nextChapter){
+        if (nextChapter){
+            LoadNextChapter();
+        } else {
+            LoadPreviousChapter();
+        }
+        UpdateChapterInfo();
     }
 
     // loads the given chapter into the chapters[]
     public void LoadChapterIntoBuffer(int chapterNum, int index){
         // load new chapter over chapters[index]
-
+        chapters[index] = // some call to some save manager function 
     }
 
     // unloads the given chapter and resaves its data to the save files -- currently player Prefs
+    // not needed until there are more than 10 levels ************
     public void UnloadChapterFromBuffer(int chapterNum, int index){
         // save chapter data
 
@@ -74,24 +100,26 @@ public class ChapterManager : MonoBehaviour
     }
 
     // called when progressing to higher # chapters/ going to the right in the UI
+    // not needed until there are more than 10 levels ************
     public void IncreaseChapterOffset(){
         // check what the value of the offset already is
     }
 
     // called when decreasing to lower # chapters/ going to the left in the UI
+    // not needed until there are more than 10 levels ************
     public void DecreaseChapterOffset(){
 
     }
 
-    // initalize the chapters array -- move loading the data into it somewhere else *****
+    // initalize the chapters array
     private void InitalizeChaptersArray(){
         // initalize chapters[]
-        chapters = new ChapterInfo[chapterCount];
+        chapters = new ChapterInfo[CHAPTER_COUNT];
         // since the chapterInfo is a class not a struct need to initalize the array before use
-        for (int i = 0; i < chapterCount; i++)
+        for (int i = 0; i < CHAPTER_COUNT; i++)
         {
             chapters[i] = new ChapterInfo();
-            // if the first level make sure it's unlocked
+            // if the first chapter make sure it's unlocked
             if (i == 0){
                 chapters[i].locked = false;
             }
@@ -109,7 +137,8 @@ public class ChapterManager : MonoBehaviour
 
     }
 
-    // unlock the next level if it isn't already unlocked
+    // unlock the next chapter if it isn't already unlocked
+    // not needed until there are more than 10 levels ************
     private void UnlockNextChapter(){
 
     }

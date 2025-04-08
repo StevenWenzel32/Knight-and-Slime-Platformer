@@ -12,8 +12,11 @@ public class LevelManager : MonoBehaviour
     // only have one instance ever in the scene, can get else where but can only set here -- singleton -- if you use don't destroy on load it will last across scenes
     public static LevelManager instance {get; private set;}
     // level info var to be set that the one that is being saved 
-    public LevelInfo levelInfo = new LevelInfo();
+    // once a level is completed this is where the data is stored before being saved
+    public LevelInfo currentLevel;
+    // for easy reference to the levelNumber inside the levelCounter
     private int levelNumber;
+    // for easy reference to the currrentChapterNumber inside chapterManager
     private int chapterNumber;
 
     [Header ("Display Stats")]
@@ -66,6 +69,9 @@ public class LevelManager : MonoBehaviour
         settingsScreen?.SetActive(false);
         HighScoreMsg.SetActive(false);
 
+        // for easy reference to the current levelInfo inside the levels[]
+        currentLevel = ChapterManager.instance.chapters[chapterNumber].levels[levelNumber - 1];
+        // for easy reference to the levelNumber inside the levelCounter
         levelNumber = LevelCounter.instance.levelNumber;
         // for easy reference grab the current chapter num
         chapterNumber = ChapterManager.instance.currentChapterNumber;
@@ -229,14 +235,14 @@ public class LevelManager : MonoBehaviour
         // starsEarned.text = "Stars: " + ScoreCounter.instance.stars;
     }
 
-    // update the levelInfo for the level just completed
+    // update the levelInfo in the levels[] for the level just completed
     private void UpdateLevelInfo(){
-        levelInfo.gems = GemCounter.instance.gemsCollected;
-        levelInfo.time = ScoreCounter.instance.playerTime;    
-        levelInfo.score = ScoreCounter.instance.score;
-        levelInfo.stars = ScoreCounter.instance.stars;
+        currentLevel.gems = GemCounter.instance.gemsCollected;
+        currentLevel.time = ScoreCounter.instance.playerTime;    
+        currentLevel.score = ScoreCounter.instance.score;
+        currentLevel.stars = ScoreCounter.instance.stars;
         // if remove lock works correctly this is not needed
-        levelInfo.locked = false;
+        currentLevel.locked = false;
     }
 
     // check if the player got a new high score
@@ -264,14 +270,12 @@ public class LevelManager : MonoBehaviour
     // save the new high score 
     private void SaveNewLevelData(){
         Debug.Log("Player got a new high score!");
-        // display a new high score message to the player
+        // display a new high score message to the player --- ****?????
 
-        // send the level data from the counters to the levelInfo which is currently empty
+        // update the level data in the levels[] aka currentLevel
         UpdateLevelInfo();
-        // save the levelInfo to the array in the current chapterInfo
-        ChapterManager.instance.chapters[chapterNumber].levels[levelNumber - 1] = levelInfo;
         // have the saveManager save the new current level data to playerPrefs
-        SaveManager.instance.SaveLevelData(levelInfo, levelNumber);
+        SaveManager.instance.SaveLevelData(currentLevel, levelNumber);
     }
 
     // unlock the next level if it isn't already unlocked

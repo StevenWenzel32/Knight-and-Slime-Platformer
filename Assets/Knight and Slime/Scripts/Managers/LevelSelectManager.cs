@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +10,12 @@ public class LevelSelectManager : MonoBehaviour
     // only have one instance ever, can get else where but can only set here -- singleton
     public static LevelSelectManager instance {get; private set;}
 
+    // consts
+    // chapters will always have 10 levels
+    const int NUM_OF_LEVELS = 10;
+
     [Header ("Start Up Info")]
+    // the location of the chapters folder
     // to help find the chapter page objects to display -- kind of like giving it the right folder to look in
     public Transform chapters;
 
@@ -26,12 +32,15 @@ public class LevelSelectManager : MonoBehaviour
 
     // chapter managment stuff
     // chapter info to be set to the one being saved
+    // when a level is completed and the 
     public ChapterInfo chapter = new ChapterInfo ();
     // the current chapter / level select page 
     private int pageNum = 1;
     // to know when to have the page arrows disapear
     private int maxPageNum = 1;
     // to help switch which chapter is being displayed
+    // the objects name is used for searching and other functions
+    // acts a little bit like the page being displayed
     private Transform currentChapter;
     // helps with switching chapters
     private Transform lastChapter;
@@ -91,7 +100,8 @@ public class LevelSelectManager : MonoBehaviour
         }
     }
 
-    // finish later -- not needed for class 
+    // do later ******
+    // reflect the players score and gems collected using visual stars on the chapter page
     // is not called if level is failed
     public void UpdateStars(int stars){
         if (stars == 3){
@@ -107,7 +117,7 @@ public class LevelSelectManager : MonoBehaviour
     public void SetUpLevels(){
         Debug.Log("set up levels is called");
         // loop through levels
-        for (int i = 0; i < SaveManager.instance.levels.Length; i++)
+        for (int i = 0; i < NUM_OF_LEVELS; i++)
         {
             // get the level buttons parent 
             Transform levelButton = currentChapter?.Find("Level " + (i + 1));
@@ -128,7 +138,7 @@ public class LevelSelectManager : MonoBehaviour
             Debug.Log("LevelInfo for level: " + (i + 1) + ", Lock Status = " + SaveManager.instance.levels[i].locked);
             
             // check if the level is unlocked
-            if (!SaveManager.instance.levels[i].locked){
+            if (!chapter.levels[i].locked){
                 // find the levelButton and make sure the lock is off
                 currentChapter?.Find("Level " + (i + 1))?.Find("Level Lock").gameObject.SetActive(false);
                 Debug.Log("Unlocked level: " + (i + 1));
@@ -147,21 +157,22 @@ public class LevelSelectManager : MonoBehaviour
     }
 
     // get the chapter completion info from the save file and display it
+    // should get called each time a level is completed *****
     public void DisplayChapterCompletionInfo(int pageNum){
         Debug.Log("displaying chapter info for chapter: " + pageNum);
         // display the title of pop up
         chapterNum.text = "Chapter " + pageNum;
         // get the number of levels passed
-        // SaveManager.instance.levels[data.levelNum - 1].stars != 0
-        levelsCompleted.text = "10/10";
+        levelsCompleted.text = chapter.SumCompletedLevels() + "/10";
         // get the total # of gems collected 
-        totalGemsCollected.text = "40/40";
-        // show the percent of the chapter completed -- need to have a percent calulator
-        percentCompleted.text = "100%";
+        totalGemsCollected.text = chapter.SumGemsCollected() + "/40";
+        // show the percent of the chapter completed
+        percentCompleted.text = chapter.CalculatePercent() + "%";
     }
 
     // based on the page number change the level select chapter to display 
     // calls the funcs to setup the chapter info and the levels
+    // should get called each time the chapter page changes
     public void DisplayChapter(int pageNum){
         Debug.Log("displaying chapter: " + pageNum);
         // set last chapter to current chapter
@@ -179,7 +190,7 @@ public class LevelSelectManager : MonoBehaviour
         SetUpLevels();
     }
 
-    // decrease the page num and display the approriate chapter
+    // increase the page num and display the approriate chapter
     public void ChangePageRight(){
         // check if the page is at max
         if (pageNum != maxPageNum){
