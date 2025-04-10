@@ -115,7 +115,7 @@ public class PopUpControl : MonoBehaviour
 
     public void ShowPopUp(ButtonData data){
         // check if the level is unlocked
-        if (!SaveManager.instance.levels[data.levelNum - 1].locked){
+        if (!LevelSelectManager.instance.currentChapter.levels[data.levelNum - 1].locked){
             FillPopup(data);
             UpdatePopupPosition();
             popUpPanel.SetActive(true);
@@ -138,14 +138,14 @@ public class PopUpControl : MonoBehaviour
         // display the title of pop up
         title.text = "Level " + data.levelNum;
         // check if the level has been beaten 
-        if (SaveManager.instance.levels[data.levelNum - 1].stars != 0){
+        if (LevelSelectManager.instance.currentChapter.levels[data.levelNum - 1].stars != 0){
             // just having the # of gems always be 4 for now
-            gems.text = SaveManager.instance.levels[data.levelNum - 1].gems + "/4";
+            gems.text = LevelSelectManager.instance.currentChapter.levels[data.levelNum - 1].gems + "/4";
             // convert the float time into a timespan
-            TimeSpan timeSpan = TimeSpan.FromSeconds(SaveManager.instance.levels[data.levelNum - 1].time);
+            TimeSpan timeSpan = TimeSpan.FromSeconds(LevelSelectManager.instance.currentChapter.levels[data.levelNum - 1].time);
             // set the text object to the timespan and format it
             time.text = timeSpan.ToString(format:@"mm\:ss\:ff");
-            score.text = "Score: " + SaveManager.instance.levels[data.levelNum - 1].score;
+            score.text = "Score: " + LevelSelectManager.instance.currentChapter.levels[data.levelNum - 1].score;
             // might add this later -- not needed for now -- better if it was visual -- ****
             // stars.text = "Stars: " + SaveManager.instance.levels[data.levelNum - 1].stars;
         }

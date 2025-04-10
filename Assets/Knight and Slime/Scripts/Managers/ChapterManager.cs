@@ -3,6 +3,8 @@ using UnityEngine;
 using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Data;
+using Unity.VersionControl.Git.IO;
 
 // one for the whole game
 // is the middle man between SaveManager and LevelSelectManager
@@ -13,9 +15,11 @@ public class ChapterManager : MonoBehaviour
 {
     // only have one instance ever in the scene, can get else where but can only set here -- singleton -- if you use don't destroy on load it will last across scenes
     public static ChapterManager instance {get; private set;}
-    // for initalizing chapters[] size
-    // chnage back to a size of 3 once there are 3 or more chapters
+    // for initalizing chapters[] size -- need to change the array's name to chapterBuffer[]
+    // change back to a size of 3 once there are 3 or more chapters
     // 1 is a place holder 
+    const int CHAPTER_BUFFER_COUNT = 1;
+    // The number of chapters currently in the game
     const int CHAPTER_COUNT = 1;
     // where the saved chapter data gets loaded and where new data goes
     // chapters are stored in this order: current, last, next
@@ -49,7 +53,6 @@ public class ChapterManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
-        
     }
 
     // load the previous chapter -- called when moving a page to the left
@@ -76,6 +79,7 @@ public class ChapterManager : MonoBehaviour
     // changes based on if they are moving to the next or previous chapter
     // true = show the next chapter
     // false = show the previous chapter
+    // not needed until there are more than 10 levels ************
     private void ChangeChapter(bool nextChapter){
         if (nextChapter){
             LoadNextChapter();
@@ -85,10 +89,11 @@ public class ChapterManager : MonoBehaviour
         UpdateChapterInfo();
     }
 
-    // loads the given chapter into the chapters[]
-    public void LoadChapterIntoBuffer(int chapterNum, int index){
+    // loads the given chapter into the chapters[] at the given index
+    // uses the save manager to load the chapter data
+    public void LoadChapterIntoBuffer(int chapterNum, int index){ 
         // load new chapter over chapters[index]
-        chapters[index] = // some call to some save manager function 
+        chapters[index] = SaveManager.instance.LoadChapterData(chapterNum);
     }
 
     // unloads the given chapter and resaves its data to the save files -- currently player Prefs
@@ -114,9 +119,9 @@ public class ChapterManager : MonoBehaviour
     // initalize the chapters array
     private void InitalizeChaptersArray(){
         // initalize chapters[]
-        chapters = new ChapterInfo[CHAPTER_COUNT];
+        chapters = new ChapterInfo[CHAPTER_BUFFER_COUNT];
         // since the chapterInfo is a class not a struct need to initalize the array before use
-        for (int i = 0; i < CHAPTER_COUNT; i++)
+        for (int i = 0; i < CHAPTER_BUFFER_COUNT; i++)
         {
             chapters[i] = new ChapterInfo();
             // if the first chapter make sure it's unlocked

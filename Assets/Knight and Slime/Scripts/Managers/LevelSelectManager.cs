@@ -17,7 +17,7 @@ public class LevelSelectManager : MonoBehaviour
     [Header ("Start Up Info")]
     // the location of the chapters folder
     // to help find the chapter page objects to display -- kind of like giving it the right folder to look in
-    public Transform chapters;
+    public Transform chaptersParent;
 
     [Header ("Page Controls")]
     public Transform rightArrow;
@@ -25,25 +25,25 @@ public class LevelSelectManager : MonoBehaviour
 
     // chapter completion progress
     [Header ("Chapter Display Info")]
+    // where to display the chapters info
     public TMP_Text chapterNum;
     public TMP_Text levelsCompleted;
     public TMP_Text totalGemsCollected;
     public TMP_Text percentCompleted;
 
     // chapter managment stuff
-    // chapter info to be set to the one being saved
-    // when a level is completed and the 
-    public ChapterInfo chapter = new ChapterInfo ();
+    // the chapter that is currently accessed and is being updated 
+    public ChapterInfo currentChapter = new ChapterInfo ();
     // the current chapter / level select page 
-    private int pageNum = 1;
+    private int currentPageNum = 1;
     // to know when to have the page arrows disapear
     private int maxPageNum = 1;
     // to help switch which chapter is being displayed
     // the objects name is used for searching and other functions
     // acts a little bit like the page being displayed
-    private Transform currentChapter;
+    private Transform currentChapterPage;
     // helps with switching chapters
-    private Transform lastChapter;
+    private Transform lastChapterPage;
 
     // level loading and pop up stuff
     // the current level being looked at 
@@ -69,13 +69,15 @@ public class LevelSelectManager : MonoBehaviour
             Destroy(gameObject);
         }
         // set the current chapter to the start chapter
-        currentChapter = ChapterManager.instance.startChapter;
+        currentChapterPage = ChapterManager.instance.startChapter;
         // setup the chapter page
-        DisplayChapter(pageNum);
+        DisplayChapter(currentPageNum);
         // make sure the arrows are displayed correctly 
         ToggleLeftArrow();
         ToggleRightArrow();
     }
+
+#region level selection
 
     // sends the player to the designated scene
     public void LoadLevel(int levelNumber)
@@ -87,7 +89,7 @@ public class LevelSelectManager : MonoBehaviour
     // the level buttons will call this function when clicked
     public void SelectLevel(int levelNumber){
         // find the level UI object
-        level = currentChapter?.Find("Level " + levelNumber);
+        level = currentChapterPage?.Find("Level " + levelNumber);
         // find it's lock
         levelLock = level?.Find("Level Lock");
 
@@ -99,7 +101,9 @@ public class LevelSelectManager : MonoBehaviour
             LoadLevel(levelNumber);
         }
     }
+#endregion
 
+#region level display
     // do later ******
     // reflect the players score and gems collected using visual stars on the chapter page
     // is not called if level is failed
@@ -120,7 +124,7 @@ public class LevelSelectManager : MonoBehaviour
         for (int i = 0; i < NUM_OF_LEVELS; i++)
         {
             // get the level buttons parent 
-            Transform levelButton = currentChapter?.Find("Level " + (i + 1));
+            Transform levelButton = currentChapterPage?.Find("Level " + (i + 1));
             // if the parent exists set the on click function
             if (levelButton != null){
                 // get the button child and it's button component
@@ -135,18 +139,18 @@ public class LevelSelectManager : MonoBehaviour
                     Debug.Log("Level Button Corrected: " + (i + 1));
                 }
             }
-            Debug.Log("LevelInfo for level: " + (i + 1) + ", Lock Status = " + SaveManager.instance.levels[i].locked);
+            Debug.Log("LevelInfo for level: " + (i + 1) + ", Lock Status = " + currentChapter.levels[i].locked);
             
             // check if the level is unlocked
-            if (!chapter.levels[i].locked){
+            if (!currentChapter.levels[i].locked){
                 // find the levelButton and make sure the lock is off
-                currentChapter?.Find("Level " + (i + 1))?.Find("Level Lock").gameObject.SetActive(false);
+                currentChapterPage?.Find("Level " + (i + 1))?.Find("Level Lock").gameObject.SetActive(false);
                 Debug.Log("Unlocked level: " + (i + 1));
             }
             // check if the level has any stars
-            else if (SaveManager.instance.levels[i].stars != 0){
+            else if (currentChapter.levels[i].stars != 0){
                 // call the updateStars
-                UpdateStars(SaveManager.instance.levels[i].stars);
+                UpdateStars(currentChapter.levels[i].stars);
                 Debug.Log("Stars updated on level: " + (i + 1));
             }
             // if the level has no stars and is locked end the loop -- none of the rest have data
@@ -155,7 +159,9 @@ public class LevelSelectManager : MonoBehaviour
             }
         }
     }
+#endregion
 
+#region Chapter
     // get the chapter completion info from the save file and display it
     // should get called each time a level is completed *****
     public void DisplayChapterCompletionInfo(int pageNum){
@@ -163,11 +169,11 @@ public class LevelSelectManager : MonoBehaviour
         // display the title of pop up
         chapterNum.text = "Chapter " + pageNum;
         // get the number of levels passed
-        levelsCompleted.text = chapter.SumCompletedLevels() + "/10";
+        levelsCompleted.text = currentChapter.SumCompletedLevels() + "/10";
         // get the total # of gems collected 
-        totalGemsCollected.text = chapter.SumGemsCollected() + "/40";
+        totalGemsCollected.text = currentChapter.SumGemsCollected() + "/40";
         // show the percent of the chapter completed
-        percentCompleted.text = chapter.CalculatePercent() + "%";
+        percentCompleted.text = currentChapter.CalculatePercent() + "%";
     }
 
     // based on the page number change the level select chapter to display 
@@ -176,15 +182,15 @@ public class LevelSelectManager : MonoBehaviour
     public void DisplayChapter(int pageNum){
         Debug.Log("displaying chapter: " + pageNum);
         // set last chapter to current chapter
-        lastChapter = currentChapter;
+        lastChapterPage = currentChapterPage;
         // find the chapter with the same number as the current page
-        currentChapter = chapters?.Find("Chapter " + pageNum);
+        currentChapterPage = chaptersParent?.Find("Chapter " + pageNum);
         // turn on this chapters map 
-        currentChapter.gameObject.SetActive(true);
+        currentChapterPage.gameObject.SetActive(true);
         // check if the last chapter is the current chapter
-        if (lastChapter != currentChapter){
+        if (lastChapterPage != currentChapterPage){
             // turn off the old chapters map
-            lastChapter.gameObject.SetActive(false);
+            lastChapterPage.gameObject.SetActive(false);
         }
         DisplayChapterCompletionInfo(pageNum);
         SetUpLevels();
@@ -193,29 +199,29 @@ public class LevelSelectManager : MonoBehaviour
     // increase the page num and display the approriate chapter
     public void ChangePageRight(){
         // check if the page is at max
-        if (pageNum != maxPageNum){
-            pageNum++;
+        if (currentPageNum != maxPageNum){
+            currentPageNum++;
         }
         // call display chapter func
-        DisplayChapter(pageNum);
+        DisplayChapter(currentPageNum);
         ToggleRightArrow();
     }
 
     // decrease the page num and display the approriate chapter
     public void ChangePageLeft(){
         // check if the page is at max
-        if (pageNum != 1){
-            pageNum--;
+        if (currentPageNum != 1){
+            currentPageNum--;
         }
         // call display chapter func
-        DisplayChapter(pageNum);
+        DisplayChapter(currentPageNum);
         ToggleLeftArrow();
     }
 
     // toggles the right arrow on and off if needed
     private void ToggleRightArrow(){
         // check if page num is max
-        if (pageNum == maxPageNum){
+        if (currentPageNum == maxPageNum){
             rightArrow.gameObject.SetActive(false);
         } else {
             rightArrow.gameObject.SetActive(true);
@@ -225,19 +231,11 @@ public class LevelSelectManager : MonoBehaviour
     // toggles the left arrow on and off if needed
     private void ToggleLeftArrow(){
         // check if page num is max
-        if (pageNum == 1){
+        if (currentPageNum == 1){
             leftArrow.gameObject.SetActive(false);
         } else {
             leftArrow.gameObject.SetActive(true);
         }
     }
-
-// --- for saving chapter data ---
-    // level is completed
-    // level data is saved
-    // chapter data is updated/saved
-
-// --- for loading level data ---
-    // put the levels array inside the chapterInfo
-    // levels should be loaded after the chapter page has been loaded 
+#endregion
 }

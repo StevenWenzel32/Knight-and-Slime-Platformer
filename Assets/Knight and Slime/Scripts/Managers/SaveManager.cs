@@ -26,13 +26,13 @@ public class SaveManager : MonoBehaviour
         // loop through all the levels and save their data
         for (int i = 0; i < NUM_OF_LEVELS; i++){
             // check if a level is locked if it is it still has default data
-            if (LevelSelectManager.instance.chapter.levels[i].locked){
+            if (LevelSelectManager.instance.currentChapter.levels[i].locked){
                 break;
             }
             // if the time or gem count is better than the current saved score save the new best
-            else if ((LevelSelectManager.instance.chapter.levels[i].gems > PlayerPrefs.GetInt($"Level_{i + 1}_Gems")) || (LevelSelectManager.instance.chapter.levels[i].time < PlayerPrefs.GetFloat($"Level_{i + 1}_Time"))){
+            else if ((LevelSelectManager.instance.currentChapter.levels[i].gems > PlayerPrefs.GetInt($"Level_{i + 1}_Gems")) || (LevelSelectManager.instance.currentChapter.levels[i].time < PlayerPrefs.GetFloat($"Level_{i + 1}_Time"))){
                 // save the level data 
-                SaveLevelData(LevelSelectManager.instance.chapter.levels[i], (i + 1));
+                SaveLevelData(LevelSelectManager.instance.currentChapter.levels[i], (i + 1));
             }
         }
     }
@@ -88,11 +88,11 @@ public class SaveManager : MonoBehaviour
             if (PlayerPrefs.GetInt($"Level_{i + 1}_Locked", 1) == 1){
                 break;
             }
-            LevelSelectManager.instance.chapter.levels[i].gems = PlayerPrefs.GetInt($"Level_{i + 1}_Gems", 0);
-            LevelSelectManager.instance.chapter.levels[i].stars = PlayerPrefs.GetInt($"Level_{i + 1}_Stars", 0);
-            LevelSelectManager.instance.chapter.levels[i].score = PlayerPrefs.GetInt($"Level_{i + 1}_Score", 0);
-            LevelSelectManager.instance.chapter.levels[i].time = PlayerPrefs.GetFloat($"Level_{i + 1}_Time", 0f);
-            LevelSelectManager.instance.chapter.levels[i].locked = PlayerPrefs.GetInt($"Level_{i + 1}_Locked", 1) == 1;
+            LevelSelectManager.instance.currentChapter.levels[i].gems = PlayerPrefs.GetInt($"Level_{i + 1}_Gems", 0);
+            LevelSelectManager.instance.currentChapter.levels[i].stars = PlayerPrefs.GetInt($"Level_{i + 1}_Stars", 0);
+            LevelSelectManager.instance.currentChapter.levels[i].score = PlayerPrefs.GetInt($"Level_{i + 1}_Score", 0);
+            LevelSelectManager.instance.currentChapter.levels[i].time = PlayerPrefs.GetFloat($"Level_{i + 1}_Time", 0f);
+            LevelSelectManager.instance.currentChapter.levels[i].locked = PlayerPrefs.GetInt($"Level_{i + 1}_Locked", 1) == 1;
         }
     }
 
@@ -112,28 +112,31 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // load chapter data until chapters[] is full
-    // called when the game is loaded
-    public void LoadAllChapterData(ChapterInfo chapter){
-        // loop through all the chapters[] and load their data
-        for (int i = 0; i < ChapterManager.instance.chapters.Length; i++){
-            // check if a chapter is locked, if so it still has default data
-            if (PlayerPrefs.GetInt($"Chapter_{i + 1}_Locked", 1) == 1){
-                break;
-            }
-            ChapterManager.instance.chapters[i].levelsCompleted = PlayerPrefs.GetInt($"Chapter_{i + 1}_Levels", 0);
-            ChapterManager.instance.chapters[i].gemsCollected = PlayerPrefs.GetInt($"Chapter_{i + 1}_Gems", 0);
-            ChapterManager.instance.chapters[i].percentCompleted = PlayerPrefs.GetInt($"Chapter_{i + 1}_Percent", 0);
-            ChapterManager.instance.chapters[i].locked = PlayerPrefs.GetInt($"Chapter_{i + 1}_Locked", 1) == 1;
+    // load chapter data for the given chapter
+    // puts the chapter data from the PlayerData PlayerPrefs into a newly created ChapterInfo object
+    public ChapterInfo LoadChapterData(int chapterNum){
+        // chapterInfo to return
+        ChapterInfo loadedChapter = new ChapterInfo();
+        // set the chapter number
+        loadedChapter.chapterNum = chapterNum;
+        // initalize the levels[]
+        loadedChapter.InitalizeLevelsArray();
 
-            // setup the chapters levels array
-            chapter.InitalizeLevelsArray();
-
-            // this location is only a temporary solution *** once the chapters array is no longer the size of 1 this will no longer work... maybe?? ***
-            // load in some of the saved PlayerData
-            // load the level data for this chapter till the chapters levels[] is full
-            LoadAllLevelData();
+        // check if a chapter is locked, if so it still has default data
+        if (PlayerPrefs.GetInt($"Chapter_{chapterNum}_Locked", 1) == 1){
+            return loadedChapter;
         }
+
+        // load in the other chapter data
+        loadedChapter.levelsCompleted = PlayerPrefs.GetInt($"Chapter_{chapterNum}_Levels", 0);
+        loadedChapter.gemsCollected = PlayerPrefs.GetInt($"Chapter_{chapterNum}_Gems", 0);
+        loadedChapter.percentCompleted = PlayerPrefs.GetInt($"Chapter_{chapterNum}_Percent", 0);
+        loadedChapter.locked = PlayerPrefs.GetInt($"Chapter_{chapterNum}_Locked", 1) == 1;
+
+        // load the level data for this chapter till the loadedChapter's levels[] is full
+        LoadAllLevelData();
+
+        return loadedChapter;
     }
     
 #endregion     
