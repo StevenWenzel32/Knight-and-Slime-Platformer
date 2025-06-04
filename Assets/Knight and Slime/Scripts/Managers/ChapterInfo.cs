@@ -11,14 +11,18 @@ public class ChapterInfo{
     public int percentCompleted = 0;
     // chapters will be locked by default, previous chapter must be completed before unlocking the next one
     public bool locked = true;
-    // the bookmark state used to toggle the visuals of the bookmark icon for the chapter
+    // the bookmark state used to toggle the visuals of the bookmark icon for the chapter -- add later *****
     public bool bookmarked = false;
     // for initalizing size of levels[]
     const int LEVEL_COUNT = 10;
     // the data for the 10 levels of this chapter
     public LevelInfo[] levels;
 
-    // helper functions
+    // constructor
+    public ChapterInfo(){
+        InitalizeLevelsArray();
+    }
+
     // create the array to store the level data and load in the saved data
     // pass in the current chapter
     public void InitalizeLevelsArray(){
@@ -29,7 +33,8 @@ public class ChapterInfo{
         {
             levels[i] = new LevelInfo();
             // if the first level make sure it's unlocked
-            if (i == 0){
+            if (i == 0)
+            {
                 levels[i].locked = false;
             }
         }

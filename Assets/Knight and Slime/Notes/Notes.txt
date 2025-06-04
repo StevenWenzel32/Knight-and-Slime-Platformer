@@ -1,5 +1,5 @@
 // notes -----------------------------
-// the chpater manager is similar to the level manager class
+// the chapter manager is similar to the level manager class
 // however the level manager is created for each level, but the chapter manager is for the entire game
 // this is the only respect in which they differ
 // each is to handle the functions that would be performed within their respective objects

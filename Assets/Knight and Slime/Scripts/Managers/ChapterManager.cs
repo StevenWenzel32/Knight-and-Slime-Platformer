@@ -38,10 +38,11 @@ public class ChapterManager : MonoBehaviour
     private int currentChapterOffset = 0;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // singleton stuff
-        if (instance == null){
+        if (instance == null)
+        {
             instance = this;
             // Persist chapterManager across scenes -- good for performance
             DontDestroyOnLoad(gameObject);
@@ -49,8 +50,10 @@ public class ChapterManager : MonoBehaviour
             // initialize the chapters manager
             InitalizeChaptersArray();
             // load the default or the bookmarked chapter 
-            LoadChapterIntoBuffer(1,0);
-        } else {
+            LoadChapterIntoBuffer(1, 0);
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
