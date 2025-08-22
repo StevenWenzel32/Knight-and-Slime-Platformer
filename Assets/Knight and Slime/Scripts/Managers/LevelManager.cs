@@ -268,7 +268,8 @@ public class LevelManager : MonoBehaviour
     }
 
     // save the new high score 
-    private void SaveNewLevelData(){
+    private void SaveNewLevelData()
+    {
         Debug.Log("Player got a new high score!");
         // display a new high score message to the player --- ****?????
 
@@ -276,6 +277,11 @@ public class LevelManager : MonoBehaviour
         UpdateLevelInfo();
         // have the saveManager save the new current level data to playerPrefs
         SaveManager.instance.SaveLevelData(currentLevel, levelNumber);
+
+        //update the chapter info in the chapters[] aka currentChapter **********************************
+
+        // have the saveManager save the new currentChapter data to playerPrefs ***********************************
+
     }
 
     // unlock the next level if it isn't already unlocked

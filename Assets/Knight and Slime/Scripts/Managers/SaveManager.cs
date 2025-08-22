@@ -5,32 +5,40 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     // only have one instance ever, can get else where but can only set here -- singleton
-    public static SaveManager instance {get; private set;}
+    public static SaveManager instance { get; private set; }
     // chapters will always have 10 levels
     const int NUM_OF_LEVELS = 10;
 
-    public void Awake(){
+    public void Awake()
+    {
         // singleton stuff
-        if (instance == null){
+        if (instance == null)
+        {
             instance = this;
             // make sure the save manager persists across scenes
             DontDestroyOnLoad(gameObject);
-        } else {
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
 
-#region Level Data
+    #region Level Data
     // save all of the level data present in levels[] - called when the save button is pressed by the user
-    public void SaveAllLevelData(){
+    public void SaveAllLevelData()
+    {
         // loop through all the levels and save their data
-        for (int i = 0; i < NUM_OF_LEVELS; i++){
+        for (int i = 0; i < NUM_OF_LEVELS; i++)
+        {
             // check if a level is locked if it is it still has default data
-            if (LevelSelectManager.instance.currentChapter.levels[i].locked){
+            if (LevelSelectManager.instance.currentChapter.levels[i].locked)
+            {
                 break;
             }
             // if the time or gem count is better than the current saved score save the new best
-            else if ((LevelSelectManager.instance.currentChapter.levels[i].gems > PlayerPrefs.GetInt($"Level_{i + 1}_Gems")) || (LevelSelectManager.instance.currentChapter.levels[i].time < PlayerPrefs.GetFloat($"Level_{i + 1}_Time"))){
+            else if ((LevelSelectManager.instance.currentChapter.levels[i].gems > PlayerPrefs.GetInt($"Level_{i + 1}_Gems")) || (LevelSelectManager.instance.currentChapter.levels[i].time < PlayerPrefs.GetFloat($"Level_{i + 1}_Time")))
+            {
                 // save the level data 
                 SaveLevelData(LevelSelectManager.instance.currentChapter.levels[i], (i + 1));
             }
@@ -42,16 +50,18 @@ public class SaveManager : MonoBehaviour
     public void SaveLevelData(LevelInfo levelData, int levelNumber)
     {
         // check if the player got more gems
-        if (levelData.gems > PlayerPrefs.GetInt($"Level_{levelNumber}_Gems")){
+        if (levelData.gems > PlayerPrefs.GetInt($"Level_{levelNumber}_Gems"))
+        {
             // save the data 
             SaveData(levelData, levelNumber);
             // save the updated chapter info
-//            SaveChapterData(ChapterInfo chapterData, int chapterNumber);
-        } 
+            //            SaveChapterData(ChapterInfo chapterData, int chapterNumber);
+        }
         // check if the player had the same amount of gems but a better time
-        else if ((levelData.gems == PlayerPrefs.GetInt($"Level_{levelNumber}_Gems")) && (levelData.time < PlayerPrefs.GetFloat($"Level_{levelNumber}_Time"))){
+        else if ((levelData.gems == PlayerPrefs.GetInt($"Level_{levelNumber}_Gems")) && (levelData.time < PlayerPrefs.GetFloat($"Level_{levelNumber}_Time")))
+        {
             SaveData(levelData, levelNumber);
- //           SaveChapterData(ChapterInfo chapterData, int chapterNumber)
+            //           SaveChapterData(ChapterInfo chapterData, int chapterNumber)
         }
 
         // save them right away
@@ -59,7 +69,8 @@ public class SaveManager : MonoBehaviour
     }
 
     // save the data pieces for the level
-    public void SaveData(LevelInfo levelData, int levelNumber){
+    public void SaveData(LevelInfo levelData, int levelNumber)
+    {
         // Use keys with the level number as part of the key name
         PlayerPrefs.SetInt($"Level_{levelNumber}_Stars", levelData.stars);
         PlayerPrefs.SetInt($"Level_{levelNumber}_Score", levelData.score);
@@ -83,9 +94,11 @@ public class SaveManager : MonoBehaviour
     public void LoadAllLevelData()
     {
         // loop through all the levels[] and load their data
-        for (int i = 0; i < NUM_OF_LEVELS; i++){
+        for (int i = 0; i < NUM_OF_LEVELS; i++)
+        {
             // check if a level is locked if it is it still has default data
-            if (PlayerPrefs.GetInt($"Level_{i + 1}_Locked", 1) == 1){
+            if (PlayerPrefs.GetInt($"Level_{i + 1}_Locked", 1) == 1)
+            {
                 break;
             }
             LevelSelectManager.instance.currentChapter.levels[i].gems = PlayerPrefs.GetInt($"Level_{i + 1}_Gems", 0);
@@ -96,12 +109,13 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-#endregion
+    #endregion
 
-#region Chapter Data
+    #region Chapter Data
     // pass in a ChapterInfo and save it's data into the playerPrefs
     // should be called when ever save data is called
-    public void SaveChapterData(ChapterInfo chapterData, int chapterNumber){
+    public void SaveChapterData(ChapterInfo chapterData, int chapterNumber)
+    {
         // Use keys with the level number as part of the key name
         // save the data for the chapter
         PlayerPrefs.SetInt($"Chapter_{chapterNumber}_Levels", chapterData.levelsCompleted);
@@ -114,7 +128,8 @@ public class SaveManager : MonoBehaviour
 
     // load chapter data for the given chapter
     // puts the chapter data from the PlayerData PlayerPrefs into a newly created ChapterInfo object
-    public ChapterInfo LoadChapterData(int chapterNum){
+    public ChapterInfo LoadChapterData(int chapterNum)
+    {
         // chapterInfo to return
         ChapterInfo loadedChapter = new ChapterInfo();
         // set the chapter number
@@ -123,7 +138,8 @@ public class SaveManager : MonoBehaviour
         loadedChapter.InitalizeLevelsArray();
 
         // check if a chapter is locked, if so it still has default data
-        if (PlayerPrefs.GetInt($"Chapter_{chapterNum}_Locked", 1) == 1){
+        if (PlayerPrefs.GetInt($"Chapter_{chapterNum}_Locked", 1) == 1)
+        {
             return loadedChapter;
         }
 
@@ -138,6 +154,22 @@ public class SaveManager : MonoBehaviour
 
         return loadedChapter;
     }
+
+    // load the chapter data for all chapters into the chapters array
+    public void SetChaptersArray()
+    {
+        // loop through all the chapters[] and load their data
+        for (int i = 0; i < ChapterManager.CHAPTER_COUNT; i++)
+        {
+            // check if a chapter is locked if it is it still has default data
+            if (PlayerPrefs.GetInt($"Chapter_{i + 1}_Locked", 1) == 1)
+            {
+                break;
+            }
+
+            ChapterManager.instance.chapters[i] = LoadChapterData(i + 1);
+        }
+    }
     
-#endregion     
+#endregion
 }
