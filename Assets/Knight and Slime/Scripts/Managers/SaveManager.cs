@@ -23,6 +23,7 @@ public class SaveManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     #region Everything
     // is called when the save button is pressed by the user
     public void SaveEverything()
