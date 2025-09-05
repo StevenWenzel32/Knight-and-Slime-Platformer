@@ -68,13 +68,13 @@ public class LevelManager : MonoBehaviour
         levelCompleteScreen?.SetActive(false);
         settingsScreen?.SetActive(false);
         HighScoreMsg.SetActive(false);
-
+ 
         // for easy reference to the current levelInfo inside the levels[]
-        currentLevel = ChapterManager.instance.chapters[chapterNumber].levels[levelNumber - 1];
+        currentLevel = LevelSelectManager.instance.chapters[chapterNumber].levels[levelNumber - 1];
         // for easy reference to the levelNumber inside the levelCounter
         levelNumber = LevelCounter.instance.levelNumber;
         // for easy reference grab the current chapter num
-        chapterNumber = ChapterManager.instance.currentChapterNumber;
+        chapterNumber = LevelSelectManager.instance.currentChapterNumber;
 
         // start timer
         EventManager.OnTimerStart();
@@ -248,10 +248,10 @@ public class LevelManager : MonoBehaviour
     // check if the player got a new high score
     private bool CheckIfBetterScore(){
         bool better = false;
-        int gemsOld = ChapterManager.instance.chapters[chapterNumber].levels[levelNumber - 1].gems;
+        int gemsOld = LevelSelectManager.instance.chapters[chapterNumber].levels[levelNumber - 1].gems;
         int gemsNew = GemCounter.instance.gemsCollected;
         float newTime = ScoreCounter.instance.playerTime;
-        float oldTime = ChapterManager.instance.chapters[chapterNumber].levels[levelNumber - 1].time;
+        float oldTime = LevelSelectManager.instance.chapters[chapterNumber].levels[levelNumber - 1].time;
         // if more gems collected
         if (gemsNew > gemsOld){
             better = true;
@@ -287,10 +287,10 @@ public class LevelManager : MonoBehaviour
     // unlock the next level if it isn't already unlocked
     private void UnlockNextLevel(){
         // check if the lock is active and if levelNumber is the last level, and only change save data if it is
-        if (levelNumber != ChapterManager.instance.chapters[chapterNumber].levels.Length && ChapterManager.instance.chapters[chapterNumber].levels[levelNumber + 1].locked){
+        if (levelNumber != LevelSelectManager.instance.chapters[chapterNumber].levels.Length && LevelSelectManager.instance.chapters[chapterNumber].levels[levelNumber + 1].locked){
             Debug.Log("Changing lock data for level: " + (levelNumber + 1));
             // turn off the lock for the next level in the LevelInfo
-            ChapterManager.instance.chapters[chapterNumber].levels[levelNumber].locked = false;
+            LevelSelectManager.instance.chapters[chapterNumber].levels[levelNumber].locked = false;
             // save just the lock change for the next level to playerPrefs
             SaveManager.instance.SaveLevelLock(false, levelNumber + 1);
         }

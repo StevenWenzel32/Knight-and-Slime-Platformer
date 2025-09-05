@@ -23,6 +23,17 @@ public class SaveManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    #region Everything
+    // is called when the save button is pressed by the user
+    public void SaveEverything()
+    {
+        // save all the level data
+        SaveAllLevelData();
+        // save all the chapter data
+        SaveAllChapterData();
+    }
+
+    #endregion Everything
 
     #region Level Data
     // save all of the level data present in levels[] - called when the save button is pressed by the user
@@ -90,7 +101,7 @@ public class SaveManager : MonoBehaviour
     }
 
     // pass in a levelNumber and load that levels data into levels[]
-    // called when the game is loaded -- can switch to being loaded when the chapter is accessed
+    // called when the game is loaded
     public void LoadAllLevelData()
     {
         // loop through all the levels[] and load their data
@@ -112,8 +123,28 @@ public class SaveManager : MonoBehaviour
     #endregion
 
     #region Chapter Data
+    // save all of the chapter data present in chapters[] - called when the save button is pressed by the user
+    public void SaveAllChapterData()
+    {
+        // loop through all the chapters and save their data
+        for (int i = 0; i < LevelSelectManager.CHAPTER_COUNT; i++)
+        {
+            // check if a chapter is locked, if it is it still has default data
+            if (LevelSelectManager.instance.currentChapter.locked)
+            {
+                break;
+            }
+            // if the percent completed is better then save over the old data
+            else if (LevelSelectManager.instance.currentChapter.percentCompleted > PlayerPrefs.GetInt($"Chapter_{i + 1}_Percent"))
+            {
+                // save the chapter data
+                SaveChapterData(LevelSelectManager.instance.currentChapter, (i + 1));
+            }
+        }
+    }
+
     // pass in a ChapterInfo and save it's data into the playerPrefs
-    // should be called when ever save data is called
+    // should be called when a level is completed *************************
     public void SaveChapterData(ChapterInfo chapterData, int chapterNumber)
     {
         // Use keys with the level number as part of the key name
@@ -159,7 +190,7 @@ public class SaveManager : MonoBehaviour
     public void SetChaptersArray()
     {
         // loop through all the chapters[] and load their data
-        for (int i = 0; i < ChapterManager.CHAPTER_COUNT; i++)
+        for (int i = 0; i < LevelSelectManager.CHAPTER_COUNT; i++)
         {
             // check if a chapter is locked if it is it still has default data
             if (PlayerPrefs.GetInt($"Chapter_{i + 1}_Locked", 1) == 1)
@@ -167,9 +198,19 @@ public class SaveManager : MonoBehaviour
                 break;
             }
 
-            ChapterManager.instance.chapters[i] = LoadChapterData(i + 1);
+            LevelSelectManager.instance.chapters[i] = LoadChapterData(i + 1);
         }
     }
+
+    // call this when all levels in a chapter are completed ********************
+    public void SaveChapterLock(bool locked, int chapterNumber)
+    {
+        // Use keys with the level number as part of the key name
+        PlayerPrefs.SetInt($"Chapter_{chapterNumber}_Locked", locked ? 1 : 0);
+
+        // save them right away
+        PlayerPrefs.Save();
+    }
     
-#endregion
+    #endregion
 }

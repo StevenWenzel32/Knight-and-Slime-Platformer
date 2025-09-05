@@ -14,7 +14,7 @@ public class ChapterInfo{
     // the bookmark state used to toggle the visuals of the bookmark icon for the chapter -- add later *****
     public bool bookmarked = false;
     // for initalizing size of levels[]
-    const int LEVEL_COUNT = 10;
+    public const int LEVEL_COUNT = 10;
     // the data for the 10 levels of this chapter
     public LevelInfo[] levels;
 

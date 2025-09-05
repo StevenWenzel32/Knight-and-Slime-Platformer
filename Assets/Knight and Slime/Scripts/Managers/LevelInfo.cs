@@ -15,7 +15,7 @@ public class LevelInfo{
     public void ToggleLock(){
         locked = !locked;
     }
-
+ 
     // getters and setters
 }
 
