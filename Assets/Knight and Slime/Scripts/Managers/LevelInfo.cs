@@ -4,6 +4,7 @@ using UnityEngine;
 // in the future will want to add more levels and it's unknown how many there will be 
 // handles the stuff for only 1 level, 1 levels data 
 public class LevelInfo{
+    public int levelNum = 0;
     public int gems = 0;
     public int stars = 0;
     public int score = 0;
@@ -15,6 +16,7 @@ public class LevelInfo{
     public void ToggleLock(){
         locked = !locked;
     }
+ 
  
     // getters and setters
 }

@@ -26,6 +26,7 @@ public class LevelCounter : MonoBehaviour
         string levelSceneName = SceneManager.GetActiveScene().name;
         // set the levelNumber in the levelManager
         levelNumber = ParseName(levelSceneName);
+        // set the levelNum in the levelInfo
         text.text = "Level " + levelNumber;
     }
 

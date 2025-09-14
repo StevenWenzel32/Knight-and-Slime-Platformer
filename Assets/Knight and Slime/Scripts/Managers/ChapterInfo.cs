@@ -32,6 +32,8 @@ public class ChapterInfo{
         for (int i = 0; i < LEVEL_COUNT; i++)
         {
             levels[i] = new LevelInfo();
+            // give numbers to the levels
+            levels[i].levelNum = i + 1;
             // if the first level make sure it's unlocked
             if (i == 0)
             {
