@@ -346,7 +346,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 876367393}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelSelectManager, Assembly-CSharp
         m_MethodName: ChangePageLeft
         m_Mode: 1
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 139670999}
   - component: {fileID: 139670998}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: PercentIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 166181541}
   - component: {fileID: 166181540}
   m_Layer: 5
-  m_Name: Text
+  m_Name: LevelNumText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8655,23 +8655,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LevelSelectManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1719761416833135378, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
@@ -8938,7 +8923,7 @@ GameObject:
   - component: {fileID: 490067073}
   - component: {fileID: 490067072}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GemNumText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9145,7 +9130,7 @@ GameObject:
   - component: {fileID: 655450311}
   - component: {fileID: 655450310}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: LevelNumIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9304,59 +9289,6 @@ SortingGroup:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
---- !u!1 &876367391
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 876367392}
-  - component: {fileID: 876367393}
-  m_Layer: 0
-  m_Name: Level Select Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &876367392
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876367391}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.3826885, y: -1.3085468, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &876367393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876367391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04019b340d380dd4083e2cb90563d52c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaptersParent: {fileID: 659366371}
-  rightArrow: {fileID: 1344244123}
-  leftArrow: {fileID: 43162650}
-  chapterNum: {fileID: 1988854229}
-  levelsCompleted: {fileID: 166181540}
-  totalGemsCollected: {fileID: 490067072}
-  percentCompleted: {fileID: 1882728166}
-  startChapter: {fileID: 1270663645}
-  currentChapterNumber: 0
 --- !u!1001 &893359262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9634,21 +9566,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LevelSelectManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 3
       objectReference: {fileID: 0}
@@ -9817,7 +9734,7 @@ GameObject:
   - component: {fileID: 1203093217}
   - component: {fileID: 1203093216}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: ChapterNumIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9936,7 +9853,7 @@ GameObject:
   - component: {fileID: 1296291362}
   - component: {fileID: 1296291361}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: GemNumIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11834,7 +11751,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 876367393}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelSelectManager, Assembly-CSharp
         m_MethodName: ChangePageRight
         m_Mode: 1
@@ -11971,21 +11888,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1270663645}
     m_Modifications:
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LevelSelectManager, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -12154,21 +12056,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LevelSelectManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 5
       objectReference: {fileID: 0}
@@ -12296,21 +12183,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1270663645}
     m_Modifications:
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LevelSelectManager, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -12442,23 +12314,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LevelSelectManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1719761416833135378, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
@@ -12588,7 +12445,7 @@ GameObject:
   - component: {fileID: 1882728167}
   - component: {fileID: 1882728166}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PercentText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12759,23 +12616,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LevelSelectManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1719761416833135378, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
@@ -12968,7 +12810,7 @@ GameObject:
   - component: {fileID: 1988854230}
   - component: {fileID: 1988854229}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ChapterNumText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13108,16 +12950,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 159954245}
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectLevel
+      value: StartLevel
       objectReference: {fileID: 0}
     - target: {fileID: 1096635300026312778, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LevelSelectManager, Assembly-CSharp
+      value: BasicButtons, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1719761416833135378, guid: cea78536b7d337c46bc98089d700260b,
         type: 3}
@@ -13243,7 +13085,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 876367392}
   - {fileID: 278894071}
   - {fileID: 1964682206}
   - {fileID: 5453291}

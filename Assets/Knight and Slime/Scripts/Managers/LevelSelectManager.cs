@@ -24,19 +24,19 @@ public class LevelSelectManager : MonoBehaviour
     [Header("Start Up Info")]
     // the location of the chapters folder
     // to help find the chapter page objects to display -- kind of like giving it the right folder to look in
-    public Transform chaptersParent;
+    private Transform chaptersParent;
 
     [Header("Page Controls")]
-    public Transform rightArrow;
-    public Transform leftArrow;
+    private Transform rightArrow;
+    private Transform leftArrow;
 
     // chapter completion progress
     [Header("Chapter Display Info")]
     // where to display the chapters info
-    public TMP_Text chapterNum;
-    public TMP_Text levelsCompleted;
-    public TMP_Text totalGemsCollected;
-    public TMP_Text percentCompleted;
+    private TMP_Text chapterNum;
+    private TMP_Text levelsCompleted;
+    private TMP_Text totalGemsCollected;
+    private TMP_Text percentCompleted;
 
     // chapter management stuff
     // where the saved chapter data gets loaded and where new data goes
@@ -65,37 +65,33 @@ public class LevelSelectManager : MonoBehaviour
     // the # of the next level after the current level
     private int nextLevelNumber;
 
+    // the stuff that needs to happen each time the LevelMenu is reloaded/enabled
     private void OnEnable()
     {
-        // reconnect to the UI specifc elements if the current scene is the Level Menu
-        if (SceneManager.GetActiveScene().name == "Level Menu")
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        Debug.Log("LevelSelectManager On Enable - finished running");
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Level Select Menu")
         {
-            //reassign the scene specifc references
-            chaptersParent = GameObject.Find("Chapters")?.transform;
-            chapterNum = GameObject.Find("Chapter #")?.GameObject.Find("Text");
-
-                    // this part from gpt needs to be fixed later **************
-                    // Only reconnect if this scene has the level select menu
-                    if (SceneManager.GetActiveScene().name == "LevelSelectMenu")
-                    {
-                        // Reassign scene-bound references
-                        chaptersParent = GameObject.Find("ChaptersParent")?.transform;
-                        chapterNum = GameObject.Find("ChapterNumText")?.GetComponent<TMP_Text>();
-                        levelsCompleted = GameObject.Find("LevelsCompletedText")?.GetComponent<TMP_Text>();
-                        totalGemsCollected = GameObject.Find("TotalGemsText")?.GetComponent<TMP_Text>();
-                        percentCompleted = GameObject.Find("PercentText")?.GetComponent<TMP_Text>();
-                        rightArrow = GameObject.Find("RightArrow")?.transform;
-                        leftArrow = GameObject.Find("LeftArrow")?.transform;
-
-                        // Refresh the current chapter display
-                        currentPageNum = currentChapter.chapterNum;
-                        DisplayChapter(currentPageNum);
-                    }
+            // get the specifc scene transforms and other references
+            LoadSceneReferences();
+            // Refresh the current chapter display
+            currentPageNum = currentChapter.chapterNum;
+            DisplayChapter(currentPageNum);
         }
     }
 
     private void Awake()
     {
+        // stuff that happens once when the object is created
         if (instance == null)
         {
             instance = this;
@@ -112,30 +108,25 @@ public class LevelSelectManager : MonoBehaviour
             currentChapter = chapters[startChapterNum - 1];
             // get the currentPageNum 
             currentPageNum = currentChapter.chapterNum;
-
-            // display the first chapter
-            DisplayStartChapter(currentPageNum);
-            // make sure the arrows are displayed correctly 
-            ToggleLeftArrow();
-            ToggleRightArrow();
-
         }
         else
         {
             Destroy(gameObject);
         }
+        Debug.Log("LevelSelectManager Awake - finished running");
     }
 
     #region level selection
 
     // sends the player to the designated scene
+    // will need to be changed later to account for chapters ***********
     public void LoadLevel(int levelNumber)
     {
         // loads the given scene
-        SceneManager.LoadScene(levelNumber + 2);
+        SceneManager.LoadScene("Level " + levelNumber);
     }
 
-    // the level buttons will call this function when clicked
+    // this gets called via the function in BasicButtons
     public void SelectLevel(int levelNumber)
     {
         // find the level UI object
@@ -225,6 +216,23 @@ public class LevelSelectManager : MonoBehaviour
     #endregion
 
     #region Chapter
+    // load scene specific refrences
+    private void LoadSceneReferences()
+    {
+        //reassign the scene specifc references
+        chaptersParent = GameObject.Find("Chapters")?.transform;
+        chapterNum = GameObject.Find("ChapterNumText")?.GetComponent<TMP_Text>();
+        levelsCompleted = GameObject.Find("LevelNumText")?.GetComponent<TMP_Text>();
+        totalGemsCollected = GameObject.Find("GemNumText")?.GetComponent<TMP_Text>();
+        percentCompleted = GameObject.Find("PercentText")?.GetComponent<TMP_Text>();
+        rightArrow = GameObject.Find("Right Arrow")?.transform;
+        leftArrow = GameObject.Find("Left Arrow")?.transform;
+
+        // make sure the arrows are displayed correctly 
+        ToggleLeftArrow();
+        ToggleRightArrow();
+    }
+
     // initalize the chapters array
     private void InitalizeChaptersArray()
     {
@@ -279,6 +287,7 @@ public class LevelSelectManager : MonoBehaviour
         Debug.Log("displaying first chapter: " + pageNum);
         // find the chapter with the same number as the current page
         currentChapterPage = chaptersParent?.Find("Chapter " + pageNum);
+        Debug.Log("Current Chapter page is = " + currentChapterPage);
         // turn on this chapters map 
         currentChapterPage.gameObject.SetActive(true);
         DisplayChapterCompletionInfo(pageNum);
@@ -292,17 +301,17 @@ public class LevelSelectManager : MonoBehaviour
     {
         Debug.Log("displaying chapter: " + pageNum);
         // set last chapter to current chapter
-        lastChapterPage = currentChapterPage;
+ //       lastChapterPage = currentChapterPage;
         // find the chapter with the same number as the current page
         currentChapterPage = chaptersParent?.Find("Chapter " + pageNum);
         // turn on this chapters map 
         currentChapterPage.gameObject.SetActive(true);
         // check if the last chapter is the current chapter
-        if (lastChapterPage != currentChapterPage)
-        {
-            // turn off the old chapters map
-            lastChapterPage.gameObject.SetActive(false);
-        }
+//        if (lastChapterPage != currentChapterPage)
+ //       {
+          // turn off the old chapters map
+  //          lastChapterPage.gameObject.SetActive(false);
+  //      }
         DisplayChapterCompletionInfo(pageNum);
         SetUpLevels();
     }
