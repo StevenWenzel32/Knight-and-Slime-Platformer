@@ -304,12 +304,10 @@ public class LevelManager : MonoBehaviour
         // update the level data in the levels[] aka currentLevel
         UpdateLevelInfo();
         // have the saveManager save the new current level data to playerPrefs
-        SaveManager.instance.SaveLevelData(currentLevel, levelNumber);
+        SaveManager.instance.SaveLevelData(LevelSelectManager.instance.currentChapter, currentLevel, levelNumber);
 
-        //update the chapter info in the chapters[] aka currentChapter **********************************
-
-        // have the saveManager save the new currentChapter data to playerPrefs ***********************************
-
+        // have the saveManager save the new currentChapter data to playerPrefs
+        SaveManager.instance.SaveChapterData(LevelSelectManager.instance.currentChapter, chapterNumber);
     }
 
     // unlock the next level if it isn't already unlocked
@@ -322,7 +320,7 @@ public class LevelManager : MonoBehaviour
             // turn off the lock for the next level in the LevelInfo
             LevelSelectManager.instance.chapters[chapterNumber - 1].levels[levelNumber + 1].locked = false;
             // save just the lock change for the next level to playerPrefs
-            SaveManager.instance.SaveLevelLock(false, levelNumber + 1);
+            SaveManager.instance.SaveLevelLock(LevelSelectManager.instance.currentChapter, false, levelNumber + 1);
         }
     }
 

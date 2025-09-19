@@ -216,11 +216,13 @@ public class LevelSelectManager : MonoBehaviour
     #endregion
 
     #region Chapter
+
     // load scene specific refrences
     private void LoadSceneReferences()
     {
         //reassign the scene specifc references
-        chaptersParent = GameObject.Find("Chapters")?.transform;
+        chaptersParent = GameObject.Find("Level UI Canvas").transform.Find("Chapters")?.transform;
+        Debug.Log("chaptersParent is: " + chaptersParent);
         chapterNum = GameObject.Find("ChapterNumText")?.GetComponent<TMP_Text>();
         levelsCompleted = GameObject.Find("LevelNumText")?.GetComponent<TMP_Text>();
         totalGemsCollected = GameObject.Find("GemNumText")?.GetComponent<TMP_Text>();
@@ -242,8 +244,6 @@ public class LevelSelectManager : MonoBehaviour
         for (int i = 0; i < CHAPTER_COUNT; i++)
         {
             instance.chapters[i] = new ChapterInfo();
-            // give numbers to the chapters
-            instance.chapters[i].chapterNum = i + 1;
             // if the first chapter make sure it's unlocked
             if (i == 0)
             {
@@ -305,7 +305,7 @@ public class LevelSelectManager : MonoBehaviour
         // find the chapter with the same number as the current page
         currentChapterPage = chaptersParent?.Find("Chapter " + pageNum);
         // turn on this chapters map 
-        currentChapterPage.gameObject.SetActive(true);
+        currentChapterPage.gameObject?.SetActive(true);
         // check if the last chapter is the current chapter
 //        if (lastChapterPage != currentChapterPage)
  //       {
