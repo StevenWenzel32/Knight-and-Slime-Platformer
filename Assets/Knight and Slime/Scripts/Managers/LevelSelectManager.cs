@@ -43,7 +43,7 @@ public class LevelSelectManager : MonoBehaviour
     public ChapterInfo[] chapters;
     // what chapter to display on start -- give players the option to bookmark a chapter which will set this *********
     // the chapter that starts as the current chapter on start up
-    public int startChapterNum = 1;
+    public int defaultChapterNum = 1;
     // the chapter that is currently accessed and is being updated 
     public ChapterInfo currentChapter = new ChapterInfo();
     // the current chapter / level select page 
@@ -79,14 +79,18 @@ public class LevelSelectManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+
         if (scene.name == "Level Select Menu")
         {
+            // refresh the currentChapter reference so it's using the latest chapter data
+            currentChapter = chapters[defaultChapterNum - 1];
             // get the specifc scene transforms and other references
             LoadSceneReferences();
             // Refresh the current chapter display
             currentPageNum = currentChapter.chapterNum;
             DisplayChapter(currentPageNum);
         }
+        Debug.Log("LevelSelectManager OnSceneLoaded - finished running");
     }
 
     private void Awake()
@@ -105,7 +109,7 @@ public class LevelSelectManager : MonoBehaviour
             SaveManager.instance.SetChaptersArray();
 
             // select the first chapter
-            currentChapter = chapters[startChapterNum - 1];
+            currentChapter = chapters[defaultChapterNum - 1];
             // get the currentPageNum 
             currentPageNum = currentChapter.chapterNum;
         }
@@ -282,21 +286,9 @@ public class LevelSelectManager : MonoBehaviour
         percentCompleted.text = currentChapter.CalculatePercent() + "%";
     }
 
-    public void DisplayStartChapter(int pageNum)
-    {
-        Debug.Log("displaying first chapter: " + pageNum);
-        // find the chapter with the same number as the current page
-        currentChapterPage = chaptersParent?.Find("Chapter " + pageNum);
-        Debug.Log("Current Chapter page is = " + currentChapterPage);
-        // turn on this chapters map 
-        currentChapterPage.gameObject.SetActive(true);
-        DisplayChapterCompletionInfo(pageNum);
-        SetUpLevels();
-    }
-
     // based on the page number change the level select chapter to display 
     // calls the funcs to setup the chapter info and the levels
-    // should get called each time the chapter page changes
+    // should get called each time the chapter page changes, when the level select menu is returned to 
     public void DisplayChapter(int pageNum)
     {
         Debug.Log("displaying chapter: " + pageNum);
@@ -304,6 +296,7 @@ public class LevelSelectManager : MonoBehaviour
  //       lastChapterPage = currentChapterPage;
         // find the chapter with the same number as the current page
         currentChapterPage = chaptersParent?.Find("Chapter " + pageNum);
+        Debug.Log("Current Chapter page is = " + currentChapterPage);
         // turn on this chapters map 
         currentChapterPage.gameObject?.SetActive(true);
         // check if the last chapter is the current chapter

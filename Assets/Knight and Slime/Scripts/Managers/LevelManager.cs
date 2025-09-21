@@ -313,14 +313,16 @@ public class LevelManager : MonoBehaviour
     // unlock the next level if it isn't already unlocked
     private void UnlockNextLevel()
     {
-        // check if the lock is active and if levelNumber is the last level, and only change save data if it is
-        if (levelNumber != LevelSelectManager.instance.chapters[chapterNumber - 1].levels.Length && LevelSelectManager.instance.chapters[chapterNumber - 1].levels[levelNumber + 1].locked)
+        // select the first chapter
+        Debug.Log("Checking lock data for: chapter = " + chapterNumber + ", level = " + (levelNumber + 1));
+        // check if the lock is active and if levelNumber is not the last level, and only change save data if it is
+        if (levelNumber != LevelSelectManager.instance.chapters[chapterNumber - 1].levels.Length && LevelSelectManager.instance.chapters[chapterNumber - 1].levels[levelNumber].locked)
         {
             Debug.Log("Changing lock data for level: " + (levelNumber + 1));
             // turn off the lock for the next level in the LevelInfo
-            LevelSelectManager.instance.chapters[chapterNumber - 1].levels[levelNumber + 1].locked = false;
+            LevelSelectManager.instance.chapters[chapterNumber - 1].levels[levelNumber].locked = false;
             // save just the lock change for the next level to playerPrefs
-            SaveManager.instance.SaveLevelLock(LevelSelectManager.instance.currentChapter, false, levelNumber + 1);
+            SaveManager.instance.SaveLevelLock(LevelSelectManager.instance.chapters[chapterNumber - 1], false, levelNumber + 1);
         }
     }
 
