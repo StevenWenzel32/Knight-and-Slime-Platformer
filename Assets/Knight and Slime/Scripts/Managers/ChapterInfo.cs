@@ -61,8 +61,10 @@ public class ChapterInfo{
             if (levels[i].score > 0){
                 completed++;
             }
-        } 
+        }
 
+        // save it to this chapterInfo
+        levelsCompleted = completed;
         return completed; 
     }
 
@@ -75,14 +77,19 @@ public class ChapterInfo{
             totalGems+= levels[i].gems;
         } 
 
+        // save it to this chapterInfo
+        gemsCollected = totalGems;
         return totalGems; 
     }
 
     // calculate the percent of the chapter completed
     // currently no way to get a decimal of percent progress so no need for a double, this may change in the future
-    public int CalculatePercent(){
+    public int CalculatePercent()
+    {
         // add the levels completed and the gems collected 
-        return (levelsCompleted + gemsCollected) * 2;
+        percentCompleted = (levelsCompleted + gemsCollected) * 2;
+
+        return percentCompleted;
     }
 
     // getters and setters

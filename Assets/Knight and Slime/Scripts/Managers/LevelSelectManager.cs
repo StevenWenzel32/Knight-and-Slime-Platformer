@@ -284,6 +284,7 @@ public class LevelSelectManager : MonoBehaviour
         totalGemsCollected.text = currentChapter.SumGemsCollected() + "/40";
         // show the percent of the chapter completed
         percentCompleted.text = currentChapter.CalculatePercent() + "%";
+        Debug.Log("Chapter completetion percent = " + currentChapter.CalculatePercent());
     }
 
     // based on the page number change the level select chapter to display 
