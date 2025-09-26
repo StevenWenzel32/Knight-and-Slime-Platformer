@@ -2,12 +2,6 @@ Link to executable *v0.0.7 (built for Windows): https://drive.google.com/file/d/
 
 *Only tested on Windows and Linux. Not designed for phones or consoles.
 
-**Game production is currently on hold as I'm in school from 2/1/2025 to 8/1/2025**
-
-**Pray for my soul as I will be trying to speed run 18 classes in 6 months**
-
-**Class Status: 6/18 almost half way done and in the 2nd month!**
-
 ### Windows:
 1. Download the folder, and unzip it
 2. Run the "Knight and Slime.exe"

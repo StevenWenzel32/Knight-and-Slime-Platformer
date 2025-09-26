@@ -10,29 +10,33 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     // only have one instance ever in the scene, can get else where but can only set here -- singleton -- if you use don't destroy on load it will last across scenes
-    public static LevelManager instance {get; private set;}
+    public static LevelManager instance { get; private set; }
     // level info var to be set that the one that is being saved 
-    public LevelInfo levelInfo = new LevelInfo();
+    // once a level is completed this is where the data is stored before being saved
+    public LevelInfo currentLevel;
+    // for easy reference to the levelNumber inside the levelCounter
     private int levelNumber;
+    // for easy reference to the currrentChapterNumber inside chapterManager
+    private int chapterNumber;
 
-    [Header ("Display Stats")]
+    [Header("Display Stats")]
     public TMP_Text levelNum;
     public TMP_Text gemsCollected;
     // currently not used -- for future update ****
     public TMP_Text starsEarned;
     public TMP_Text time;
     public TMP_Text score;
-    
+
     // The UI canvas the counters are on 
     public GameObject counters;
 
-    [Header ("Game Over")]
+    [Header("Game Over")]
     // show when a player dies
     public GameObject gameOverScreen;
     // play when game over pops up
     public AudioClip gameOverSound;
 
-    [Header ("Level Complete")]
+    [Header("Level Complete")]
     // show when level is complete
     public GameObject levelCompleteScreen;
     // play when level complete pops up
@@ -41,11 +45,11 @@ public class LevelManager : MonoBehaviour
     // tells the player they got a new high score
     public GameObject HighScoreMsg;
 
-    [Header ("Pause")]
+    [Header("Pause")]
     public GameObject pauseScreen;
     public GameObject settingsScreen;
 
-    [Header ("Options")]
+    [Header("Options")]
     // for running a cutscene after the level is completed
     public bool hasCutscene;
 
@@ -53,11 +57,15 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         // singleton stuff
-        if (instance == null){
+        if (instance == null)
+        {
             instance = this;
-        } else {
+        }
+        else
+        {
             Destroy(gameObject);
         }
+
         // make sure all the other screens are turned off
         gameOverScreen?.SetActive(false);
         pauseScreen?.SetActive(false);
@@ -65,24 +73,38 @@ public class LevelManager : MonoBehaviour
         settingsScreen?.SetActive(false);
         HighScoreMsg.SetActive(false);
 
+        // for easy reference grab the current chapter num
+        chapterNumber = LevelSelectManager.instance.currentChapter.chapterNum;
+        Debug.Log("chapterNumber = " + chapterNumber);
+        // for easy reference to the levelNumber inside the levelInfo
         levelNumber = LevelCounter.instance.levelNumber;
+        Debug.Log("levelNumber = " + levelNumber);
+        // for easy reference to the current levelInfo inside the levels[]
+        currentLevel = LevelSelectManager.instance.chapters[chapterNumber - 1].levels[levelNumber - 1];
+
         // start timer
         EventManager.OnTimerStart();
     }
 
-    private void Update(){
+    private void Update()
+    {
         // toggle the pause screen
-        if (Input.GetKeyDown(KeyCode.Escape)){
-            if (pauseScreen.activeInHierarchy){
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseScreen.activeInHierarchy)
+            {
                 PauseGame(false);
-            } else {
+            }
+            else
+            {
                 PauseGame(true);
             }
         }
     }
 
     // player died
-    public void GameOver(){
+    public void GameOver()
+    {
         // turn off in game counters
         counters.SetActive(false);
         gameOverScreen.SetActive(true);
@@ -90,7 +112,8 @@ public class LevelManager : MonoBehaviour
     }
 
     // level completed screen displayed 
-    public void LevelComplete(){
+    public void LevelComplete()
+    {
         // turn off in game counters
         counters.SetActive(false);
         // turn on level complete screen
@@ -99,7 +122,8 @@ public class LevelManager : MonoBehaviour
     }
 
     // actions to take when the level is completed
-    public void LevelCompleted(){
+    public void LevelCompleted()
+    {
         // stop the timer to give acurate score
         EventManager.OnTimerStop();
         // pause the game to save player from dying
@@ -109,10 +133,13 @@ public class LevelManager : MonoBehaviour
         // display the players performance 
         DisplayStats();
         // check if the level has a cutscene to play at the end of the level
-        if (hasCutscene){
+        if (hasCutscene)
+        {
             // Play video before showing the Level Complete screen
             StartCoroutine(PlayVideoThenCompleteLevel());
-        } else {
+        }
+        else
+        {
             // put up the level complete screen
             LevelComplete();
 
@@ -120,7 +147,8 @@ public class LevelManager : MonoBehaviour
             LevelCompleteArrow.SetActive(true);
 
             // check if the score is better
-            if (CheckIfBetterScore()){
+            if (CheckIfBetterScore())
+            {
                 // display the high score msg
                 HighScoreMsg.SetActive(true);
                 // saving this level data
@@ -133,7 +161,8 @@ public class LevelManager : MonoBehaviour
     }
 
     // for retry level button
-    public void Restart(){
+    public void Restart()
+    {
         // get the current scene and return it's index
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         // show the counters again
@@ -143,7 +172,8 @@ public class LevelManager : MonoBehaviour
     }
 
     // load the nextlevel
-    public void NextLevel(){
+    public void NextLevel()
+    {
         // get the current scene and return it's index
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentLevel + 1);
@@ -153,7 +183,8 @@ public class LevelManager : MonoBehaviour
 
     #region Pause
     // toggle the pause menu
-    public void PauseGame(bool show){
+    public void PauseGame(bool show)
+    {
         // check if the pause screen exsists, check if the game over or level complete screen is active
         if (pauseScreen != null && !gameOverScreen.activeSelf && !levelCompleteScreen.activeSelf)
         {
@@ -166,7 +197,8 @@ public class LevelManager : MonoBehaviour
     }
 
     // go to the settings
-    public void SettingsScreen(bool show){
+    public void SettingsScreen(bool show)
+    {
         if (settingsScreen != null)
         {
             // turn on the settings screen
@@ -186,15 +218,15 @@ public class LevelManager : MonoBehaviour
 
         // Enable and play the video
         VideoManager.instance.PlayVideo(); // Assuming you have a VideoManager script
-        
+
         // Wait until the video finishes
         while (!VideoManager.instance.isVideoFinished)
         {
             // Wait for the next frame
-            yield return null; 
+            yield return null;
         }
         Debug.Log("video has finished");
-        
+
         // put up the level complete screen
         LevelComplete();
 
@@ -202,7 +234,8 @@ public class LevelManager : MonoBehaviour
         LevelCompleteArrow.SetActive(true);
 
         // check if the score is better
-        if (CheckIfBetterScore()){
+        if (CheckIfBetterScore())
+        {
             // display the high score msg
             HighScoreMsg.SetActive(true);
             // saving this level data
@@ -213,43 +246,48 @@ public class LevelManager : MonoBehaviour
         UnlockNextLevel();
     }
 
-    public void DisplayStats(){
+    public void DisplayStats()
+    {
         levelNum.text = "Level " + levelNumber;
         gemsCollected.text = GemCounter.instance.gemsCollected + "/" + GemCounter.instance.gemsToCollect;
         // convert the float time into a timespan
         TimeSpan timeSpan = TimeSpan.FromSeconds(ScoreCounter.instance.playerTime);
         // set the text object to the timespan and format it
-        time.text = timeSpan.ToString(format:@"mm\:ss\:ff");
+        time.text = timeSpan.ToString(format: @"mm\:ss\:ff");
         score.text = "Score: " + ScoreCounter.instance.score;
         // might add this later -- not needed for now -- better if it was visual -- ****
         // starsEarned.text = "Stars: " + ScoreCounter.instance.stars;
     }
 
-    // update the levelInfo for the level just completed
-    private void UpdateLevelInfo(){
-        levelInfo.gems = GemCounter.instance.gemsCollected;
-        levelInfo.time = ScoreCounter.instance.playerTime;    
-        levelInfo.score = ScoreCounter.instance.score;
-        levelInfo.stars = ScoreCounter.instance.stars;
+    // update the levelInfo in the levels[] for the level just completed
+    private void UpdateLevelInfo()
+    {
+        currentLevel.gems = GemCounter.instance.gemsCollected;
+        currentLevel.time = ScoreCounter.instance.playerTime;
+        currentLevel.score = ScoreCounter.instance.score;
+        currentLevel.stars = ScoreCounter.instance.stars;
         // if remove lock works correctly this is not needed
-        levelInfo.locked = false;
+        currentLevel.locked = false;
     }
 
     // check if the player got a new high score
-    private bool CheckIfBetterScore(){
+    private bool CheckIfBetterScore()
+    {
         bool better = false;
-        int gemsOld = SaveManager.instance.levels[levelNumber - 1].gems;
+        int gemsOld = LevelSelectManager.instance.chapters[chapterNumber - 1].levels[levelNumber - 1].gems;
         int gemsNew = GemCounter.instance.gemsCollected;
         float newTime = ScoreCounter.instance.playerTime;
-        float oldTime = SaveManager.instance.levels[levelNumber - 1].time;
+        float oldTime = LevelSelectManager.instance.chapters[chapterNumber - 1].levels[levelNumber - 1].time;
         // if more gems collected
-        if (gemsNew > gemsOld){
+        if (gemsNew > gemsOld)
+        {
             better = true;
             Debug.Log("In better score check");
             Debug.Log("gems collected = " + gemsNew + ", gems previous collected = " + gemsOld);
-        } 
+        }
         // if same gems but better time
-        else if ((gemsNew == gemsOld) && (newTime < oldTime)){
+        else if ((gemsNew == gemsOld) && (newTime < oldTime))
+        {
             better = true;
             Debug.Log("new time = " + newTime + ", old time = " + oldTime);
         }
@@ -258,27 +296,39 @@ public class LevelManager : MonoBehaviour
     }
 
     // save the new high score 
-    private void SaveNewLevelData(){
+    private void SaveNewLevelData()
+    {
         Debug.Log("Player got a new high score!");
-        // display a new high score message to the player
+        // display a new high score message to the player --- ****?????
 
-        // send the level data from the counters to the levelInfo which is currently empty
+        // update the level data in the levels[] aka currentLevel
         UpdateLevelInfo();
-        // save the levelInfo to the array in the saveManager
-        SaveManager.instance.levels[levelNumber - 1] = levelInfo;
         // have the saveManager save the new current level data to playerPrefs
-        SaveManager.instance.SaveLevelData(levelInfo, levelNumber);
+        SaveManager.instance.SaveLevelData(LevelSelectManager.instance.currentChapter, currentLevel, levelNumber);
+
+        // have the saveManager save the new currentChapter data to playerPrefs
+        SaveManager.instance.SaveChapterData(LevelSelectManager.instance.currentChapter, chapterNumber);
     }
 
     // unlock the next level if it isn't already unlocked
-    private void UnlockNextLevel(){
-        // check if the lock is active and if levelNumber is the last level, and only change save data if it is
-        if (levelNumber != SaveManager.instance.levels.Length && SaveManager.instance.levels[levelNumber + 1].locked){
+    private void UnlockNextLevel()
+    {
+        // select the first chapter
+        Debug.Log("Checking lock data for: chapter = " + chapterNumber + ", level = " + (levelNumber + 1));
+        // check if the lock is active and if levelNumber is not the last level, and only change save data if it is
+        if (levelNumber != LevelSelectManager.instance.chapters[chapterNumber - 1].levels.Length && LevelSelectManager.instance.chapters[chapterNumber - 1].levels[levelNumber].locked)
+        {
             Debug.Log("Changing lock data for level: " + (levelNumber + 1));
             // turn off the lock for the next level in the LevelInfo
-            SaveManager.instance.levels[levelNumber].locked = false;
+            LevelSelectManager.instance.chapters[chapterNumber - 1].levels[levelNumber].locked = false;
             // save just the lock change for the next level to playerPrefs
-            SaveManager.instance.SaveLevelLock(false, levelNumber + 1);
+            SaveManager.instance.SaveLevelLock(LevelSelectManager.instance.chapters[chapterNumber - 1], false, levelNumber + 1);
         }
+    }
+
+    //getters and setters
+    public int getLevelNumber()
+    {
+        return levelNumber;
     }
 }

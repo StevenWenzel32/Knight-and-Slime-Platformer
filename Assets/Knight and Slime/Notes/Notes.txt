@@ -1,0 +1,36 @@
+// notes -----------------------------
+// the chapter manager is similar to the level manager class
+// however the level manager is created for each level, but the chapter manager is for the entire game
+// this is the only respect in which they differ
+// each is to handle the functions that would be performed within their respective objects
+// ie the level manager handles the pause menu and the death screens, etc.
+// ie the chapter manager handles the bookmarking process and more static things that users cannot interact with
+
+// --- for saving chapter data ---
+    // level is completed
+    // level data is saved
+    // chapter data is updated/saved
+
+// --- for loading level data ---
+    // create the chapters[]
+    // load chapterInfos into chapters[]
+    // load current chapter page data
+    // levels should be loaded after the chapter page has been loaded 
+
+
+Thoughts on current chapter and level loading and storage design:
+- currently using a chapter buffer for reducing objects in memory
+    - it seems this will only be helpful as a way to restrict the #s of ChapterInfo objects created and indirectly the # of LevelInfo objects also created 
+        - if something is wanted to speed up loading when the game gets larger it would be better to transition to a new way of storing the levels and chapters
+        and using better algorithms for searching 
+    - since I'm using C# and cannot directly delete the info objects after they have been saved and are no longer being used in the buffer 
+        - it seems that if I have an array that has all the possible chapterInfos stored in if it will prove unesscary and none of them will 
+        be automatically deleted since there will still be references to them 
+    - on the other hand if I use this chapter buffer and only ever have 3 ChapterInfos being referenced it will help to reduce the object count
+
+- I will need an int to store the total # of chapters similar to how it is done with the levels
+- I will need to make sure upon each load of the game that a function checks how many Chapter entries are in the save file/playerPrefs
+    - it will create any that are missing -- this is to make sure that when a chapter is loaded it will have its unique chapter number
+     that cannot be gotten or produce from anywhere else other than checking the save file -- this is vital as the chpaterNumber 
+     is used for many of the chpater related functions 
+     - this fucntion will be inside the saveManager class
