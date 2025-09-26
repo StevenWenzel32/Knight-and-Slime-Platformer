@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 1727ecd695a502444b36efd0e5dacd34
+guid: 7cc1a84a3fca5524cb7bcb73f7c1aabd
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
   iconMap: {}
   executionOrder: {}
-<<<<<<< HEAD
-  defineConstraints: []
-  isPreloaded: 0
-  isOverridable: 0
-  isExplicitlyReferenced: 0
-  validateReferences: 1
-  platformData:
-  - first:
-=======
   isPreloaded: 0
   isOverridable: 0
   platformData:
@@ -30,7 +21,6 @@ PluginImporter:
         Exclude Win: 1
         Exclude Win64: 1
   - first:
->>>>>>> 80cea9ca226c8ea46dbf565c9430f7d54c75d23e
       Any: 
     second:
       enabled: 0
@@ -40,10 +30,8 @@ PluginImporter:
     second:
       enabled: 1
       settings:
-        CPU: x86_64
+        CPU: x86
         DefaultValueInitialized: true
-<<<<<<< HEAD
-=======
         OS: AnyOS
   - first:
       Facebook: Win
@@ -87,7 +75,6 @@ PluginImporter:
       enabled: 0
       settings:
         CPU: AnyCPU
->>>>>>> 80cea9ca226c8ea46dbf565c9430f7d54c75d23e
   userData: 
   assetBundleName: 
   assetBundleVariant: 

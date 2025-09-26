@@ -51,12 +51,12 @@ public class MainMenuManager : MonoBehaviour
 
     // go to the settings menu/scene
     public void SettingsMenu(){
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Settings");
     }
 
     // go to the level select menu/scene
     public void LevelSelectMenu(){
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Level Select Menu");
     }
 
     // show the guide screen overlay
