@@ -7,10 +7,6 @@ public class MainMenuManager : MonoBehaviour
     // only have one instance ever, can get else where but can only set here -- singleton
     public static MainMenuManager instance {get; private set;}
 
-    [Header ("Scene Management")]
-    // the scene # that the game should start at
-    public int startScene;
-
     [Header ("Screens")]
     public GameObject guideScreen;
     public GameObject creditsScreen;
@@ -29,13 +25,6 @@ public class MainMenuManager : MonoBehaviour
 
         // make sure any other screens are turned off based on the menu type
         guideScreen?.SetActive(false);
-    }
-
-    // sends the player to the beginning scene of the game -- in this case the main menu
-    public void StartScene()
-    {
-        // loads the given scene
-        SceneManager.LoadScene(startScene);
     }
 
     // quit the game - button func

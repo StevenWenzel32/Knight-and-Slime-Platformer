@@ -88,6 +88,7 @@ public class LevelSelectManager : MonoBehaviour
             LoadSceneReferences();
             // Refresh the current chapter display
             currentPageNum = currentChapter.chapterNum;
+            Debug.Log("currentPageNum at end of onSceneLoaded - Awake = " + currentPageNum);
             DisplayChapter(currentPageNum);
         }
         Debug.Log("LevelSelectManager OnSceneLoaded - finished running");
@@ -112,6 +113,7 @@ public class LevelSelectManager : MonoBehaviour
             currentChapter = chapters[defaultChapterNum - 1];
             // get the currentPageNum 
             currentPageNum = currentChapter.chapterNum;
+            Debug.Log("currentPageNum at end of LevelSelectManager - Awake = " + currentPageNum);
         }
         else
         {

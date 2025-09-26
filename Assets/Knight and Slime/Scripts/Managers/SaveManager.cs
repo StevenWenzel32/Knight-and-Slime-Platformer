@@ -36,13 +36,8 @@ public class SaveManager : MonoBehaviour
             SaveAllLevelData(LevelSelectManager.instance.chapters[i]);
 
             // save all the chapter data
-            // check if a chapter is locked, if it is it still has default data
-            if (LevelSelectManager.instance.chapters[i].locked)
-            {
-                break;
-            }
             // if the percent completed is better then save over the old data -- might not be working if the percent isn't working right*********
-            else if (LevelSelectManager.instance.chapters[i].percentCompleted > PlayerPrefs.GetInt($"Chapter_{i + 1}_Percent"))
+            if (LevelSelectManager.instance.chapters[i].percentCompleted > PlayerPrefs.GetInt($"Chapter_{i + 1}_Percent"))
             {
                 // save the chapter data
                 SaveChapterData(LevelSelectManager.instance.chapters[i], (i + 1));
@@ -59,13 +54,8 @@ public class SaveManager : MonoBehaviour
         // loop through all the levels and save their data
         for (int i = 0; i < NUM_OF_LEVELS; i++)
         {
-            // check if a level is locked if it is it still has default data
-            if (chapter.levels[i].locked)
-            {
-                break;
-            }
             // if the time or gem count is better than the current saved score save the new best
-            else if ((chapter.levels[i].gems > PlayerPrefs.GetInt($"Chapter_{chapter.chapterNum}_Level_{i + 1}_Gems")) || (chapter.levels[i].time < PlayerPrefs.GetFloat($"Chapter_{chapter.chapterNum}_Level_{i + 1}_Time")))
+            if ((chapter.levels[i].gems > PlayerPrefs.GetInt($"Chapter_{chapter.chapterNum}_Level_{i + 1}_Gems")) || (chapter.levels[i].time < PlayerPrefs.GetFloat($"Chapter_{chapter.chapterNum}_Level_{i + 1}_Time")))
             {
                 // save the level data 
                 SaveLevelData(chapter, chapter.levels[i], (i + 1));
@@ -124,11 +114,6 @@ public class SaveManager : MonoBehaviour
         // loop through all the levels[] and load their data
         for (int i = 0; i < NUM_OF_LEVELS; i++)
         {
-            // check if a level is locked if it is it still has default data
-            if (PlayerPrefs.GetInt($"Chapter_{chapter.chapterNum}_Level_{i + 1}_Locked", 1) == 1)
-            {
-                break;
-            }
             chapter.levels[i].gems = PlayerPrefs.GetInt($"Chapter_{chapter.chapterNum}_Level_{i + 1}_Gems", 0);
             chapter.levels[i].stars = PlayerPrefs.GetInt($"Chapter_{chapter.chapterNum}_Level_{i + 1}_Stars", 0);
             chapter.levels[i].score = PlayerPrefs.GetInt($"Chapter_{chapter.chapterNum}_Level_{i + 1}_Score", 0);
@@ -167,12 +152,6 @@ public class SaveManager : MonoBehaviour
         // give numbers to the chapters
         loadedChapter.chapterNum = chapterNum;
 
-        // check if a chapter is locked, if so it still has default data
-        if (PlayerPrefs.GetInt($"Chapter_{chapterNum}_Locked", 1) == 1)
-        {
-            return loadedChapter;
-        }
-
         // load in the other chapter data
         loadedChapter.levelsCompleted = PlayerPrefs.GetInt($"Chapter_{chapterNum}_Levels", 0);
         loadedChapter.gemsCollected = PlayerPrefs.GetInt($"Chapter_{chapterNum}_Gems", 0);
@@ -182,6 +161,7 @@ public class SaveManager : MonoBehaviour
         // load the level data for this chapter till the loadedChapter's levels[] is full
         LoadAllLevelData(loadedChapter);
 
+        Debug.Log("Loaded Chapter data for chapter = " + chapterNum);
         return loadedChapter;
     }
 
@@ -191,15 +171,9 @@ public class SaveManager : MonoBehaviour
         // loop through all the chapters[] and load their data
         for (int i = 0; i < LevelSelectManager.CHAPTER_COUNT; i++)
         {
-
-            // check if a chapter is locked if it is it still has default data
-            if (PlayerPrefs.GetInt($"Chapter_{i + 1}_Locked", 1) == 1)
-            {
-                break;
-            }
-
             LevelSelectManager.instance.chapters[i] = LoadChapterData(i + 1);
         }
+        Debug.Log("SetChaptersArray - finished");
     }
 
     // call this when all levels in a chapter are completed ********************
