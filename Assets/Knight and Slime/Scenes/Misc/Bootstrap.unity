@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04019b340d380dd4083e2cb90563d52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startChapterNum: 1
+  defaultChapterNum: 1
 --- !u!4 &418543152
 Transform:
   m_ObjectHideFlags: 0
