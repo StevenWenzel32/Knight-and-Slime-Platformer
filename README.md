@@ -1,4 +1,4 @@
-Link to executable *v0.0.7 (built for Windows): https://drive.google.com/file/d/1gdzYTzuW6O3OWjNUiQeD0_0HXVcW_mKT/view?usp=sharing
+Link to executable *v1.0.0 (built for Windows): https://drive.google.com/file/d/1JPNCfeniFXCzCL9DxZHxybXw1Bk_KsWG/view?usp=sharing
 
 *Only tested on Windows and Linux. Not designed for phones or consoles.
 
@@ -68,6 +68,9 @@ These are the spots open on my dev team:
 - *note* I'm currently using Unity for my game which isn't great for crazy cool music stuff. I'm in the process of finding an extension for Unity to fix this.
 
 ## Version Changes:
+
+v1.0.0: Added chapters to the game. A chapter contains 10 levels each, and each chapter has a page in the level select menu. Each chapter has completion stats showing levels completed, gems collected, and total percent complete.
+        This involved lots of changes in the background, and these also resulted in the save file format changing, so old save files will no longer work with this new version.
 
 v0.0.7: Added level 8. Slime can now absorb keys and spit them out later. With updated guide. New inventory display for the Slime. Game icon improved. Temporary solution for the slime changing colors when it absorbs a liquid.
 
