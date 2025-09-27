@@ -3,13 +3,18 @@ using UnityEngine;
 
 // saves player data in binary form for security 
 // read and writes the game data for levels and chapters
+// later on move the saved data out of playerPrefs and into files
+    // allows importing and exporintg
+    // will allow multiple save files and easier debugging
 public class SaveManager : MonoBehaviour
 {
     // only have one instance ever, can get else where but can only set here -- singleton
     public static SaveManager instance { get; private set; }
     // chapters will always have 10 levels
     const int NUM_OF_LEVELS = 10;
-    
+    // how many chapters are in the game
+    const int NUM_OF_CHAPTERS = 1;
+
     public void Awake()
     {
         // singleton stuff
@@ -23,6 +28,8 @@ public class SaveManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        printSaveData();
     }
 
     #region Everything
@@ -36,12 +43,43 @@ public class SaveManager : MonoBehaviour
             SaveAllLevelData(LevelSelectManager.instance.chapters[i]);
 
             // save all the chapter data
-            // if the percent completed is better then save over the old data -- might not be working if the percent isn't working right*********
+            // if the percent completed is better then save over the old data
             if (LevelSelectManager.instance.chapters[i].percentCompleted > PlayerPrefs.GetInt($"Chapter_{i + 1}_Percent"))
             {
                 // save the chapter data
                 SaveChapterData(LevelSelectManager.instance.chapters[i], (i + 1));
             }
+        }
+    }
+
+    // prints out all the save data
+    private void printSaveData()
+    {
+        Debug.Log("Printing all saved data::");
+
+        // print out all chapters
+        for (int i = 0; i < NUM_OF_CHAPTERS; i++)
+        {
+            Debug.Log("Printing data for Chapter " + (i + 1) + "::");
+
+            // chapter data
+            Debug.Log(PlayerPrefs.GetInt($"Chapter_{i + 1}_Levels", 0));
+            Debug.Log(PlayerPrefs.GetInt($"Chapter_{i + 1}_Gems", 0));
+            Debug.Log(PlayerPrefs.GetInt($"Chapter_{i + 1}_Percent", 0));
+            Debug.Log(PlayerPrefs.GetInt($"Chapter_{i + 1}_Locked", 1) == 1);
+
+            Debug.Log("Printing level data for Chapter " + (i + 1) + "::");
+
+            // loop through all the levels[] and load their data
+            for (int j = 0; j < NUM_OF_LEVELS; j++)
+            {
+                Debug.Log(PlayerPrefs.GetInt($"Chapter_{i + 1}_Level_{j + 1}_Gems", 0));
+                Debug.Log(PlayerPrefs.GetInt($"Chapter_{i + 1}_Level_{j + 1}_Stars", 0));
+                Debug.Log(PlayerPrefs.GetInt($"Chapter_{i + 1}_Level_{j + 1}_Score", 0));
+                Debug.Log(PlayerPrefs.GetFloat($"Chapter_{i + 1}_Level_{j + 1}_Time", 0f));
+                Debug.Log(PlayerPrefs.GetInt($"Chapter_{i + 1}_Level_{j + 1}_Locked", 1) == 1);
+            }
+
         }
     }
 
@@ -72,14 +110,11 @@ public class SaveManager : MonoBehaviour
         {
             // save the data 
             SaveData(chapter, levelData, levelNumber);
-            // save the updated chapter info
-            //            SaveChapterData(ChapterInfo chapterData, int chapterNumber);
         }
         // check if the player had the same amount of gems but a better time
         else if ((levelData.gems == PlayerPrefs.GetInt($"Chapter_{chapter.chapterNum}_Level_{levelNumber}_Gems")) && (levelData.time < PlayerPrefs.GetFloat($"Chapter_{chapter.chapterNum}_Level_{levelNumber}_Time")))
         {
             SaveData(chapter, levelData, levelNumber);
-            //           SaveChapterData(ChapterInfo chapterData, int chapterNumber)
         }
 
         // save them right away
@@ -127,7 +162,7 @@ public class SaveManager : MonoBehaviour
     #region Chapter Data
 
     // pass in a ChapterInfo and save it's data into the playerPrefs
-    // should be called when a level is completed *************************
+    // should be called when a level is completed
     public void SaveChapterData(ChapterInfo chapterData, int chapterNumber)
     {
         // Use keys with the level number as part of the key name
@@ -152,11 +187,15 @@ public class SaveManager : MonoBehaviour
         // give numbers to the chapters
         loadedChapter.chapterNum = chapterNum;
 
+        Debug.Log("about to load chapter data for chapter = " + chapterNum);
+
         // load in the other chapter data
         loadedChapter.levelsCompleted = PlayerPrefs.GetInt($"Chapter_{chapterNum}_Levels", 0);
         loadedChapter.gemsCollected = PlayerPrefs.GetInt($"Chapter_{chapterNum}_Gems", 0);
         loadedChapter.percentCompleted = PlayerPrefs.GetInt($"Chapter_{chapterNum}_Percent", 0);
         loadedChapter.locked = PlayerPrefs.GetInt($"Chapter_{chapterNum}_Locked", 1) == 1;
+
+        Debug.Log("about to load level data for chapter = " + chapterNum);
 
         // load the level data for this chapter till the loadedChapter's levels[] is full
         LoadAllLevelData(loadedChapter);
@@ -185,6 +224,6 @@ public class SaveManager : MonoBehaviour
         // save them right away
         PlayerPrefs.Save();
     }
-    
+
     #endregion
 }
